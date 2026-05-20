@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Raleway, Open_Sans } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -27,9 +28,7 @@ export const metadata: Metadata = {
     "Rural Empowerment",
   ],
   authors: [{ name: "Bugwere Coffee Company" }],
-  icons: {
-    icon: "/logo.png",
-  },
+  icons: { icon: "/logo.png" },
 };
 
 export default function RootLayout({
@@ -42,8 +41,9 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${openSans.variable} antialiased bg-background text-foreground`}
       >
-        {children}
-        <Toaster />
+        <Header />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );

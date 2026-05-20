@@ -1,437 +1,292 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import HeroSlider from "@/components/HeroSlider";
+import { SectionHeading } from "@/components/PageHero";
 import {
-  Menu,
-  X,
-  ChevronDown,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  ArrowUp,
-  Users,
+  Coffee,
   Sprout,
+  Bird,
+  Wheat,
+  Heart,
+  Users,
+  BarChart3,
+  ArrowRight,
+  CheckCircle2,
   Leaf,
-  Mail,
+  Shield,
+  PiggyBank,
+  ShoppingBag,
+  Microscope,
 } from "lucide-react";
 
-/* ─── colour constants ─── */
 const PRIMARY = "#c94449";
 const SECONDARY = "#193b2a";
 const LIGHT_BG = "#F4F7FA";
 
-/* ─── navigation data ─── */
-const NAV_ITEMS = [
+const HERO_SLIDES = [
   {
-    label: "About",
-    href: "#about",
-    children: [
-      { label: "About Us", href: "#about" },
-      { label: "Our Team", href: "#leadership" },
-    ],
+    image: "/images/hero-1.png",
+    subtitle: "Bugwere Coffee Company",
+    title: "Empowering Communities Through Sustainable Agriculture",
+    description:
+      "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.",
+    cta: "Join The Campaign",
+    ctaHref: "#about",
   },
   {
-    label: "What We Do",
-    href: "#what-we-do",
-    children: [
-      { label: "Sustainable Coffee Production", href: "#impact" },
-      { label: "Cocoa Farming", href: "#impact" },
-      { label: "Intermediary Crops Program", href: "#model" },
-      { label: "Livestock Support (Piggery & Poultry)", href: "#model" },
-      { label: "Agronomy & Farmer Support Services", href: "#model" },
-      { label: "Community Development Initiatives", href: "#model" },
-    ],
-  },
-  {
-    label: "Impact & Growth",
-    href: "#impact",
-    children: [
-      { label: "Impact Stories", href: "#impact" },
-      { label: "Farmer Statistics", href: "#impact" },
-      { label: "Regional Expansion", href: "#partnerships" },
-      { label: "Projections and Future Plans", href: "#model" },
-    ],
-  },
-  {
-    label: "Our Model",
-    href: "#model",
-    children: [
-      { label: "Seedling Production & Distribution", href: "#model" },
-      { label: "Agronomic Extension System", href: "#model" },
-      { label: "Market Access & Guaranteed Buying", href: "#model" },
-      { label: "Processing & Quality Assurance", href: "#model" },
-      { label: "Financial Inclusion (SACCO)", href: "#model" },
-      { label: "Rural Farmer Insurance Program", href: "#model" },
-    ],
-  },
-  { label: "Partners & Collaborators", href: "#partnerships" },
-  { label: "News & Updates", href: "#news" },
-  { label: "Contact Us", href: "#contact" },
-];
-
-/* ─── hero slideshow images ─── */
-const HERO_IMAGES = [
-  "/images/hero-1.png",
-  "/images/hero-2.png",
-  "/images/hero-3.png",
-  "/images/hero-4.png",
-];
-
-/* ─── impact cards ─── */
-const IMPACT_CARDS = [
-  {
-    image: "/images/impact-coffee.png",
-    stat: "Over 5,000",
-    title: "homes supplied with coffee seedlings",
+    image: "/images/hero-2.png",
+    subtitle: "Seedling Program",
+    title: "Over 5,000 Homes Supplied With Coffee Seedlings",
     description:
       "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.",
+    cta: "Our Programs",
+    ctaHref: "/programs/coffee",
   },
   {
-    image: "/images/impact-cocoa.png",
-    stat: "Over 3,700",
-    title: "homes supplied with cocoa seedlings",
+    image: "/images/hero-3.png",
+    subtitle: "Cocoa Expansion",
+    title: "Diversifying Income Through Cocoa Farming",
     description:
       "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.",
+    cta: "Learn More",
+    ctaHref: "/programs/cocoa",
   },
   {
-    image: "/images/impact-fertilizer.png",
-    stat: "Over 7,000",
-    title: "homes supplied with fertilizers",
+    image: "/images/hero-4.png",
+    subtitle: "Agricultural Support",
+    title: "7,000+ Homes Supplied With Fertilizers",
     description:
       "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.",
+    cta: "See Our Impact",
+    ctaHref: "/impact",
   },
 ];
 
-/* ─── news articles ─── */
+const IMPACT_STATS = [
+  { number: "5,000+", label: "Homes with Coffee Seedlings", icon: Coffee },
+  { number: "3,700+", label: "Homes with Cocoa Seedlings", icon: Sprout },
+  { number: "7,000+", label: "Homes with Fertilizers", icon: Wheat },
+  { number: "2023", label: "Year Founded", icon: Leaf },
+];
+
+const PROGRAMS = [
+  {
+    icon: Coffee,
+    title: "Sustainable Coffee",
+    desc: "High-value coffee production with guaranteed market access and expert agronomic support.",
+    href: "/programs/coffee",
+    color: "#8B6914",
+  },
+  {
+    icon: Sprout,
+    title: "Cocoa Farming",
+    desc: "Diversifying farmer income with resilient cocoa crops and comprehensive training programs.",
+    href: "/programs/cocoa",
+    color: "#6B3A2A",
+  },
+  {
+    icon: Bird,
+    title: "Livestock Support",
+    desc: "Piggery and poultry projects providing steady, diversified income for rural households.",
+    href: "/programs/livestock",
+    color: "#2A5A3A",
+  },
+  {
+    icon: Wheat,
+    title: "Agronomy Services",
+    desc: "Expert farmer training, extension services, and ongoing field support.",
+    href: "/programs/agronomy",
+    color: "#4A6B2A",
+  },
+  {
+    icon: Heart,
+    title: "Community Development",
+    desc: "Building resilient communities through inclusive development initiatives.",
+    href: "/programs/community",
+    color: PRIMARY,
+  },
+];
+
+const MODEL_PILLARS = [
+  {
+    icon: Sprout,
+    title: "Seedling Distribution",
+    desc: "Quality seedlings delivered to every farmer",
+    href: "/model/seedlings",
+  },
+  {
+    icon: Microscope,
+    title: "Extension System",
+    desc: "Agronomic training & field support",
+    href: "/model/extension",
+  },
+  {
+    icon: ShoppingBag,
+    title: "Market Access",
+    desc: "Guaranteed buying & fair prices",
+    href: "/model/market",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Quality Assurance",
+    desc: "Processing & quality standards",
+    href: "/model/quality",
+  },
+  {
+    icon: PiggyBank,
+    title: "Financial Inclusion",
+    desc: "SACCO & community savings groups",
+    href: "/model/financial",
+  },
+  {
+    icon: Shield,
+    title: "Farmer Insurance",
+    desc: "Rural risk protection program",
+    href: "/model/insurance",
+  },
+];
+
 const NEWS_ARTICLES = [
   {
     image: "/images/news-1.png",
-    date: "November 29, 2025",
+    date: "Nov 29, 2025",
     title: "Fertilizer Distribution Boosts Productivity for 7,000 Households",
+    href: "/connect/news",
   },
   {
     image: "/images/news-2.png",
-    date: "November 29, 2025",
+    date: "Nov 29, 2025",
     title: "Cocoa Expansion Program Impacts 3,700 Homes",
+    href: "/connect/news",
   },
   {
     image: "/images/news-3.png",
-    date: "November 29, 2025",
-    title: "Bugwere Coffee Company Reaches Over 5,000 Homes With Coffee Seedlings",
+    date: "Nov 29, 2025",
+    title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings",
+    href: "/connect/news",
   },
 ];
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MAIN PAGE COMPONENT
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  /* scroll listener */
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 60);
-      setShowBackToTop(window.scrollY > 600);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  /* auto-advance slideshow */
-  useEffect(() => {
-    const interval = setInterval(
-      () => setActiveSlide((p) => (p + 1) % HERO_IMAGES.length),
-      5000
-    );
-    return () => clearInterval(interval);
-  }, []);
-
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   return (
-    <div className="min-h-screen flex flex-col" style={{ fontFamily: "var(--font-open-sans)" }}>
-      {/* ─── HEADER ─── */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <a href="#" className="flex-shrink-0">
-              <Image
-                src="/logo.png"
-                alt="Bugwere Coffee Company"
-                width={50}
-                height={50}
-                className="rounded"
-              />
-            </a>
+    <>
+      {/* ─── HERO SLIDER ─── */}
+      <HeroSlider slides={HERO_SLIDES} />
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
-              {NAV_ITEMS.map((item) => (
-                <div
-                  key={item.label}
-                  className="relative group"
-                  onMouseEnter={() =>
-                    item.children && setOpenDropdown(item.label)
-                  }
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
-                  <a
-                    href={item.href}
-                    className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-800 hover:text-[--color-brand] transition-colors"
-                    style={{ fontFamily: "var(--font-open-sans)" }}
+      {/* ─── IMPACT STATS BAR ─── */}
+      <section style={{ backgroundColor: SECONDARY }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8 py-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {IMPACT_STATS.map((stat, i) => (
+              <div key={i} className="text-center">
+                <div className="flex justify-center mb-3">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center"
+                    style={{ backgroundColor: `${PRIMARY}20` }}
                   >
-                    {item.label}
-                    {item.children && (
-                      <ChevronDown className="w-3.5 h-3.5 opacity-60" />
-                    )}
-                  </a>
-                  {item.children && openDropdown === item.label && (
-                    <div className="absolute top-full left-0 bg-white shadow-xl rounded-md border border-gray-100 min-w-[260px] py-2 animate-fade-in z-50">
-                      {item.children.map((child) => (
-                        <a
-                          key={child.label}
-                          href={child.href}
-                          className="block px-5 py-2.5 text-sm text-gray-700 hover:bg-[--color-light-bg] hover:text-[--color-brand] transition-colors"
-                        >
-                          {child.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
+                    <stat.icon className="w-6 h-6" style={{ color: PRIMARY }} />
+                  </div>
                 </div>
-              ))}
-            </nav>
-
-            {/* Support CTA + Mobile Toggle */}
-            <div className="flex items-center gap-4">
-              <a
-                href="#contact"
-                className="hidden sm:inline-flex items-center px-6 py-2.5 text-white font-semibold text-sm transition-colors"
-                style={{ backgroundColor: SECONDARY }}
-              >
-                Support
-              </a>
-              <button
-                className="lg:hidden p-2 text-gray-800"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle mobile menu"
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg max-h-[80vh] overflow-y-auto custom-scrollbar">
-            <div className="px-4 py-4 space-y-1">
-              {NAV_ITEMS.map((item) => (
-                <MobileNavItem
-                  key={item.label}
-                  item={item}
-                  onClose={() => setMobileMenuOpen(false)}
-                />
-              ))}
-              <a
-                href="#contact"
-                className="block mt-4 text-center px-6 py-3 text-white font-semibold text-sm"
-                style={{ backgroundColor: SECONDARY }}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Support
-              </a>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* ─── HERO ─── */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        <div className="w-full flex flex-col lg:flex-row">
-          {/* Left content */}
-          <div
-            className="w-full lg:w-1/2 relative z-10 flex items-center"
-            style={{ backgroundColor: SECONDARY }}
-          >
-            <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16 py-16 lg:py-24">
-              <h6
-                className="text-sm font-semibold uppercase tracking-wider mb-4"
-                style={{ color: PRIMARY, fontFamily: "var(--font-open-sans)" }}
-              >
-                Bugwere Coffee Company
-              </h6>
-              <h1
-                className="text-4xl sm:text-5xl lg:text-6xl font-medium text-white leading-tight mb-6"
-                style={{ fontFamily: "var(--font-raleway)" }}
-              >
-                Empowering Bugwere Through Sustainable Agriculture
-              </h1>
-              <p className="text-white/80 text-lg leading-relaxed mb-8 max-w-lg">
-                <strong className="text-white">Bugwere Coffee Company</strong>{" "}
-                is an agribusiness initiative based in the Bugwere region of
-                Eastern Uganda. We are dedicated to transforming rural livelihoods
-                through sustainable agriculture.
-              </p>
-              <a
-                href="#about"
-                className="inline-flex items-center px-8 py-3.5 bg-white font-semibold text-sm transition-all hover:shadow-lg"
-                style={{ color: SECONDARY }}
-              >
-                Join The Campaign
-              </a>
-
-              {/* Vision quote */}
-              <div className="mt-14 border-l-4 pl-6" style={{ borderColor: PRIMARY }}>
-                <p className="text-white/90 text-lg italic leading-relaxed mb-3">
-                  &ldquo;To transform Uganda&apos;s rural farming communities into
-                  empowered, sustainable producers and exporters of high-quality
-                  coffee.&rdquo;
-                </p>
-                <h5
-                  className="text-white font-semibold text-base"
-                  style={{ fontFamily: "var(--font-open-sans)" }}
+                <p
+                  className="text-3xl sm:text-4xl font-bold text-white mb-1"
+                  style={{ fontFamily: "var(--font-raleway)" }}
                 >
-                  Our Vision
-                </h5>
-              </div>
-            </div>
-          </div>
-
-          {/* Right slideshow */}
-          <div className="w-full lg:w-1/2 relative h-[400px] lg:h-screen lg:min-h-[700px]">
-            {HERO_IMAGES.map((src, i) => (
-              <div
-                key={src}
-                className="absolute inset-0 transition-opacity duration-700"
-                style={{ opacity: activeSlide === i ? 1 : 0 }}
-              >
-                <Image
-                  src={src}
-                  alt={`Bugwere Coffee farming ${i + 1}`}
-                  fill
-                  className="object-cover"
-                  priority={i === 0}
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+                  {stat.number}
+                </p>
+                <p className="text-white/60 text-sm">{stat.label}</p>
               </div>
             ))}
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/10" />
-            {/* Slideshow pagination */}
-            <div className="absolute bottom-8 right-8 flex gap-3 z-10">
-              {HERO_IMAGES.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActiveSlide(i)}
-                  className={`w-10 h-10 flex items-center justify-center text-sm font-semibold transition-all ${
-                    activeSlide === i
-                      ? "bg-white text-gray-900"
-                      : "bg-white/30 text-white hover:bg-white/50"
-                  }`}
-                  aria-label={`Go to slide ${i + 1}`}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── ABOUT / OUR STORY ─── */}
-      <section id="about" className="py-20 lg:py-28" style={{ backgroundColor: LIGHT_BG }}>
+      {/* ─── ABOUT ─── */}
+      <section id="about" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: story */}
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
-              <h6
-                className="text-sm font-semibold uppercase tracking-wider mb-4"
-                style={{ color: PRIMARY, fontFamily: "var(--font-open-sans)" }}
+              <SectionHeading
+                label="About Bugwere Coffee Company"
+                title="Our Story"
+                description="Founded in 2023, Bugwere Coffee Company (BCC) was established to respond to a critical challenge: How can rural households with limited land still generate sustainable income? Our answer lies in a holistic, community-driven approach that combines high-value coffee and cocoa production with diversified income streams, expert agronomic support, and guaranteed market access."
+              />
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-7 py-3 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-lg hover:scale-[1.02]"
+                style={{ backgroundColor: SECONDARY }}
               >
-                About Bugwere Coffee Company
-              </h6>
-              <h2
-                className="text-4xl sm:text-5xl font-medium text-gray-900 leading-tight mb-6"
-                style={{ fontFamily: "var(--font-raleway)" }}
-              >
-                Our Story
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Founded in 2023, Bugwere Coffee Company (BCC) was established to
-                respond to a critical challenge: How can rural households with
-                limited land still generate sustainable income? Our answer lies in a
-                holistic, community-driven approach that combines high-value coffee
-                and cocoa production with diversified income streams, expert
-                agronomic support, and guaranteed market access. We believe that
-                every household, regardless of land size, deserves the opportunity
-                to build a prosperous and sustainable future.
-              </p>
+                Read Our Story <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
-
-            {/* Right: photo */}
             <div className="relative">
-              <div className="rounded overflow-hidden shadow-2xl">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/about-photo.png"
-                  alt="Bugwere Coffee Company community"
+                  alt="Bugwere Coffee community"
                   width={864}
                   height={1152}
                   className="w-full h-auto object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
+              {/* Floating stat card */}
+              <div
+                className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-5 hidden lg:block"
+              >
+                <p
+                  className="text-3xl font-bold"
+                  style={{ color: PRIMARY, fontFamily: "var(--font-raleway)" }}
+                >
+                  5,000+
+                </p>
+                <p className="text-sm text-gray-500">Families empowered</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── WHAT WE DO ─── */}
-      <section id="what-we-do" className="py-20 lg:py-28" style={{ backgroundColor: SECONDARY }}>
+      {/* ─── PROGRAMS ─── */}
+      <section id="programs" className="py-20 lg:py-28" style={{ backgroundColor: LIGHT_BG }}>
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="max-w-3xl">
-            <h6
-              className="text-sm font-semibold uppercase tracking-wider mb-4 text-white/80"
-              style={{ fontFamily: "var(--font-open-sans)" }}
-            >
-              What We Do
-            </h6>
-            <h3
-              className="text-3xl sm:text-4xl font-medium text-white leading-tight mb-6"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Bugwere Coffee Company
-            </h3>
-            <p className="text-white/80 text-lg leading-relaxed mb-8">
-              Empowers rural households through sustainable coffee and cocoa
-              farming, micro-commercial farm development, livestock projects,
-              intermediary crops, and expert agronomic support to ensure steady,
-              diversified income.
-            </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center px-8 py-3.5 bg-white font-semibold text-sm transition-all hover:shadow-lg"
-              style={{ color: PRIMARY }}
-            >
-              Donate Now
-            </a>
+          <SectionHeading
+            label="What We Do"
+            title="Our Programs"
+            description="Bugwere Coffee Company empowers rural households through sustainable coffee and cocoa farming, micro-commercial farm development, livestock projects, intermediary crops, and expert agronomic support."
+            centered
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROGRAMS.map((program) => (
+              <Link
+                key={program.title}
+                href={program.href}
+                className="group bg-white rounded-2xl p-7 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <div
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-colors"
+                  style={{ backgroundColor: `${program.color}12` }}
+                >
+                  <program.icon
+                    className="w-7 h-7"
+                    style={{ color: program.color }}
+                  />
+                </div>
+                <h3
+                  className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[--color-brand] transition-colors"
+                  style={{ fontFamily: "var(--font-raleway)" }}
+                >
+                  {program.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  {program.desc}
+                </p>
+                <div className="mt-4 flex items-center gap-1 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: PRIMARY }}>
+                  Learn more <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -439,505 +294,228 @@ export default function Home() {
       {/* ─── IMPACT IN NUMBERS ─── */}
       <section id="impact" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="text-center mb-16">
-            <h6
-              className="text-sm font-semibold uppercase tracking-wider mb-4"
-              style={{ color: PRIMARY, fontFamily: "var(--font-open-sans)" }}
-            >
-              Bugwere Impact
-            </h6>
-            <h2
-              className="text-4xl sm:text-5xl font-medium text-gray-900 leading-tight mb-4"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Our Impact in Numbers
-            </h2>
-            <h4
-              className="text-xl sm:text-2xl font-medium text-gray-800 max-w-3xl mx-auto"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Strengthening Communities Through Scalable, High-Impact Agricultural
-              Support.
-            </h4>
-          </div>
-
+          <SectionHeading
+            label="Bugwere Impact"
+            title="Our Impact in Numbers"
+            description="Strengthening communities through scalable, high-impact agricultural support across the Bugwere region."
+            centered
+          />
           <div className="grid md:grid-cols-3 gap-8">
-            {IMPACT_CARDS.map((card, i) => (
+            {[
+              {
+                img: "/images/impact-coffee.png",
+                stat: "5,000+",
+                title: "Homes Supplied With Coffee Seedlings",
+                desc: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.",
+              },
+              {
+                img: "/images/impact-cocoa.png",
+                stat: "3,700+",
+                title: "Homes Supplied With Cocoa Seedlings",
+                desc: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.",
+              },
+              {
+                img: "/images/impact-fertilizer.png",
+                stat: "7,000+",
+                title: "Homes Supplied With Fertilizers",
+                desc: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.",
+              },
+            ].map((card, i) => (
               <div
                 key={i}
-                className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
-                    src={card.image}
+                    src={card.img}
                     alt={card.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <p
+                    className="absolute bottom-4 left-6 text-3xl font-bold text-white"
+                    style={{ fontFamily: "var(--font-raleway)" }}
+                  >
+                    {card.stat}
+                  </p>
                 </div>
                 <div className="p-6">
                   <h4
-                    className="text-xl font-medium text-gray-900 mb-2"
+                    className="text-lg font-bold text-gray-900 mb-2"
                     style={{ fontFamily: "var(--font-raleway)" }}
                   >
-                    <span className="font-bold" style={{ color: PRIMARY }}>
-                      {card.stat}
-                    </span>{" "}
                     {card.title}
                   </h4>
-                  <p className="text-gray-600 leading-relaxed">
-                    {card.description}
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {card.desc}
                   </p>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── OUR MODEL ─── */}
+      <section id="model" className="py-20 lg:py-28" style={{ backgroundColor: SECONDARY }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+          <SectionHeading
+            label="Empowering Households"
+            title="Our Transformative Agriculture Model"
+            description="Our model is built to empower rural households through a complete, end-to-end agricultural support system. We provide high-quality seedlings, agronomic training, and guaranteed markets, while strengthening families with short-term income crops, livestock projects, and financial inclusion."
+            light
+            centered
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {MODEL_PILLARS.map((pillar) => (
+              <Link
+                key={pillar.title}
+                href={pillar.href}
+                className="group flex items-start gap-4 p-5 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] transition-all"
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                  style={{ backgroundColor: `${PRIMARY}25` }}
+                >
+                  <pillar.icon className="w-6 h-6" style={{ color: PRIMARY }} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-white group-hover:text-white/90 mb-1" style={{ fontFamily: "var(--font-raleway)" }}>
+                    {pillar.title}
+                  </h4>
+                  <p className="text-white/60 text-sm">{pillar.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/model"
+              className="inline-flex items-center gap-2 px-7 py-3 bg-white font-semibold text-sm rounded-xl transition-all hover:shadow-lg"
+              style={{ color: SECONDARY }}
+            >
+              Explore Our Model <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* ─── PARTNERSHIPS ─── */}
-      <section id="partnerships" className="py-20 lg:py-28" style={{ backgroundColor: LIGHT_BG }}>
+      <section id="partnerships" className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 mb-4">
-              Working Together to Drive Sustainable Agricultural Transformation
-            </p>
-            <h2
-              className="text-4xl sm:text-5xl font-medium text-gray-900 leading-tight mb-6"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Partnerships
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-10">
-              Bugwere Coffee Company (BCC) thrives through strong partnerships with
-              organizations that share our commitment to empowering rural
-              communities. We collaborate with{" "}
-              <strong className="text-gray-900">local governments</strong>,{" "}
-              <strong className="text-gray-900">development agencies</strong>,{" "}
-              <strong className="text-gray-900">financial institutions</strong>,{" "}
-              <strong className="text-gray-900">research organizations</strong>,
-              and{" "}
-              <strong className="text-gray-900">
-                community-based structures
-              </strong>
-              . Together, we build resilient agricultural systems that create
-              lasting change in the Bugwere region and beyond.
-            </p>
-
-            {/* Partner icons */}
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 mb-12">
-              {[
-                { icon: Users, label: "Local Governments" },
-                { icon: Sprout, label: "Development Agencies" },
-                { icon: Leaf, label: "Research Orgs" },
-                { icon: Mail, label: "Financial Inst." },
-                { icon: Users, label: "Community Orgs" },
-              ].map(({ icon: Icon, label }, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center gap-3 p-6 bg-white rounded-lg shadow-sm"
-                >
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: `${SECONDARY}15` }}
-                  >
-                    <Icon
-                      className="w-7 h-7"
-                      style={{ color: SECONDARY }}
-                    />
-                  </div>
-                  <span className="text-sm font-medium text-gray-700 text-center">
-                    {label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <a
-              href="#contact"
-              className="inline-flex items-center px-8 py-3.5 bg-white border-2 font-semibold text-sm transition-all hover:shadow-lg"
-              style={{
-                borderColor: SECONDARY,
-                color: SECONDARY,
-              }}
-            >
-              Become a Partner
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TRANSFORMATIVE AGRICULTURE MODEL ─── */}
-      <section id="model" className="py-20 lg:py-28" style={{ backgroundColor: SECONDARY }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="max-w-3xl">
-            <h6
-              className="text-sm font-semibold uppercase tracking-wider mb-4 text-white/70"
-              style={{ fontFamily: "var(--font-open-sans)" }}
-            >
-              Empowering Households
-            </h6>
-            <h2
-              className="text-4xl sm:text-5xl font-medium text-white leading-tight mb-6"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Our Transformative Agriculture Model
-            </h2>
-            <p className="text-white/80 text-lg leading-relaxed mb-8">
-              Our model is built to empower rural households through a complete,
-              end-to-end agricultural support system. We provide high-quality
-              seedlings, agronomic training, and guaranteed markets, while
-              strengthening families with short-term income crops, livestock
-              projects, and financial inclusion through our community SACCO. By
-              combining production support, value-chain integration, and rural
-              insurance solutions, we help farmers grow sustainably, reduce risk,
-              and build lasting prosperity.
-            </p>
-
-            {/* Model features */}
-            <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              {[
-                "High-Quality Seedling Distribution",
-                "Agronomic Training & Extension",
-                "Guaranteed Market Access",
-                "Processing & Quality Assurance",
-                "Financial Inclusion (SACCO)",
-                "Rural Farmer Insurance",
-              ].map((feature, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 text-white/90 text-base"
-                >
-                  <div
-                    className="w-2 h-2 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: PRIMARY }}
-                  />
-                  {feature}
-                </div>
-              ))}
-            </div>
-
-            <a
-              href="#about"
-              className="inline-flex items-center px-8 py-3.5 bg-white font-semibold text-sm transition-all hover:shadow-lg"
-              style={{ color: SECONDARY }}
-            >
-              Our Model
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── NEWS & PRESS ─── */}
-      <section id="news" className="py-20 lg:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="text-center mb-16">
-            <h6
-              className="text-sm font-semibold uppercase tracking-wider mb-4"
-              style={{ color: PRIMARY, fontFamily: "var(--font-open-sans)" }}
-            >
-              News
-            </h6>
-            <h2
-              className="text-4xl sm:text-5xl font-medium text-gray-900 leading-tight mb-4"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Latest News & Press
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Stay updated with the latest news and developments from Bugwere
-              Coffee Company and our community initiatives.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {NEWS_ARTICLES.map((article, i) => (
+          <SectionHeading
+            label="Working Together"
+            title="Partnerships"
+            description="Bugwere Coffee Company thrives through strong partnerships with organizations that share our commitment to empowering rural communities. We collaborate with local governments, development agencies, financial institutions, research organizations, and community-based structures."
+            centered
+          />
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-5 mb-10">
+            {[
+              { icon: Users, label: "Local Governments" },
+              { icon: Leaf, label: "Development Agencies" },
+              { icon: Microscope, label: "Research Orgs" },
+              { icon: PiggyBank, label: "Financial Inst." },
+              { icon: Heart, label: "Community Orgs" },
+            ].map(({ icon: Icon, label }, i) => (
               <div
                 key={i}
-                className="group bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+                className="flex flex-col items-center gap-3 p-6 rounded-2xl border border-gray-100 hover:border-[--color-brand]/20 hover:shadow-md transition-all"
               >
-                <div className="relative h-56 overflow-hidden">
+                <div
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                  style={{ backgroundColor: `${SECONDARY}10` }}
+                >
+                  <Icon className="w-7 h-7" style={{ color: SECONDARY }} />
+                </div>
+                <span className="text-sm font-medium text-gray-700 text-center">
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link
+              href="/connect/partners"
+              className="inline-flex items-center gap-2 px-7 py-3 border-2 font-semibold text-sm rounded-xl transition-all hover:shadow-lg"
+              style={{ borderColor: SECONDARY, color: SECONDARY }}
+            >
+              Become a Partner <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── NEWS ─── */}
+      <section id="news" className="py-20 lg:py-28" style={{ backgroundColor: LIGHT_BG }}>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+          <SectionHeading
+            label="Latest News"
+            title="News & Press"
+            description="Stay updated with the latest developments from Bugwere Coffee Company and our community initiatives."
+            centered
+          />
+          <div className="grid md:grid-cols-3 gap-8">
+            {NEWS_ARTICLES.map((article, i) => (
+              <Link
+                key={i}
+                href={article.href}
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative h-52 overflow-hidden">
                   <Image
                     src={article.image}
                     alt={article.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
                 <div className="p-6">
-                  <p
-                    className="text-sm font-medium mb-2"
-                    style={{ color: PRIMARY }}
-                  >
+                  <p className="text-xs font-semibold mb-2" style={{ color: PRIMARY }}>
                     {article.date}
                   </p>
                   <h4
-                    className="text-lg font-medium text-gray-900 mb-4 leading-snug"
+                    className="text-base font-bold text-gray-900 leading-snug group-hover:text-[--color-brand] transition-colors"
                     style={{ fontFamily: "var(--font-raleway)" }}
                   >
                     {article.title}
                   </h4>
-                  <a
-                    href="#"
-                    className="inline-flex items-center px-6 py-2.5 bg-white border border-gray-200 font-semibold text-sm text-gray-800 hover:border-gray-400 transition-colors"
-                  >
-                    Read More
-                  </a>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── LEADERSHIP ─── */}
-      <section id="leadership" className="py-20 lg:py-28" style={{ backgroundColor: LIGHT_BG }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <p
-              className="text-sm font-semibold uppercase tracking-wider mb-4"
-              style={{ color: PRIMARY, fontFamily: "var(--font-open-sans)" }}
-            >
-              Guiding Vision. Inspiring Impact.
-            </p>
-            <h2
-              className="text-4xl sm:text-5xl font-medium text-gray-900 leading-tight mb-6"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Leadership
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-12">
-              Our leadership team brings expertise, dedication, and a shared
-              commitment to transforming communities through sustainable agriculture
-              and financial empowerment. Together, they guide our programs, support
-              farmers, and ensure impactful results across the Bugwere region.
-            </p>
-
-            {/* Volunteer / Newsletter */}
-            <div
-              className="inline-flex flex-col sm:flex-row items-stretch rounded overflow-hidden shadow-md max-w-lg mx-auto"
-            >
-              <input
-                type="email"
-                placeholder="Your email here"
-                className="px-6 py-3.5 text-base text-gray-800 bg-white outline-none flex-1 min-w-0"
-              />
-              <button
-                className="px-8 py-3.5 text-white font-semibold text-sm transition-colors"
-                style={{ backgroundColor: SECONDARY }}
-              >
-                Volunteer
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── FOOTER CTA ─── */}
-      <section style={{ backgroundColor: SECONDARY }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8 py-16 lg:py-20">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
-            <h2
-              className="text-3xl sm:text-4xl font-medium text-white"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Your participation matters!
-            </h2>
-            <a
-              href="#contact"
-              className="inline-flex items-center px-8 py-3.5 bg-white font-semibold text-sm transition-all hover:shadow-lg"
-              style={{ color: SECONDARY }}
-            >
-              Join Now
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── FOOTER ─── */}
-      <footer id="contact" className="bg-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-            {/* Brand */}
-            <div>
-              <Image
-                src="/logo.png"
-                alt="Bugwere Coffee Company"
-                width={48}
-                height={48}
-                className="rounded mb-4"
-              />
-              <p
-                className="text-white font-semibold text-lg mb-2"
-                style={{ fontFamily: "var(--font-raleway)" }}
-              >
-                Bugwere Coffee Company
-              </p>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Empowering rural households through sustainable agriculture in the
-                Bugwere region of Eastern Uganda.
-              </p>
-            </div>
-
-            {/* About */}
-            <div>
-              <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-                About
-              </h4>
-              <ul className="space-y-2.5 text-gray-400 text-sm">
-                <li>
-                  <a href="#about" className="hover:text-white transition-colors">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#leadership" className="hover:text-white transition-colors">
-                    Our Team
-                  </a>
-                </li>
-                <li>
-                  <a href="#impact" className="hover:text-white transition-colors">
-                    Impact Stories
-                  </a>
-                </li>
-                <li>
-                  <a href="#news" className="hover:text-white transition-colors">
-                    News & Updates
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* What We Do */}
-            <div>
-              <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-                What We Do
-              </h4>
-              <ul className="space-y-2.5 text-gray-400 text-sm">
-                <li>
-                  <a href="#what-we-do" className="hover:text-white transition-colors">
-                    Coffee Production
-                  </a>
-                </li>
-                <li>
-                  <a href="#what-we-do" className="hover:text-white transition-colors">
-                    Cocoa Farming
-                  </a>
-                </li>
-                <li>
-                  <a href="#model" className="hover:text-white transition-colors">
-                    Livestock Support
-                  </a>
-                </li>
-                <li>
-                  <a href="#model" className="hover:text-white transition-colors">
-                    Agronomy Services
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">
-                Contact Us
-              </h4>
-              <p className="text-gray-400 text-sm mb-4">
-                Bugwere Region, Eastern Uganda
-              </p>
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-gray-400 text-sm">Follow us on:</span>
-                <div className="flex gap-3">
-                  {[Facebook, Twitter, Instagram, Linkedin].map(
-                    (Icon, i) => (
-                      <a
-                        key={i}
-                        href="#"
-                        className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
-                        aria-label="Social media"
-                      >
-                        <Icon className="w-4 h-4" />
-                      </a>
-                    )
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-500 text-sm">
-              &copy; {new Date().getFullYear()} Bugwere Coffee Company. All rights
-              reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
-
-      {/* ─── BACK TO TOP ─── */}
-      {showBackToTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-gray-800 hover:shadow-xl transition-all"
-          aria-label="Back to top"
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-      )}
-    </div>
-  );
-}
-
-/* ─── MOBILE NAV ITEM ─── */
-function MobileNavItem({
-  item,
-  onClose,
-}: {
-  item: (typeof NAV_ITEMS)[number];
-  onClose: () => void;
-}) {
-  const [expanded, setExpanded] = useState(false);
-
-  return (
-    <div>
-      <div className="flex items-center justify-between">
-        <a
-          href={item.href}
-          className="flex-1 py-2.5 text-base font-medium text-gray-800"
-          onClick={onClose}
-        >
-          {item.label}
-        </a>
-        {item.children && (
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="p-2 text-gray-500"
-            aria-label={`Expand ${item.label}`}
+      {/* ─── NEWSLETTER ─── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <h3
+            className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3"
+            style={{ fontFamily: "var(--font-raleway)" }}
           >
-            <ChevronDown
-              className={`w-5 h-5 transition-transform ${
-                expanded ? "rotate-180" : ""
-              }`}
+            Stay in the Loop
+          </h3>
+          <p className="text-gray-600 mb-8">
+            Subscribe to our newsletter for the latest updates on our programs and impact.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-5 py-3 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[--color-brand]/20 focus:border-[--color-brand] transition-all"
             />
-          </button>
-        )}
-      </div>
-      {item.children && expanded && (
-        <div className="pl-4 pb-2 space-y-1">
-          {item.children.map((child) => (
-            <a
-              key={child.label}
-              href={child.href}
-              className="block py-2 text-sm text-gray-600 hover:text-[--color-brand]"
-              onClick={onClose}
+            <button
+              className="px-6 py-3 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-lg"
+              style={{ backgroundColor: PRIMARY }}
             >
-              {child.label}
-            </a>
-          ))}
+              Subscribe
+            </button>
+          </div>
         </div>
-      )}
-    </div>
+      </section>
+    </>
   );
 }
