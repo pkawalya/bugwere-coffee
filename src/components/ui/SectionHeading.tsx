@@ -39,7 +39,7 @@ export default function SectionHeading({
         </div>
       )}
       <h2
-        className={`text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 ${
+        className={`text-2xl sm:text-3xl lg:text-[2.25rem] font-bold leading-tight mb-4 ${
           light ? "text-white" : "text-gray-900"
         }`}
         style={{ fontFamily: FONT_RALEWAY }}
@@ -48,7 +48,7 @@ export default function SectionHeading({
       </h2>
       {description && (
         <p
-          className={`text-lg leading-relaxed max-w-3xl ${
+          className={`text-base leading-relaxed max-w-3xl ${
             centered ? "mx-auto" : ""
           } ${light ? "text-white/70" : "text-gray-600"}`}
         >

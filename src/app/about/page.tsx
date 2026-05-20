@@ -42,7 +42,7 @@ export default function AboutPage() {
                   Our Story
                 </p>
                 <h2
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-6"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-6"
                   style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
                 >
                   Founded on a Simple Question
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: `${PRIMARY}20` }}>
                   <Eye className="w-7 h-7" style={{ color: PRIMARY }} />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4" style={{ fontFamily: FONT_RALEWAY }}>Our Vision</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4" style={{ fontFamily: FONT_RALEWAY }}>Our Vision</h3>
                 <p className="text-white/70 text-lg leading-relaxed italic">
                   &ldquo;To transform Uganda&apos;s rural farming communities into empowered, sustainable producers and exporters of high-quality coffee.&rdquo;
                 </p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={{ backgroundColor: `${SECONDARY}10` }}>
                   <Heart className="w-7 h-7" style={{ color: SECONDARY }} />
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: FONT_RALEWAY }}>Our Mission</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4" style={{ fontFamily: FONT_RALEWAY }}>Our Mission</h3>
                 <p className="text-gray-600 text-lg leading-relaxed">
                   To empower rural households through a complete, end-to-end agricultural support system that provides
                   quality seedlings, expert training, guaranteed markets, and financial inclusion, enabling families
@@ -124,7 +124,7 @@ export default function AboutPage() {
               <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
                 What We Stand For
               </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                 Our Values
               </h2>
             </div>
@@ -156,7 +156,7 @@ export default function AboutPage() {
               <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
                 Our Journey
               </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                 Milestones
               </h2>
             </div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
       <section className="py-20 relative overflow-hidden" style={{ backgroundColor: SECONDARY }}>
         <div className="absolute -top-20 -left-20 w-80 h-80 blob-shape opacity-[0.04] bg-white" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4" style={{ fontFamily: FONT_RALEWAY }}>
+          <h2 className="text-xl sm:text-2xl font-bold text-white mb-4" style={{ fontFamily: FONT_RALEWAY }}>
             Meet the Team Behind BCC
           </h2>
           <p className="text-white/60 text-lg mb-8">

@@ -124,6 +124,10 @@ html { scroll-behavior: smooth; }
 @keyframes drawLine { from { width: 0; } to { width: 100%; } }
 @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
 @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes heroTitleNext { from { opacity: 0; transform: translateY(30px) translateX(20px); } to { opacity: 1; transform: translateY(0) translateX(0); } }
+@keyframes heroTitlePrev { from { opacity: 0; transform: translateY(30px) translateX(-20px); } to { opacity: 1; transform: translateY(0) translateX(0); } }
 
 /* ─── Animation Utilities ─── */
 .animate-fade-in { animation: fadeIn 0.35s ease-out forwards; }

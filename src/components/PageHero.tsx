@@ -44,7 +44,7 @@ export default function PageHero({
         {/* Large title with creative layout */}
         <div className="mt-6">
           <h1
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-[1.05] mb-6"
+            className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold text-white leading-[1.1] mb-6"
             style={{ fontFamily: FONT_RALEWAY }}
           >
             {title}

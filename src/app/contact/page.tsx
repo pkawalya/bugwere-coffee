@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
@@ -20,11 +21,23 @@ export default function ContactPage() {
             {/* Contact Info - Sidebar */}
             <ScrollReveal className="lg:col-span-2">
               <div className="lg:sticky lg:top-32">
+                {/* Image */}
+                <div className="rounded-3xl overflow-hidden shadow-lg mb-8">
+                  <Image
+                    src="/images/hero-3.png"
+                    alt="Bugwere Coffee Company community"
+                    width={1344}
+                    height={896}
+                    className="w-full object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                </div>
+
                 <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
                   Get In Touch
                 </p>
                 <h3
-                  className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8"
+                  className="text-xl sm:text-2xl font-bold text-gray-900 mb-8"
                   style={{ fontFamily: FONT_RALEWAY }}
                 >
                   Let&apos;s Start a Conversation

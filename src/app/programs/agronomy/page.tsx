@@ -44,7 +44,7 @@ export default function AgronomyPage() {
                   <span className="w-8 h-0.5 rounded-full" style={{ backgroundColor: PRIMARY }} />
                   <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>Agronomy Services</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.05] mb-8" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-[1.05] mb-8" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                   Knowledge That<br />Transforms Yields
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6" style={{ fontFamily: FONT_OPENSANS }}>
@@ -94,7 +94,7 @@ export default function AgronomyPage() {
                 <span className="text-sm font-semibold uppercase tracking-wider text-white/60" style={{ fontFamily: FONT_RALEWAY }}>How It Works</span>
                 <span className="w-8 h-0.5 rounded-full bg-white/30" />
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.05]" style={{ fontFamily: FONT_RALEWAY }}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-[1.05]" style={{ fontFamily: FONT_RALEWAY }}>
                 The Agronomy Process
               </h2>
             </div>
@@ -144,7 +144,7 @@ export default function AgronomyPage() {
                 <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>What We Offer</span>
                 <span className="w-8 h-0.5 rounded-full" style={{ backgroundColor: PRIMARY }} />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+              <h2 className="text-xl sm:text-2xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                 Our Services
               </h2>
             </div>

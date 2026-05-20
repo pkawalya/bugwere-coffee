@@ -44,7 +44,7 @@ export default function CoffeePage() {
                   <span className="w-8 h-0.5 rounded-full" style={{ backgroundColor: PRIMARY }} />
                   <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>Coffee Program</span>
                 </div>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.05] mb-8" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-[1.05] mb-8" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                   From Seedling<br />to Cup
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed mb-6" style={{ fontFamily: FONT_OPENSANS }}>
@@ -97,7 +97,7 @@ export default function CoffeePage() {
                 <span className="text-sm font-semibold uppercase tracking-wider text-white/60" style={{ fontFamily: FONT_RALEWAY }}>How It Works</span>
                 <span className="w-8 h-0.5 rounded-full bg-white/30" />
               </div>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.05]" style={{ fontFamily: FONT_RALEWAY }}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-[1.05]" style={{ fontFamily: FONT_RALEWAY }}>
                 The Coffee Journey
               </h2>
             </div>
@@ -147,7 +147,7 @@ export default function CoffeePage() {
                 <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>What We Provide</span>
                 <span className="w-8 h-0.5 rounded-full" style={{ backgroundColor: PRIMARY }} />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+              <h2 className="text-xl sm:text-2xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                 Program Highlights
               </h2>
             </div>
@@ -198,7 +198,7 @@ export default function CoffeePage() {
         <div className="absolute bottom-0 -left-10 w-72 h-72 blob-shape-2 opacity-[0.04] bg-white animate-float-slow" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <ScrollReveal>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: FONT_RALEWAY }}>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: FONT_RALEWAY }}>
               Ready to Start Your<br />Coffee Farm?
             </h2>
             <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto" style={{ fontFamily: FONT_OPENSANS }}>

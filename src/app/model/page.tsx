@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -31,25 +32,48 @@ export default function ModelPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <ScrollReveal>
               <div className="lg:sticky lg:top-32">
+                <div className="relative mb-8">
+                  <div className="rounded-3xl overflow-hidden shadow-xl">
+                    <Image
+                      src="/images/about-photo.png"
+                      alt="Agricultural model in action"
+                      width={1344}
+                      height={896}
+                      className="w-full object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
+                  <div
+                    className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl -z-10"
+                    style={{ backgroundColor: `${PRIMARY}12` }}
+                  />
+                </div>
                 <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
                   How It Works
                 </p>
                 <h2
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-6"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-6"
                   style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
                 >
                   End-to-End Empowerment
                 </h2>
-                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                <p className="text-gray-600 text-base leading-relaxed mb-6">
                   Our model is built to empower rural households through a complete, end-to-end agricultural support
                   system. We provide high-quality seedlings, agronomic training, and guaranteed markets, while
                   strengthening families with short-term income crops, livestock projects, and financial inclusion.
                 </p>
-                <p className="text-gray-500 leading-relaxed">
+                <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   By combining production support, value-chain integration, and rural insurance solutions, we help
                   farmers grow sustainably, reduce risk, and build lasting prosperity. Each pillar of our model
                   reinforces the others, creating a self-sustaining ecosystem of empowerment.
                 </p>
+                <Link
+                  href="/model"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+                  style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+                >
+                  Full Model Overview <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </ScrollReveal>
 
@@ -79,7 +103,7 @@ export default function ModelPage() {
               <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
                 Deep Dive
               </p>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>
                 Explore Each Pillar
               </h2>
             </div>

@@ -20,7 +20,8 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [slideKey, setSlideKey] = useState(0); // force re-render for animations
+  const [slideKey, setSlideKey] = useState(0);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number | null>(null);
@@ -29,19 +30,22 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
     (index: number) => {
       if (isAnimating) return;
       setIsAnimating(true);
+      setDirection(index > current ? "next" : "prev");
       setCurrent(index);
       setProgress(0);
       setSlideKey((k) => k + 1);
-      setTimeout(() => setIsAnimating(false), 900);
+      setTimeout(() => setIsAnimating(false), 1000);
     },
-    [isAnimating]
+    [isAnimating, current]
   );
 
   const next = useCallback(() => {
+    setDirection("next");
     goTo((current + 1) % slides.length);
   }, [current, slides.length, goTo]);
 
   const prev = useCallback(() => {
+    setDirection("prev");
     goTo((current - 1 + slides.length) % slides.length);
   }, [current, slides.length, goTo]);
 
@@ -57,7 +61,6 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
     };
   }, [next, isPaused]);
 
-  // Touch / swipe support
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -65,7 +68,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-      if (diff > 0) { next(); } else { prev(); }
+      if (diff > 0) next(); else prev();
     }
     touchStartX.current = null;
   };
@@ -78,12 +81,15 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* ── Background Images with crossfade + Ken Burns ── */}
+      {/* ── Background Images with enhanced crossfade + parallax Ken Burns ── */}
       {slides.map((s, i) => (
         <div
           key={i}
-          className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
-          style={{ opacity: current === i ? 1 : 0 }}
+          className="absolute inset-0 transition-all duration-[1500ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+          style={{
+            opacity: current === i ? 1 : 0,
+            transform: current === i ? "scale(1)" : "scale(1.06)",
+          }}
         >
           <Image
             src={s.image}
@@ -96,56 +102,63 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         </div>
       ))}
 
-      {/* ── Layered Gradient Overlays ── */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-      {/* Vignette effect */}
+      {/* ── Cinematic Gradient Overlays ── */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+      {/* Vignette */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%)",
+            "radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(0,0,0,0.5) 100%)",
         }}
       />
 
-      {/* Diagonal accent shape */}
+      {/* Diagonal accent shape — subtle secondary color overlay */}
       <div
         className="absolute inset-0 hidden lg:block"
         style={{
-          clipPath: "polygon(0 0, 55% 0, 42% 100%, 0 100%)",
-          background: `linear-gradient(135deg, ${SECONDARY}35, ${SECONDARY}08)`,
+          clipPath: "polygon(0 0, 50% 0, 38% 100%, 0 100%)",
+          background: `linear-gradient(160deg, ${SECONDARY}40, ${SECONDARY}08)`,
         }}
       />
 
-      {/* ── Floating decorative orbs ── */}
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full opacity-[0.03] bg-white animate-float-slow pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/3 w-40 h-40 rounded-full opacity-[0.02] bg-white animate-float pointer-events-none" />
+      {/* ── Animated decorative elements ── */}
+      <div className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full opacity-[0.03] bg-white animate-float-slow pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/3 w-48 h-48 rounded-full opacity-[0.02] bg-white animate-float pointer-events-none" />
+      {/* Horizontal accent line */}
+      <div
+        className="absolute left-0 right-0 top-1/2 h-px opacity-[0.06] pointer-events-none"
+        style={{ background: `linear-gradient(90deg, transparent, white, transparent)` }}
+      />
 
-      {/* ── Slide Content ── */}
+      {/* ── Slide Content with directional animations ── */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
           <div className="max-w-xl">
             {/* Subtitle pill */}
             <span
               key={`sub-${slideKey}`}
-              className="inline-block px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-white mb-7 animate-fade-in-up"
+              className="inline-block px-5 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] text-white mb-6"
               style={{
                 backgroundColor: PRIMARY,
-                animationDelay: "0.1s",
-                animationFillMode: "both",
+                animation: direction === "next"
+                  ? "slideInRight 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both"
+                  : "slideInLeft 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both",
               }}
             >
               {slide.subtitle}
             </span>
 
-            {/* Title — REDUCED font sizes */}
+            {/* Title — reduced font sizes */}
             <h1
               key={`title-${slideKey}`}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.12] mb-5 animate-fade-in-up"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-[2.75rem] font-bold text-white leading-[1.15] mb-4"
               style={{
                 fontFamily: FONT_RALEWAY,
-                animationDelay: "0.25s",
-                animationFillMode: "both",
+                animation: direction === "next"
+                  ? "heroTitleNext 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both"
+                  : "heroTitlePrev 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s both",
               }}
             >
               {slide.title}
@@ -154,10 +167,11 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
             {/* Description */}
             <p
               key={`desc-${slideKey}`}
-              className="text-white/70 text-base sm:text-lg leading-relaxed mb-9 max-w-md animate-fade-in-up"
+              className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 max-w-md"
               style={{
-                animationDelay: "0.4s",
-                animationFillMode: "both",
+                animation: direction === "next"
+                  ? "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.35s both"
+                  : "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.35s both",
               }}
             >
               {slide.description}
@@ -166,22 +180,23 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
             {/* CTAs */}
             <div
               key={`cta-${slideKey}`}
-              className="flex flex-wrap gap-4 animate-fade-in-up"
+              className="flex flex-wrap gap-3"
               style={{
-                animationDelay: "0.55s",
-                animationFillMode: "both",
+                animation: direction === "next"
+                  ? "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both"
+                  : "fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.5s both",
               }}
             >
               <Link
                 href={slide.ctaHref}
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold text-sm rounded-full transition-all duration-300 hover:shadow-xl hover:scale-[1.04] hover:brightness-110"
+                className="inline-flex items-center gap-2 px-6 py-3 text-white font-semibold text-sm rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-[#c94449]/25 hover:scale-[1.04]"
                 style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
               >
                 {slide.cta}
               </Link>
               <Link
                 href="#manifesto"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-white/20 text-white font-semibold text-sm rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/40 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 text-white font-semibold text-sm rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/40 backdrop-blur-sm"
                 style={{ fontFamily: FONT_OPENSANS }}
               >
                 Our Story
@@ -191,8 +206,8 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         </div>
       </div>
 
-      {/* ── Right side: Vertical slide counter ── */}
-      <div className="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-2">
+      {/* ── Right side: Vertical slide indicator — sleek dots ── */}
+      <div className="absolute right-6 lg:right-10 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-3">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -202,22 +217,23 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
           >
             {/* Slide number */}
             <span
-              className={`text-[11px] font-bold transition-all duration-300 ${
+              className={`text-[10px] font-bold transition-all duration-300 ${
                 current === i
                   ? "text-white opacity-100"
-                  : "text-white/30 opacity-0 group-hover:opacity-60"
+                  : "text-white/25 opacity-0 group-hover:opacity-50"
               }`}
               style={{ fontFamily: FONT_RALEWAY }}
             >
               {String(i + 1).padStart(2, "0")}
             </span>
-            {/* Track bar */}
+            {/* Track bar with active progress glow */}
             <span
-              className="block rounded-full transition-all duration-500"
+              className="block rounded-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{
-                width: "3px",
-                height: current === i ? "40px" : "14px",
-                backgroundColor: current === i ? "#fff" : "rgba(255,255,255,0.25)",
+                width: "2px",
+                height: current === i ? "36px" : "12px",
+                backgroundColor: current === i ? "#fff" : "rgba(255,255,255,0.2)",
+                boxShadow: current === i ? "0 0 8px rgba(255,255,255,0.3)" : "none",
               }}
             />
           </button>
@@ -226,7 +242,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
 
       {/* ── Bottom Control Bar ── */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-7 pt-7 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pb-6 pt-6 flex items-center justify-between">
           {/* Left: dot indicators + slide counter */}
           <div className="flex items-center gap-5">
             <div className="flex items-center gap-2">
@@ -234,18 +250,19 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className="rounded-full transition-all duration-500"
+                  className="rounded-full transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{
-                    width: current === i ? "28px" : "8px",
-                    height: "8px",
+                    width: current === i ? "24px" : "6px",
+                    height: "6px",
                     backgroundColor: current === i ? "#fff" : "rgba(255,255,255,0.3)",
+                    boxShadow: current === i ? "0 0 6px rgba(255,255,255,0.4)" : "none",
                   }}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
             </div>
             <span
-              className="text-white/40 text-xs font-medium hidden sm:block"
+              className="text-white/35 text-xs font-medium hidden sm:block"
               style={{ fontFamily: FONT_OPENSANS }}
             >
               {String(current + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
@@ -253,49 +270,52 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
           </div>
 
           {/* Right: play/pause + arrows */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all"
+              className="w-8 h-8 rounded-full bg-white/8 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/15 transition-all"
               aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
             >
-              {isPaused ? <Play className="w-3.5 h-3.5 ml-0.5" /> : <Pause className="w-3.5 h-3.5" />}
+              {isPaused ? <Play className="w-3 h-3 ml-0.5" /> : <Pause className="w-3 h-3" />}
             </button>
             <button
               onClick={prev}
-              className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all"
+              className="w-8 h-8 rounded-full bg-white/8 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/15 transition-all"
               aria-label="Previous slide"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={next}
-              className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all"
+              className="w-8 h-8 rounded-full bg-white/8 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/15 transition-all"
               aria-label="Next slide"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Thin progress bar */}
-        <div className="h-[2px] bg-white/10">
+        {/* Progress bar with gradient */}
+        <div className="h-[2px] bg-white/8">
           <div
             className="h-full transition-all duration-100 ease-linear"
-            style={{ width: `${progress}%`, backgroundColor: PRIMARY }}
+            style={{
+              width: `${progress}%`,
+              background: `linear-gradient(90deg, ${PRIMARY}, #e87074)`,
+            }}
           />
         </div>
       </div>
 
       {/* ── Scroll indicator ── */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 hidden lg:flex flex-col items-center gap-2">
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 hidden lg:flex flex-col items-center gap-2">
         <span
-          className="text-white/40 text-[10px] uppercase tracking-[0.25em]"
+          className="text-white/30 text-[10px] uppercase tracking-[0.25em]"
           style={{ fontFamily: FONT_OPENSANS }}
         >
           Scroll
         </span>
-        <ChevronDown className="w-4 h-4 text-white/40 animate-bounce" />
+        <ChevronDown className="w-3.5 h-3.5 text-white/30 animate-bounce" />
       </div>
     </section>
   );
