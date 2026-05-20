@@ -5,248 +5,81 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
-  Menu,
-  X,
-  ChevronDown,
-  ChevronRight,
-  Coffee,
-  Sprout,
-  Bird,
-  Wheat,
-  Heart,
-  BarChart3,
-  TrendingUp,
-  MapPin,
-  Package,
-  Microscope,
-  ShoppingBag,
-  Shield,
-  PiggyBank,
-  Handshake,
-  Newspaper,
-  Phone,
-  Users,
-  Eye,
-  ArrowRight,
-  Mail,
+  Menu, X, ChevronDown, ChevronRight, Coffee, Sprout, Bird, Wheat, Heart,
+  BarChart3, TrendingUp, MapPin, Microscope, ShoppingBag, Shield, PiggyBank,
+  Handshake, Newspaper, Phone, Users, Eye, ArrowRight, Mail,
 } from "lucide-react";
 import { PRIMARY, SECONDARY, FONT_OPENSANS, FONT_RALEWAY } from "@/lib/constants";
 
-/* ─── Mega Menu Data ─── */
 const MEGA_MENUS: {
-  label: string;
-  href: string;
-  icon: React.ReactNode;
-  description: string;
-  columns: {
-    title: string;
-    links: { label: string; href: string; icon: React.ReactNode; desc: string }[];
-  }[];
+  label: string; href: string; icon: React.ReactNode; description: string;
+  columns: { title: string; links: { label: string; href: string; icon: React.ReactNode; desc: string }[] }[];
 }[] = [
   {
-    label: "About",
-    href: "/about",
-    icon: <Users className="w-4 h-4" />,
+    label: "About", href: "/about", icon: <Users className="w-4 h-4" />,
     description: "Who we are & what drives us",
     columns: [
-      {
-        title: "Our Organization",
-        links: [
-          {
-            label: "About Us",
-            href: "/about",
-            icon: <Eye className="w-5 h-5" />,
-            desc: "Our story, mission & values",
-          },
-          {
-            label: "Our Team",
-            href: "/about/team",
-            icon: <Users className="w-5 h-5" />,
-            desc: "Meet the people behind BCC",
-          },
-        ],
-      },
-      {
-        title: "Our Purpose",
-        links: [
-          {
-            label: "Our Vision",
-            href: "/about#vision",
-            icon: <TrendingUp className="w-5 h-5" />,
-            desc: "Transforming rural farming communities",
-          },
-          {
-            label: "Our Approach",
-            href: "/about#approach",
-            icon: <Heart className="w-5 h-5" />,
-            desc: "Holistic, community-driven model",
-          },
-        ],
-      },
+      { title: "Our Organization", links: [
+        { label: "About Us", href: "/about", icon: <Eye className="w-5 h-5" />, desc: "Our story, mission & values" },
+        { label: "Our Team", href: "/about/team", icon: <Users className="w-5 h-5" />, desc: "Meet the people behind BCC" },
+      ]},
+      { title: "Our Purpose", links: [
+        { label: "Our Vision", href: "/about#vision", icon: <TrendingUp className="w-5 h-5" />, desc: "Transforming rural farming communities" },
+        { label: "Our Approach", href: "/about#approach", icon: <Heart className="w-5 h-5" />, desc: "Holistic, community-driven model" },
+      ]},
     ],
   },
   {
-    label: "Programs",
-    href: "/programs/coffee",
-    icon: <Sprout className="w-4 h-4" />,
+    label: "Programs", href: "/programs/coffee", icon: <Sprout className="w-4 h-4" />,
     description: "How we empower farming communities",
     columns: [
-      {
-        title: "Core Programs",
-        links: [
-          {
-            label: "Sustainable Coffee",
-            href: "/programs/coffee",
-            icon: <Coffee className="w-5 h-5" />,
-            desc: "High-value coffee production support",
-          },
-          {
-            label: "Cocoa Farming",
-            href: "/programs/cocoa",
-            icon: <Sprout className="w-5 h-5" />,
-            desc: "Diversifying with resilient cocoa crops",
-          },
-          {
-            label: "Livestock Support",
-            href: "/programs/livestock",
-            icon: <Bird className="w-5 h-5" />,
-            desc: "Piggery & poultry for steady income",
-          },
-        ],
-      },
-      {
-        title: "Support Services",
-        links: [
-          {
-            label: "Agronomy Services",
-            href: "/programs/agronomy",
-            icon: <Wheat className="w-5 h-5" />,
-            desc: "Expert farmer training & extension",
-          },
-          {
-            label: "Community Development",
-            href: "/programs/community",
-            icon: <Heart className="w-5 h-5" />,
-            desc: "Building resilient communities",
-          },
-        ],
-      },
+      { title: "Core Programs", links: [
+        { label: "Sustainable Coffee", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" />, desc: "High-value coffee production support" },
+        { label: "Cocoa Farming", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" />, desc: "Diversifying with resilient cocoa crops" },
+        { label: "Livestock Support", href: "/programs/livestock", icon: <Bird className="w-5 h-5" />, desc: "Piggery & poultry for steady income" },
+      ]},
+      { title: "Support Services", links: [
+        { label: "Agronomy Services", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" />, desc: "Expert farmer training & extension" },
+        { label: "Community Development", href: "/programs/community", icon: <Heart className="w-5 h-5" />, desc: "Building resilient communities" },
+      ]},
     ],
   },
   {
-    label: "Impact",
-    href: "/impact",
-    icon: <BarChart3 className="w-4 h-4" />,
+    label: "Impact", href: "/impact", icon: <BarChart3 className="w-4 h-4" />,
     description: "Results that transform lives",
     columns: [
-      {
-        title: "Measuring Success",
-        links: [
-          {
-            label: "Impact Stories",
-            href: "/impact",
-            icon: <Heart className="w-5 h-5" />,
-            desc: "Real stories from the field",
-          },
-          {
-            label: "Farmer Statistics",
-            href: "/impact/statistics",
-            icon: <BarChart3 className="w-5 h-5" />,
-            desc: "Data-driven impact measurement",
-          },
-          {
-            label: "Regional Expansion",
-            href: "/impact/expansion",
-            icon: <MapPin className="w-5 h-5" />,
-            desc: "Growing our reach across Uganda",
-          },
-        ],
-      },
+      { title: "Measuring Success", links: [
+        { label: "Impact Stories", href: "/impact", icon: <Heart className="w-5 h-5" />, desc: "Real stories from the field" },
+        { label: "Farmer Statistics", href: "/impact/statistics", icon: <BarChart3 className="w-5 h-5" />, desc: "Data-driven impact measurement" },
+        { label: "Regional Expansion", href: "/impact/expansion", icon: <MapPin className="w-5 h-5" />, desc: "Growing our reach across Uganda" },
+      ]},
     ],
   },
   {
-    label: "Our Model",
-    href: "/model",
-    icon: <Microscope className="w-4 h-4" />,
+    label: "Our Model", href: "/model", icon: <Microscope className="w-4 h-4" />,
     description: "Our end-to-end agricultural support system",
     columns: [
-      {
-        title: "Production & Support",
-        links: [
-          {
-            label: "Seedling Distribution",
-            href: "/model/seedlings",
-            icon: <Sprout className="w-5 h-5" />,
-            desc: "Quality seedlings for every farmer",
-          },
-          {
-            label: "Extension System",
-            href: "/model/extension",
-            icon: <Wheat className="w-5 h-5" />,
-            desc: "Agronomic training & field support",
-          },
-          {
-            label: "Market Access",
-            href: "/model/market",
-            icon: <ShoppingBag className="w-5 h-5" />,
-            desc: "Guaranteed buying & fair prices",
-          },
-        ],
-      },
-      {
-        title: "Protection & Finance",
-        links: [
-          {
-            label: "Quality Assurance",
-            href: "/model/quality",
-            icon: <Microscope className="w-5 h-5" />,
-            desc: "Processing & quality standards",
-          },
-          {
-            label: "Financial Inclusion",
-            href: "/model/financial",
-            icon: <PiggyBank className="w-5 h-5" />,
-            desc: "SACCO & community savings",
-          },
-          {
-            label: "Farmer Insurance",
-            href: "/model/insurance",
-            icon: <Shield className="w-5 h-5" />,
-            desc: "Rural risk protection program",
-          },
-        ],
-      },
+      { title: "Production & Support", links: [
+        { label: "Seedling Distribution", href: "/model/seedlings", icon: <Sprout className="w-5 h-5" />, desc: "Quality seedlings for every farmer" },
+        { label: "Extension System", href: "/model/extension", icon: <Wheat className="w-5 h-5" />, desc: "Agronomic training & field support" },
+        { label: "Market Access", href: "/model/market", icon: <ShoppingBag className="w-5 h-5" />, desc: "Guaranteed buying & fair prices" },
+      ]},
+      { title: "Protection & Finance", links: [
+        { label: "Quality Assurance", href: "/model/quality", icon: <Microscope className="w-5 h-5" />, desc: "Processing & quality standards" },
+        { label: "Financial Inclusion", href: "/model/financial", icon: <PiggyBank className="w-5 h-5" />, desc: "SACCO & community savings" },
+        { label: "Farmer Insurance", href: "/model/insurance", icon: <Shield className="w-5 h-5" />, desc: "Rural risk protection program" },
+      ]},
     ],
   },
   {
-    label: "Connect",
-    href: "/connect/partners",
-    icon: <Handshake className="w-4 h-4" />,
+    label: "Connect", href: "/connect/partners", icon: <Handshake className="w-4 h-4" />,
     description: "Partner, read, or reach out",
     columns: [
-      {
-        title: "Get Involved",
-        links: [
-          {
-            label: "Partners",
-            href: "/connect/partners",
-            icon: <Handshake className="w-5 h-5" />,
-            desc: "Collaborate with BCC",
-          },
-          {
-            label: "News & Updates",
-            href: "/connect/news",
-            icon: <Newspaper className="w-5 h-5" />,
-            desc: "Latest from the field",
-          },
-          {
-            label: "Contact Us",
-            href: "/contact",
-            icon: <Phone className="w-5 h-5" />,
-            desc: "Get in touch with our team",
-          },
-        ],
-      },
+      { title: "Get Involved", links: [
+        { label: "Partners", href: "/connect/partners", icon: <Handshake className="w-5 h-5" />, desc: "Collaborate with BCC" },
+        { label: "News & Updates", href: "/connect/news", icon: <Newspaper className="w-5 h-5" />, desc: "Latest from the field" },
+        { label: "Contact Us", href: "/contact", icon: <Phone className="w-5 h-5" />, desc: "Get in touch with our team" },
+      ]},
     ],
   },
 ];
@@ -269,15 +102,10 @@ export default function Header() {
     if (megaTimeoutRef.current) clearTimeout(megaTimeoutRef.current);
     setActiveMega(label);
   };
-
   const handleMegaLeave = () => {
     megaTimeoutRef.current = setTimeout(() => setActiveMega(null), 200);
   };
-
-  const closeMobile = () => {
-    setMobileOpen(false);
-    setMobileExpanded(null);
-  };
+  const closeMobile = () => { setMobileOpen(false); setMobileExpanded(null); };
 
   const isActive = (menuHref: string) => {
     if (menuHref === "/") return pathname === "/";
@@ -286,62 +114,35 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Bar - Hidden on mobile */}
-      <div
-        className={`hidden lg:block transition-all duration-300 ${
-          scrolled ? "h-0 overflow-hidden opacity-0" : "h-9 opacity-100"
-        }`}
-        style={{ backgroundColor: SECONDARY }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <a
-              href="tel:+256000000000"
-              className="flex items-center gap-2 text-white/70 hover:text-white text-xs transition-colors"
-              style={{ fontFamily: FONT_OPENSANS }}
-            >
-              <Phone className="w-3 h-3" /> +256 (0) XXX XXX XXX
-            </a>
-            <a
-              href="mailto:info@bugwerecoffee.com"
-              className="flex items-center gap-2 text-white/70 hover:text-white text-xs transition-colors"
-              style={{ fontFamily: FONT_OPENSANS }}
-            >
-              <Mail className="w-3 h-3" /> info@bugwerecoffee.com
-            </a>
-          </div>
-          <div className="flex items-center gap-4 text-white/70 text-xs">
-            <span style={{ fontFamily: FONT_OPENSANS }}>Bugwere Region, Eastern Uganda</span>
-          </div>
-        </div>
-      </div>
-
       <header
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "top-0 bg-white/95 shadow-lg backdrop-blur-xl border-b border-gray-100/50"
-            : "top-9 bg-white/90 backdrop-blur-sm"
+            ? "bg-white/95 backdrop-blur-xl shadow-sm"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[72px]">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
+            <Link href="/" className="flex items-center gap-3 group relative z-10">
               <Image
                 src="/logo.png"
                 alt="Bugwere Coffee Company"
-                width={44}
-                height={44}
+                width={40}
+                height={40}
                 className="rounded-lg transition-transform group-hover:scale-105"
               />
               <div className="hidden sm:block">
                 <p
-                  className="font-bold text-sm leading-tight"
-                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+                  className="font-bold text-sm leading-tight transition-colors"
+                  style={{ fontFamily: FONT_RALEWAY, color: scrolled ? SECONDARY : "#fff" }}
                 >
                   Bugwere Coffee
                 </p>
-                <p className="text-[10px] text-gray-500 tracking-wider uppercase">
+                <p
+                  className="text-[10px] tracking-wider uppercase transition-colors"
+                  style={{ color: scrolled ? "#6b7280" : "rgba(255,255,255,0.7)" }}
+                >
                   Company
                 </p>
               </div>
@@ -358,25 +159,22 @@ export default function Header() {
                 >
                   <Link
                     href={menu.href}
-                    className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
+                    className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-full transition-all ${
                       activeMega === menu.label
-                        ? "text-[--color-brand] bg-red-50/60"
+                        ? scrolled ? "text-[--color-brand] bg-red-50/60" : "text-white bg-white/15"
                         : isActive(menu.href)
-                        ? "text-[--color-brand]"
-                        : "text-gray-700 hover:text-[--color-brand] hover:bg-gray-50"
+                        ? scrolled ? "text-[--color-brand]" : "text-white"
+                        : scrolled ? "text-gray-700 hover:text-[--color-brand] hover:bg-gray-50" : "text-white/80 hover:text-white hover:bg-white/10"
                     }`}
                     style={{ fontFamily: FONT_OPENSANS }}
                   >
                     {menu.icon}
                     {menu.label}
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                      className={`w-3 h-3 transition-transform duration-300 ${
                         activeMega === menu.label ? "rotate-180" : ""
                       }`}
                     />
-                    {isActive(menu.href) && (
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full" style={{ backgroundColor: PRIMARY }} />
-                    )}
                   </Link>
 
                   {/* Mega Menu Panel */}
@@ -386,38 +184,18 @@ export default function Header() {
                       onMouseEnter={() => handleMegaEnter(menu.label)}
                       onMouseLeave={handleMegaLeave}
                     >
-                      {/* Mega Header */}
                       <div
                         className="px-8 py-5 border-b border-gray-100"
-                        style={{
-                          background: `linear-gradient(135deg, ${SECONDARY}08, ${PRIMARY}08)`,
-                        }}
+                        style={{ background: `linear-gradient(135deg, ${SECONDARY}08, ${PRIMARY}08)` }}
                       >
-                        <p
-                          className="font-bold text-lg"
-                          style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
-                        >
-                          {menu.label}
-                        </p>
-                        <p className="text-sm text-gray-500 mt-0.5">
-                          {menu.description}
-                        </p>
+                        <p className="font-bold text-lg" style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}>{menu.label}</p>
+                        <p className="text-sm text-gray-500 mt-0.5">{menu.description}</p>
                       </div>
-
-                      {/* Mega Columns */}
                       <div className="p-6">
-                        <div
-                          className={`grid gap-8 ${
-                            menu.columns.length === 1
-                              ? "grid-cols-1"
-                              : "grid-cols-2"
-                          }`}
-                        >
+                        <div className={`grid gap-8 ${menu.columns.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}>
                           {menu.columns.map((col) => (
                             <div key={col.title}>
-                              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">
-                                {col.title}
-                              </p>
+                              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">{col.title}</p>
                               <div className="space-y-1">
                                 {col.links.map((link) => (
                                   <Link
@@ -429,21 +207,14 @@ export default function Header() {
                                     onClick={() => setActiveMega(null)}
                                   >
                                     <div
-                                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors"
-                                      style={{
-                                        backgroundColor: `${SECONDARY}10`,
-                                        color: SECONDARY,
-                                      }}
+                                      className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                                      style={{ backgroundColor: `${SECONDARY}10`, color: SECONDARY }}
                                     >
                                       {link.icon}
                                     </div>
                                     <div>
-                                      <p className="text-sm font-semibold text-gray-800 group-hover:text-[--color-brand] transition-colors">
-                                        {link.label}
-                                      </p>
-                                      <p className="text-xs text-gray-500 mt-0.5">
-                                        {link.desc}
-                                      </p>
+                                      <p className="text-sm font-semibold text-gray-800 group-hover:text-[--color-brand] transition-colors">{link.label}</p>
+                                      <p className="text-xs text-gray-500 mt-0.5">{link.desc}</p>
                                     </div>
                                   </Link>
                                 ))}
@@ -462,13 +233,17 @@ export default function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href="/contact"
-                className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-white text-sm font-semibold rounded-xl transition-all hover:shadow-lg hover:scale-[1.02]"
-                style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
+                className={`hidden sm:inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-full transition-all hover:shadow-lg hover:scale-[1.02] ${
+                  scrolled ? "text-white" : "text-white bg-white/15 hover:bg-white/25 border border-white/20"
+                }`}
+                style={scrolled ? { backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS } : { fontFamily: FONT_OPENSANS }}
               >
                 Support Us
               </Link>
               <button
-                className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className={`lg:hidden p-2 rounded-lg transition-colors ${
+                  scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"
+                }`}
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label="Toggle menu"
               >
@@ -479,93 +254,55 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-            onClick={closeMobile}
-          />
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeMobile} />
           <div className="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl overflow-y-auto custom-scrollbar animate-slide-in-right">
             <div className="p-5">
-              <div className="flex items-center justify-between mb-6">
-                <Image
-                  src="/logo.png"
-                  alt="Bugwere Coffee"
-                  width={36}
-                  height={36}
-                  className="rounded-lg"
-                />
-                <button
-                  onClick={closeMobile}
-                  className="p-2 hover:bg-gray-100 rounded-lg"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+              <div className="flex items-center justify-between mb-8">
+                <Image src="/logo.png" alt="Bugwere Coffee" width={36} height={36} className="rounded-lg" />
+                <button onClick={closeMobile} className="p-2 hover:bg-gray-100 rounded-lg"><X className="w-5 h-5" /></button>
               </div>
-
               <div className="space-y-1">
                 {MEGA_MENUS.map((menu) => (
                   <div key={menu.label}>
                     <button
-                      onClick={() =>
-                        setMobileExpanded(
-                          mobileExpanded === menu.label ? null : menu.label
-                        )
-                      }
+                      onClick={() => setMobileExpanded(mobileExpanded === menu.label ? null : menu.label)}
                       className={`flex items-center justify-between w-full px-4 py-3 text-base font-medium rounded-xl transition-colors ${
-                        isActive(menu.href)
-                          ? "text-[--color-brand] bg-red-50/50"
-                          : "text-gray-800 hover:bg-gray-50"
+                        isActive(menu.href) ? "text-[--color-brand] bg-red-50/50" : "text-gray-800 hover:bg-gray-50"
                       }`}
                     >
-                      <span className="flex items-center gap-2">
-                        {menu.icon} {menu.label}
-                      </span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-300 ${
-                          mobileExpanded === menu.label ? "rotate-180" : ""
-                        }`}
-                      />
+                      <span className="flex items-center gap-2">{menu.icon} {menu.label}</span>
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileExpanded === menu.label ? "rotate-180" : ""}`} />
                     </button>
                     {mobileExpanded === menu.label && (
                       <div className="pl-4 pb-2 space-y-0.5 animate-fade-in">
-                        <Link
-                          href={menu.href}
-                          onClick={closeMobile}
-                          className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg"
-                          style={{ color: PRIMARY }}
-                        >
+                        <Link href={menu.href} onClick={closeMobile} className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-lg" style={{ color: PRIMARY }}>
                           Overview <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
-                        {menu.columns.map((col) =>
-                          col.links.map((link) => (
-                            <Link
-                              key={link.label}
-                              href={link.href}
-                              onClick={closeMobile}
-                              className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition-colors ${
-                                pathname === link.href
-                                  ? "text-[--color-brand] bg-red-50/50"
-                                  : "text-gray-600 hover:text-[--color-brand] hover:bg-red-50/50"
-                              }`}
-                            >
-                              <ChevronRight className="w-3 h-3" />
-                              {link.label}
-                            </Link>
-                          ))
-                        )}
+                        {menu.columns.map((col) => col.links.map((link) => (
+                          <Link
+                            key={link.label}
+                            href={link.href}
+                            onClick={closeMobile}
+                            className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition-colors ${
+                              pathname === link.href ? "text-[--color-brand] bg-red-50/50" : "text-gray-600 hover:text-[--color-brand] hover:bg-red-50/50"
+                            }`}
+                          >
+                            <ChevronRight className="w-3 h-3" />{link.label}
+                          </Link>
+                        )))}
                       </div>
                     )}
                   </div>
                 ))}
               </div>
-
-              <div className="mt-6 pt-6 border-t border-gray-100">
+              <div className="mt-8 pt-6 border-t border-gray-100">
                 <Link
                   href="/contact"
                   onClick={closeMobile}
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3 text-white font-semibold rounded-xl"
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3 text-white font-semibold rounded-full"
                   style={{ backgroundColor: PRIMARY }}
                 >
                   Support Us
