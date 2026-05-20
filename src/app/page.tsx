@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import BentoCard from "@/components/ui/BentoCard";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import JourneyStep from "@/components/ui/JourneyStep";
 import Marquee from "@/components/ui/Marquee";
@@ -49,11 +48,12 @@ const HERO_SLIDES = [
   },
 ];
 
-const BENTO_ITEMS = [
-  { image: "/images/impact-coffee.png", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access and expert agronomic support for thousands of farming families.", href: "/programs/coffee", span: "sm:col-span-2 sm:row-span-2 min-h-[360px] sm:min-h-[480px]" },
-  { image: "/images/impact-cocoa.png", title: "Cocoa Farming", desc: "Diversifying farmer income with resilient cocoa crops and comprehensive training programs.", href: "/programs/cocoa", span: "min-h-[220px]" },
-  { image: "/images/impact-fertilizer.png", title: "Livestock Support", desc: "Piggery and poultry projects providing steady, diversified income for rural households.", href: "/programs/livestock", span: "min-h-[220px]" },
-  { image: "/images/about-photo.png", title: "Agronomy Services", desc: "Expert farmer training, extension services, and ongoing field support from dedicated officers.", href: "/programs/agronomy", span: "sm:col-span-2 min-h-[220px]" },
+const PROGRAMS = [
+  { image: "/images/impact-coffee.png", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" /> },
+  { image: "/images/impact-cocoa.png", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" /> },
+  { image: "/images/impact-fertilizer.png", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", icon: <Bird className="w-5 h-5" /> },
+  { image: "/images/about-photo.png", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" /> },
+  { image: "/images/hero-4.png", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", icon: <Heart className="w-5 h-5" /> },
 ];
 
 const MODEL_STEPS = [
@@ -156,13 +156,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ BENTO GRID — PROGRAMS ═══ */}
-      <section className="py-20 sm:py-28 bg-white">
+      {/* ═══ PROGRAMS — Compact Horizontal Cards ═══ */}
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <ScrollReveal>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
               <div>
-                <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+                <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
                   What We Do
                 </p>
                 <h2
@@ -183,58 +183,85 @@ export default function Home() {
             </div>
           </ScrollReveal>
 
-          <div className="grid sm:grid-cols-3 gap-4 sm:gap-5">
-            {BENTO_ITEMS.map((item, i) => (
-              <ScrollReveal key={item.title} delay={i * 0.1} direction={i % 2 === 0 ? "up" : "left"}>
-                <BentoCard
-                  image={item.image}
-                  title={item.title}
-                  description={item.desc}
+          {/* First row: 2 large cards */}
+          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+            {PROGRAMS.slice(0, 2).map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 0.1}>
+                <Link
                   href={item.href}
-                  className={item.span}
-                />
+                  className="group relative block overflow-hidden rounded-2xl h-[220px] sm:h-[260px]"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div
+                        className="w-8 h-8 rounded-lg flex items-center justify-center"
+                        style={{ backgroundColor: `${PRIMARY}cc`, color: "#fff" }}
+                      >
+                        {item.icon}
+                      </div>
+                      <span
+                        className="inline-block w-6 h-0.5 rounded-full"
+                        style={{ backgroundColor: PRIMARY }}
+                      />
+                    </div>
+                    <h3
+                      className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[#e87074] transition-colors"
+                      style={{ fontFamily: FONT_RALEWAY }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-white/65 text-sm leading-snug">{item.desc}</p>
+                  </div>
+                </Link>
               </ScrollReveal>
             ))}
           </div>
 
-          {/* Community full-width card */}
-          <ScrollReveal delay={0.2}>
-            <Link
-              href="/programs/community"
-              className="group mt-5 relative block overflow-hidden rounded-3xl"
-              style={{ backgroundColor: SECONDARY }}
-            >
-              <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-[0.04] bg-white translate-x-1/3 -translate-y-1/3" />
-              <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-[0.03] bg-white -translate-x-1/4 translate-y-1/3" />
-              <div className="relative px-8 sm:px-12 py-10 sm:py-14 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-                <div className="flex items-start gap-5">
-                  <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: `${PRIMARY}25` }}
-                  >
-                    <Heart className="w-7 h-7" style={{ color: PRIMARY }} />
-                  </div>
-                  <div>
+          {/* Second row: 3 smaller cards */}
+          <div className="grid sm:grid-cols-3 gap-4">
+            {PROGRAMS.slice(2).map((item, i) => (
+              <ScrollReveal key={item.title} delay={(i + 2) * 0.1}>
+                <Link
+                  href={item.href}
+                  className="group relative block overflow-hidden rounded-2xl h-[180px] sm:h-[200px]"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <div
+                        className="w-7 h-7 rounded-lg flex items-center justify-center"
+                        style={{ backgroundColor: `${PRIMARY}cc`, color: "#fff" }}
+                      >
+                        {item.icon}
+                      </div>
+                    </div>
                     <h3
-                      className="text-xl sm:text-2xl font-bold text-white mb-2"
+                      className="text-base sm:text-lg font-bold text-white group-hover:text-[#e87074] transition-colors"
                       style={{ fontFamily: FONT_RALEWAY }}
                     >
-                      Community Development
+                      {item.title}
                     </h3>
-                    <p className="text-white/60 text-sm sm:text-base leading-relaxed max-w-lg">
-                      Building resilient communities through inclusive development initiatives, empowering families to thrive together.
-                    </p>
+                    <p className="text-white/60 text-xs sm:text-sm leading-snug">{item.desc}</p>
                   </div>
-                </div>
-                <span
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white text-sm font-semibold rounded-full transition-all group-hover:bg-white/20 flex-shrink-0"
-                  style={{ fontFamily: FONT_OPENSANS }}
-                >
-                  Explore <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
-          </ScrollReveal>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
