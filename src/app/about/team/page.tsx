@@ -1,10 +1,12 @@
 "use client";
 
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import IconBox from "@/components/ui/IconBox";
 import { Linkedin, Mail } from "lucide-react";
-
-const SECONDARY = "#193b2a";
-const PRIMARY = "#c94449";
+import { PRIMARY, SECONDARY } from "@/lib/constants";
 
 const TEAM = [
   { name: "Executive Director", role: "Strategic Leadership & Vision", bio: "Leading BCC's mission to transform rural livelihoods through sustainable agriculture and community empowerment across the Bugwere region." },
@@ -27,8 +29,8 @@ export default function TeamPage() {
         ]}
       />
 
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <SectionHeading
             label="Guiding Vision. Inspiring Impact."
             title="Leadership"
@@ -39,10 +41,13 @@ export default function TeamPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {TEAM.map((member, i) => (
               <div key={i} className="group bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg hover:border-[--color-brand]/20 transition-all">
-                <div className="w-20 h-20 rounded-2xl mb-5 flex items-center justify-center text-white text-2xl font-bold" style={{ backgroundColor: i % 2 === 0 ? SECONDARY : PRIMARY, fontFamily: "var(--font-raleway)" }}>
-                  {member.name.split(" ").map(w => w[0]).join("")}
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-1" style={{ fontFamily: "var(--font-raleway)" }}>{member.name}</h3>
+                <IconBox
+                  icon={<span className="text-2xl font-bold" style={{ fontFamily: "var(--font-raleway)" }}>{member.name.split(" ").map(w => w[0]).join("")}</span>}
+                  color={i % 2 === 0 ? SECONDARY : PRIMARY}
+                  size="lg"
+                  variant="filled"
+                />
+                <h3 className="text-lg font-bold text-gray-900 mb-1 mt-5" style={{ fontFamily: "var(--font-raleway)" }}>{member.name}</h3>
                 <p className="text-sm font-medium mb-3" style={{ color: PRIMARY }}>{member.role}</p>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{member.bio}</p>
                 <div className="flex gap-2">
@@ -56,8 +61,8 @@ export default function TeamPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }

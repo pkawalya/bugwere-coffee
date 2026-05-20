@@ -1,11 +1,12 @@
 "use client";
 
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import Button from "@/components/ui/Button";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-import Link from "next/link";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY } from "@/lib/constants";
 
 export default function LivestockPage() {
   return (
@@ -15,8 +16,8 @@ export default function LivestockPage() {
         subtitle="Piggery and poultry projects providing steady, diversified income for rural households."
         breadcrumb={[{ label: "Programs", href: "/programs/livestock" }, { label: "Livestock", href: "/programs/livestock" }]}
       />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <SectionHeading
             label="Livestock Program"
             title="Piggery & Poultry for Steady Income"
@@ -38,12 +39,12 @@ export default function LivestockPage() {
             ))}
           </div>
           <div className="mt-10">
-            <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-lg" style={{ backgroundColor: SECONDARY }}>
-              Learn How to Join <ArrowRight className="w-4 h-4" />
-            </Link>
+            <Button variant="secondary" href="/contact" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+              Learn How to Join
+            </Button>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }

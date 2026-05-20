@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
 import { ArrowRight, Calendar } from "lucide-react";
-
-const PRIMARY = "#c94449";
+import { PRIMARY } from "@/lib/constants";
 
 const ARTICLES = [
   {
@@ -32,8 +33,8 @@ export default function NewsPage() {
   return (
     <>
       <PageHero title="News & Updates" subtitle="The latest developments from Bugwere Coffee Company and our community." breadcrumb={[{ label: "Connect", href: "/connect/news" }, { label: "News", href: "/connect/news" }]} />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <SectionHeading label="Latest" title="From the Field" description="Stay informed about our programs, partnerships, and the communities we serve." centered />
           <div className="space-y-8">
             {ARTICLES.map((article, i) => (
@@ -54,8 +55,8 @@ export default function NewsPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }

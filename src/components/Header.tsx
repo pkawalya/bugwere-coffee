@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   Menu,
   X,
@@ -27,10 +28,9 @@ import {
   Users,
   Eye,
   ArrowRight,
+  Mail,
 } from "lucide-react";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY, SECONDARY, FONT_OPENSANS, FONT_RALEWAY } from "@/lib/constants";
 
 /* ─── Mega Menu Data ─── */
 const MEGA_MENUS: {
@@ -257,6 +257,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const megaTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -278,13 +279,48 @@ export default function Header() {
     setMobileExpanded(null);
   };
 
+  const isActive = (menuHref: string) => {
+    if (menuHref === "/") return pathname === "/";
+    return pathname.startsWith(menuHref);
+  };
+
   return (
     <>
+      {/* Top Bar - Hidden on mobile */}
+      <div
+        className={`hidden lg:block transition-all duration-300 ${
+          scrolled ? "h-0 overflow-hidden opacity-0" : "h-9 opacity-100"
+        }`}
+        style={{ backgroundColor: SECONDARY }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <a
+              href="tel:+256000000000"
+              className="flex items-center gap-2 text-white/70 hover:text-white text-xs transition-colors"
+              style={{ fontFamily: FONT_OPENSANS }}
+            >
+              <Phone className="w-3 h-3" /> +256 (0) XXX XXX XXX
+            </a>
+            <a
+              href="mailto:info@bugwerecoffee.com"
+              className="flex items-center gap-2 text-white/70 hover:text-white text-xs transition-colors"
+              style={{ fontFamily: FONT_OPENSANS }}
+            >
+              <Mail className="w-3 h-3" /> info@bugwerecoffee.com
+            </a>
+          </div>
+          <div className="flex items-center gap-4 text-white/70 text-xs">
+            <span style={{ fontFamily: FONT_OPENSANS }}>Bugwere Region, Eastern Uganda</span>
+          </div>
+        </div>
+      </div>
+
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/98 shadow-lg backdrop-blur-md"
-            : "bg-white/90 backdrop-blur-sm"
+            ? "top-0 bg-white/95 shadow-lg backdrop-blur-xl border-b border-gray-100/50"
+            : "top-9 bg-white/90 backdrop-blur-sm"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -301,7 +337,7 @@ export default function Header() {
               <div className="hidden sm:block">
                 <p
                   className="font-bold text-sm leading-tight"
-                  style={{ fontFamily: "var(--font-raleway)", color: SECONDARY }}
+                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
                 >
                   Bugwere Coffee
                 </p>
@@ -325,23 +361,28 @@ export default function Header() {
                     className={`flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg transition-all ${
                       activeMega === menu.label
                         ? "text-[--color-brand] bg-red-50/60"
+                        : isActive(menu.href)
+                        ? "text-[--color-brand]"
                         : "text-gray-700 hover:text-[--color-brand] hover:bg-gray-50"
                     }`}
-                    style={{ fontFamily: "var(--font-open-sans)" }}
+                    style={{ fontFamily: FONT_OPENSANS }}
                   >
                     {menu.icon}
                     {menu.label}
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform ${
+                      className={`w-3.5 h-3.5 transition-transform duration-300 ${
                         activeMega === menu.label ? "rotate-180" : ""
                       }`}
                     />
+                    {isActive(menu.href) && (
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 rounded-full" style={{ backgroundColor: PRIMARY }} />
+                    )}
                   </Link>
 
                   {/* Mega Menu Panel */}
                   {activeMega === menu.label && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 w-[680px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-fade-in"
+                      className="absolute top-full left-1/2 -translate-x-1/2 w-[680px] bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden animate-slide-down"
                       onMouseEnter={() => handleMegaEnter(menu.label)}
                       onMouseLeave={handleMegaLeave}
                     >
@@ -354,7 +395,7 @@ export default function Header() {
                       >
                         <p
                           className="font-bold text-lg"
-                          style={{ fontFamily: "var(--font-raleway)", color: SECONDARY }}
+                          style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
                         >
                           {menu.label}
                         </p>
@@ -382,7 +423,9 @@ export default function Header() {
                                   <Link
                                     key={link.label}
                                     href={link.href}
-                                    className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group"
+                                    className={`flex items-start gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group ${
+                                      pathname === link.href ? "bg-red-50/50" : ""
+                                    }`}
                                     onClick={() => setActiveMega(null)}
                                   >
                                     <div
@@ -420,7 +463,7 @@ export default function Header() {
               <Link
                 href="/contact"
                 className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-white text-sm font-semibold rounded-xl transition-all hover:shadow-lg hover:scale-[1.02]"
-                style={{ backgroundColor: PRIMARY }}
+                style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
               >
                 Support Us
               </Link>
@@ -443,7 +486,7 @@ export default function Header() {
             className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             onClick={closeMobile}
           />
-          <div className="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl overflow-y-auto custom-scrollbar">
+          <div className="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl overflow-y-auto custom-scrollbar animate-slide-in-right">
             <div className="p-5">
               <div className="flex items-center justify-between mb-6">
                 <Image
@@ -470,13 +513,17 @@ export default function Header() {
                           mobileExpanded === menu.label ? null : menu.label
                         )
                       }
-                      className="flex items-center justify-between w-full px-4 py-3 text-base font-medium text-gray-800 hover:bg-gray-50 rounded-xl transition-colors"
+                      className={`flex items-center justify-between w-full px-4 py-3 text-base font-medium rounded-xl transition-colors ${
+                        isActive(menu.href)
+                          ? "text-[--color-brand] bg-red-50/50"
+                          : "text-gray-800 hover:bg-gray-50"
+                      }`}
                     >
                       <span className="flex items-center gap-2">
                         {menu.icon} {menu.label}
                       </span>
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
+                        className={`w-4 h-4 transition-transform duration-300 ${
                           mobileExpanded === menu.label ? "rotate-180" : ""
                         }`}
                       />
@@ -497,7 +544,11 @@ export default function Header() {
                               key={link.label}
                               href={link.href}
                               onClick={closeMobile}
-                              className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-[--color-brand] hover:bg-red-50/50 rounded-lg transition-colors"
+                              className={`flex items-center gap-2 px-4 py-2 text-sm rounded-lg transition-colors ${
+                                pathname === link.href
+                                  ? "text-[--color-brand] bg-red-50/50"
+                                  : "text-gray-600 hover:text-[--color-brand] hover:bg-red-50/50"
+                              }`}
                             >
                               <ChevronRight className="w-3 h-3" />
                               {link.label}

@@ -1,11 +1,12 @@
 "use client";
 
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import Button from "@/components/ui/Button";
 import { MapPin, ArrowRight } from "lucide-react";
-import Link from "next/link";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY } from "@/lib/constants";
 
 export default function ExpansionPage() {
   return (
@@ -15,8 +16,8 @@ export default function ExpansionPage() {
         subtitle="Growing our reach across Eastern Uganda and beyond."
         breadcrumb={[{ label: "Impact", href: "/impact" }, { label: "Expansion", href: "/impact/expansion" }]}
       />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <SectionHeading
             label="Growing Our Reach"
             title="From Bugwere to Beyond"
@@ -52,12 +53,12 @@ export default function ExpansionPage() {
             ))}
           </div>
           <div className="mt-10">
-            <Link href="/contact" className="inline-flex items-center gap-2 px-7 py-3 text-white font-semibold text-sm rounded-xl" style={{ backgroundColor: PRIMARY }}>
-              Partner With Us <ArrowRight className="w-4 h-4" />
-            </Link>
+            <Button variant="primary" href="/contact" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+              Partner With Us
+            </Button>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }

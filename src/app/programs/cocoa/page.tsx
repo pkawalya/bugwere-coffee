@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import Button from "@/components/ui/Button";
+import CTABand from "@/components/ui/CTABand";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY } from "@/lib/constants";
 
 export default function CocoaPage() {
   return (
@@ -16,8 +18,8 @@ export default function CocoaPage() {
         subtitle="Diversifying farmer income with resilient cocoa crops and comprehensive support."
         breadcrumb={[{ label: "Programs", href: "/programs/cocoa" }, { label: "Cocoa", href: "/programs/cocoa" }]}
       />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div>
               <SectionHeading
@@ -30,10 +32,10 @@ export default function CocoaPage() {
               <Image src="/images/impact-cocoa.png" alt="Cocoa farming" width={1344} height={768} className="w-full" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </div>
-        </div>
-      </section>
-      <section className="py-20" style={{ backgroundColor: "#F4F7FA" }}>
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+        </Container>
+      </Section>
+      <Section background="light" py="xl">
+        <Container>
           <SectionHeading label="Program Benefits" title="Why Cocoa?" centered />
           <div className="grid sm:grid-cols-2 gap-5">
             {[
@@ -50,17 +52,13 @@ export default function CocoaPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-      <section className="py-16" style={{ backgroundColor: SECONDARY }}>
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-raleway)" }}>Start Your Cocoa Farm</h2>
-          <p className="text-white/70 mb-8">Join our cocoa expansion program and diversify your income today.</p>
-          <Link href="/contact" className="inline-flex items-center gap-2 px-8 py-3.5 bg-white font-semibold text-sm rounded-xl transition-all hover:shadow-lg" style={{ color: SECONDARY }}>
-            Get Started <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+        </Container>
+      </Section>
+      <CTABand
+        title="Start Your Cocoa Farm"
+        subtitle="Join our cocoa expansion program and diversify your income today."
+        primaryAction={{ label: "Get Started", href: "/contact" }}
+      />
     </>
   );
 }

@@ -1,10 +1,12 @@
 "use client";
 
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import ValueCard from "@/components/ui/ValueCard";
 import { TrendingUp } from "lucide-react";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY, SECONDARY } from "@/lib/constants";
 
 export default function StatisticsPage() {
   return (
@@ -14,8 +16,8 @@ export default function StatisticsPage() {
         subtitle="Data-driven insights into our growing impact across Eastern Uganda."
         breadcrumb={[{ label: "Impact", href: "/impact" }, { label: "Statistics", href: "/impact/statistics" }]}
       />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <SectionHeading label="By The Numbers" title="Our Reach at a Glance" description="We track and measure every aspect of our programs to ensure transparency, accountability, and continuous improvement. Here is a summary of our key statistics as of 2025." centered />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -38,8 +40,8 @@ export default function StatisticsPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }

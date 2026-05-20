@@ -1,49 +1,39 @@
 "use client";
 
 import PageHero from "@/components/PageHero";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import ContactInfoItem from "@/components/ui/ContactInfoItem";
+import Button from "@/components/ui/Button";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY } from "@/lib/constants";
 
 export default function ContactPage() {
   return (
     <>
       <PageHero title="Contact Us" subtitle="Get in touch with the Bugwere Coffee Company team." breadcrumb={[{ label: "Contact", href: "/contact" }]} />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6" style={{ fontFamily: "var(--font-raleway)" }}>Get In Touch</h3>
               <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${SECONDARY}10` }}>
-                    <MapPin className="w-5 h-5" style={{ color: SECONDARY }} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">Location</p>
-                    <p className="text-gray-600 text-sm">Bugwere Region, Eastern Uganda</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${SECONDARY}10` }}>
-                    <Mail className="w-5 h-5" style={{ color: SECONDARY }} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">Email</p>
-                    <p className="text-gray-600 text-sm">info@bugwerecoffee.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${SECONDARY}10` }}>
-                    <Phone className="w-5 h-5" style={{ color: SECONDARY }} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 text-sm">Phone</p>
-                    <p className="text-gray-600 text-sm">+256 (0) XXX XXX XXX</p>
-                  </div>
-                </div>
+                <ContactInfoItem
+                  icon={<MapPin className="w-5 h-5" />}
+                  label="Location"
+                  value="Bugwere Region, Eastern Uganda"
+                />
+                <ContactInfoItem
+                  icon={<Mail className="w-5 h-5" />}
+                  label="Email"
+                  value="info@bugwerecoffee.com"
+                />
+                <ContactInfoItem
+                  icon={<Phone className="w-5 h-5" />}
+                  label="Phone"
+                  value="+256 (0) XXX XXX XXX"
+                />
               </div>
             </div>
 
@@ -80,15 +70,15 @@ export default function ContactPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
                     <textarea rows={5} className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-[--color-brand]/20 focus:border-[--color-brand] transition-all resize-none" placeholder="How can we help you?" />
                   </div>
-                  <button type="submit" className="inline-flex items-center gap-2 px-8 py-3.5 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-lg hover:scale-[1.02]" style={{ backgroundColor: PRIMARY }}>
-                    <Send className="w-4 h-4" /> Send Message
-                  </button>
+                  <Button variant="primary" type="submit" icon={<Send className="w-4 h-4" />} iconPosition="left">
+                    Send Message
+                  </Button>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }

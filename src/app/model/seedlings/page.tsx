@@ -1,18 +1,20 @@
 "use client";
 
-import PageHero, { SectionHeading } from "@/components/PageHero";
+import PageHero from "@/components/PageHero";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
+import Button from "@/components/ui/Button";
+import ValueCard from "@/components/ui/ValueCard";
 import { CheckCircle2, ArrowRight } from "lucide-react";
-import Link from "next/link";
-
-const PRIMARY = "#c94449";
-const SECONDARY = "#193b2a";
+import { PRIMARY } from "@/lib/constants";
 
 export default function SeedlingsPage() {
   return (
     <>
       <PageHero title="Seedling Production & Distribution" subtitle="Premium seedlings that give every farmer the best possible start." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Seedlings", href: "/model/seedlings" }]} />
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-8">
+      <Section background="white" py="xl">
+        <Container>
           <SectionHeading label="Seedling Program" title="Quality Starts at the Root" description="Our seedling production and distribution program is the foundation of our agricultural model. We operate nurseries that produce premium coffee and cocoa seedlings, carefully selected for disease resistance, high yield potential, and suitability to the Bugwere climate. Each seedling is distributed directly to farming households along with planting instructions and ongoing support from our extension team. With over 5,000 homes receiving coffee seedlings and 3,700 receiving cocoa seedlings, this program has become the gateway to sustainable income for thousands of families." />
           <div className="grid sm:grid-cols-2 gap-5 mt-10">
             {["Disease-resistant, high-yield varieties", "Community nurseries managed by trained staff", "Free distribution to registered farming households", "Planting guides and follow-up visits included", "Adapted to Bugwere's specific climate and soil", "Continuous supply with seasonal distribution cycles"].map((item, i) => (
@@ -23,12 +25,12 @@ export default function SeedlingsPage() {
             ))}
           </div>
           <div className="mt-10">
-            <Link href="/programs/coffee" className="inline-flex items-center gap-2 px-7 py-3 text-white font-semibold text-sm rounded-xl" style={{ backgroundColor: SECONDARY }}>
-              View Coffee Program <ArrowRight className="w-4 h-4" />
-            </Link>
+            <Button variant="secondary" href="/programs/coffee" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+              View Coffee Program
+            </Button>
           </div>
-        </div>
-      </section>
+        </Container>
+      </Section>
     </>
   );
 }
