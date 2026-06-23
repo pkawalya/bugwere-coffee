@@ -1,0 +1,702 @@
+    80→    80→
+    81→    81→export default function Home() {
+    82→    82→  const handleJoinSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    83→    83→    e.preventDefault();
+    84→    84→    const form = e.currentTarget;
+    85→    85→    const formData = new FormData(form);
+    86→    86→    try {
+    87→    87→      const res = await fetch("/api/join", {
+    88→    88→        method: "POST",
+    89→    89→        headers: { "Content-Type": "application/json" },
+    90→    90→        body: JSON.stringify({
+    91→    91→          name: formData.get("name"),
+    92→    92→          email: formData.get("email"),
+    93→    93→          phone: formData.get("phone"),
+    94→    94→          interest: formData.get("interest"),
+    95→    95→        }),
+    96→    96→      });
+    97→    97→      const data = await res.json();
+    98→    98→      if (data.success) {
+    99→    99→        alert(data.message);
+   100→   100→        form.reset();
+   101→   101→      } else {
+   102→   102→        alert(data.error || "Something went wrong.");
+   103→   103→      }
+   104→   104→    } catch {
+   105→   105→      alert("Network error. Please try again.");
+   106→   106→    }
+   107→   107→  };
+   108→   108→
+   109→   109→  const handleSubscribeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+   110→   110→    e.preventDefault();
+   111→   111→    const form = e.currentTarget;
+   112→   112→    const formData = new FormData(form);
+   113→   113→    const checkedTopics = Array.from(form.querySelectorAll<HTMLInputElement>("input[name=\"topic\"]:checked")).map((cb) => cb.value);
+   114→   114→    try {
+   115→   115→      const res = await fetch("/api/subscribe", {
+   116→   116→        method: "POST",
+   117→   117→        headers: { "Content-Type": "application/json" },
+   118→   118→        body: JSON.stringify({
+   119→   119→          name: formData.get("sub-name"),
+   120→   120→          email: formData.get("sub-email"),
+   121→   121→          topics: checkedTopics,
+   122→   122→        }),
+   123→   123→      });
+   124→   124→      const data = await res.json();
+   125→   125→      if (data.success) {
+   126→   126→        alert(data.message);
+   127→   127→        form.reset();
+   128→   128→      } else {
+   129→   129→        alert(data.error || "Something went wrong.");
+   130→   130→      }
+   131→   131→    } catch {
+   132→   132→      alert("Network error. Please try again.");
+   133→   133→    }
+   134→   134→  };
+   135→   135→
+   136→   136→  return (
+   137→   137→    <>
+   138→   138→      {/* ═══ CINEMATIC HERO ═══ */}
+   139→   139→      <HeroSlider slides={HERO_SLIDES} />
+   140→   140→
+   141→   141→      {/* ═══ MARQUEE STRIP ═══ */}
+   142→   142→      <div className="py-4 overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+   143→   143→        <Marquee
+   144→   144→          items={["COFFEE", "COCOA", "COMMUNITY", "SUSTAINABILITY", "EMPOWERMENT", "LIVELIHOODS", "FARMERS", "GROWTH"]}
+   145→   145→          speed={25}
+   146→   146→          className="text-white/30 text-sm font-bold uppercase tracking-[0.3em]"
+   147→   147→          style={{ fontFamily: FONT_RALEWAY } as React.CSSProperties}
+   148→   148→        />
+   149→   149→      </div>
+   150→   150→
+   151→   151→      {/* ═══ MANIFESTO — Split Image + Content ═══ */}
+   152→   152→      <section id="manifesto" className="py-20 sm:py-28" style={{ backgroundColor: CREAM }}>
+   153→   153→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   154→   154→          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+   155→   155→            {/* Image Side */}
+   156→   156→            <ScrollReveal direction="left">
+   157→   157→              <div className="relative">
+   158→   158→                <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+   159→   159→                  <Image
+   160→   160→                    src="/images/hero-1.png"
+   161→   161→                    alt="Bugwere farming community"
+   162→   162→                    fill
+   163→   163→                    className="w-full h-full object-cover"
+   164→   164→                    sizes="(max-width: 1024px) 100vw, 50vw"
+   165→   165→                  />
+   166→   166→                  {/* Subtle gradient blend */}
+   167→   167→                  <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 40%, rgba(25,59,42,0.08) 100%)' }} />
+   168→   168→                </div>
+   169→   169→                {/* Floating stat card */}
+   170→   170→                <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-5 hidden lg:block">
+   171→   171→                  <p className="text-2xl font-bold" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>15,000+</p>
+   172→   172→                  <p className="text-xs text-gray-500" style={{ fontFamily: FONT_OPENSANS }}>Lives impacted since 2023</p>
+   173→   173→                </div>
+   174→   174→                {/* Decorative accent */}
+   175→   175→                <div
+   176→   176→                  className="absolute -top-3 -left-3 w-20 h-20 rounded-2xl -z-10"
+   177→   177→                  style={{ backgroundColor: `${PRIMARY}15` }}
+   178→   178→                />
+   179→   179→              </div>
+   180→   180→            </ScrollReveal>
+   181→   181→
+   182→   182→            {/* Content Side */}
+   183→   183→            <ScrollReveal direction="right">
+   184→   184→              <div>
+   185→   185→                <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   186→   186→                  Our Manifesto
+   187→   187→                </p>
+   188→   188→                <h2
+   189→   189→                  className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold leading-[1.2] mb-6"
+   190→   190→                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   191→   191→                >
+   192→   192→                  We believe every farmer — regardless of land size — deserves the opportunity to build a{" "}
+   193→   193→                  <span className="text-gradient-primary">prosperous</span> and{" "}
+   194→   194→                  <span className="text-gradient-green">sustainable</span> future.
+   195→   195→                </h2>
+   196→   196→                <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8">
+   197→   197→                  Founded in 2023 in the Bugwere region of Eastern Uganda, we respond to a critical challenge:
+   198→   198→                  How can rural households with limited land still generate sustainable income? Our answer is a
+   199→   199→                  holistic, community-driven approach that combines high-value coffee and cocoa production with
+   200→   200→                  diversified income streams, expert agronomic support, and guaranteed market access.
+   201→   201→                </p>
+   202→   202→                <Link
+   203→   203→                  href="/about"
+   204→   204→                  className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+   205→   205→                  style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+   206→   206→                >
+   207→   207→                  Read Our Story <ArrowRight className="w-4 h-4" />
+   208→   208→                </Link>
+   209→   209→              </div>
+   210→   210→            </ScrollReveal>
+   211→   211→          </div>
+   212→   212→        </div>
+   213→   213→      </section>
+   214→   214→
+   215→   215→      {/* ═══ PROGRAMS — Compact Horizontal Cards ═══ */}
+   216→   216→      <section className="py-16 sm:py-20 bg-white">
+   217→   217→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   218→   218→          <ScrollReveal>
+   219→   219→            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+   220→   220→              <div>
+   221→   221→                <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   222→   222→                  What We Do
+   223→   223→                </p>
+   224→   224→                <h2
+   225→   225→                  className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+   226→   226→                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   227→   227→                >
+   228→   228→                  Our Programs
+   229→   229→                </h2>
+   230→   230→              </div>
+   231→   231→              <Link
+   232→   232→                href="/programs/coffee"
+   233→   233→                className="inline-flex items-center gap-2 text-sm font-semibold group"
+   234→   234→                style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}
+   235→   235→              >
+   236→   236→                View All Programs
+   237→   237→                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+   238→   238→              </Link>
+   239→   239→            </div>
+   240→   240→          </ScrollReveal>
+   241→   241→
+   242→   242→          {/* First row: 2 large cards */}
+   243→   243→          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+   244→   244→            {PROGRAMS.slice(0, 2).map((item, i) => (
+   245→   245→              <ScrollReveal key={item.title} delay={i * 0.1}>
+   246→   246→                <Link
+   247→   247→                  href={item.href}
+   248→   248→                  className="group relative block overflow-hidden rounded-2xl h-[220px] sm:h-[260px]"
+   249→   249→                >
+   250→   250→                  <Image
+   251→   251→                    src={item.image}
+   252→   252→                    alt={item.title}
+   253→   253→                    fill
+   254→   254→                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+   255→   255→                    sizes="(max-width: 768px) 100vw, 50vw"
+   256→   256→                  />
+   257→   257→                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+   258→   258→                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+   259→   259→                    <div className="flex items-center gap-2 mb-2">
+   260→   260→                      <div
+   261→   261→                        className="w-8 h-8 rounded-lg flex items-center justify-center"
+   262→   262→                        style={{ backgroundColor: `${PRIMARY}cc`, color: "#fff" }}
+   263→   263→                      >
+   264→   264→                        {item.icon}
+   265→   265→                      </div>
+   266→   266→                      <span
+   267→   267→                        className="inline-block w-6 h-0.5 rounded-full"
+   268→   268→                        style={{ backgroundColor: PRIMARY }}
+   269→   269→                      />
+   270→   270→                    </div>
+   271→   271→                    <h3
+   272→   272→                      className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[#e87074] transition-colors"
+   273→   273→                      style={{ fontFamily: FONT_RALEWAY }}
+   274→   274→                    >
+   275→   275→                      {item.title}
+   276→   276→                    </h3>
+   277→   277→                    <p className="text-white/65 text-sm leading-snug">{item.desc}</p>
+   278→   278→                  </div>
+   279→   279→                </Link>
+   280→   280→              </ScrollReveal>
+   281→   281→            ))}
+   282→   282→          </div>
+   283→   283→
+   284→   284→          {/* Second row: 3 smaller cards */}
+   285→   285→          <div className="grid sm:grid-cols-3 gap-4">
+   286→   286→            {PROGRAMS.slice(2).map((item, i) => (
+   287→   287→              <ScrollReveal key={item.title} delay={(i + 2) * 0.1}>
+   288→   288→                <Link
+   289→   289→                  href={item.href}
+   290→   290→                  className="group relative block overflow-hidden rounded-2xl h-[180px] sm:h-[200px]"
+   291→   291→                >
+   292→   292→                  <Image
+   293→   293→                    src={item.image}
+   294→   294→                    alt={item.title}
+   295→   295→                    fill
+   296→   296→                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+   297→   297→                    sizes="(max-width: 768px) 100vw, 33vw"
+   298→   298→                  />
+   299→   299→                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+   300→   300→                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+   301→   301→                    <div className="flex items-center gap-2 mb-1.5">
+   302→   302→                      <div
+   303→   303→                        className="w-7 h-7 rounded-lg flex items-center justify-center"
+   304→   304→                        style={{ backgroundColor: `${PRIMARY}cc`, color: "#fff" }}
+   305→   305→                      >
+   306→   306→                        {item.icon}
+   307→   307→                      </div>
+   308→   308→                    </div>
+   309→   309→                    <h3
+   310→   310→                      className="text-base sm:text-lg font-bold text-white group-hover:text-[#e87074] transition-colors"
+   311→   311→                      style={{ fontFamily: FONT_RALEWAY }}
+   312→   312→                    >
+   313→   313→                      {item.title}
+   314→   314→                    </h3>
+   315→   315→                    <p className="text-white/60 text-xs sm:text-sm leading-snug">{item.desc}</p>
+   316→   316→                  </div>
+   317→   317→                </Link>
+   318→   318→              </ScrollReveal>
+   319→   319→            ))}
+   320→   320→          </div>
+   321→   321→        </div>
+   322→   322→      </section>
+   323→   323→
+   324→   324→      {/* ═══ IMPACT — Split Image + Counters ═══ */}
+   325→   325→      <section className="py-20 sm:py-28 relative overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+   326→   326→        <div className="absolute inset-0 bg-dots-pattern" />
+   327→   327→        <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-[0.03] bg-white animate-float" />
+   328→   328→        <div className="absolute bottom-10 right-10 w-48 h-48 rounded-full opacity-[0.02] bg-white animate-float-slow" />
+   329→   329→
+   330→   330→        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   331→   331→          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+   332→   332→            {/* Image Side */}
+   333→   333→            <ScrollReveal direction="left">
+   334→   334→              <div className="relative">
+   335→   335→                <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+   336→   336→                  <Image
+   337→   337→                    src="/images/impact-coffee.png"
+   338→   338→                    alt="Coffee farming impact"
+   339→   339→                    fill
+   340→   340→                    className="w-full h-full object-cover"
+   341→   341→                    sizes="(max-width: 1024px) 100vw, 50vw"
+   342→   342→                  />
+   343→   343→                  {/* Gradient blend for depth */}
+   344→   344→                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,59,42,0.35) 0%, transparent 50%)' }} />
+   345→   345→                  <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at bottom right, rgba(25,59,42,0.1) 0%, transparent 60%)' }} />
+   346→   346→                </div>
+   347→   347→              </div>
+   348→   348→            </ScrollReveal>
+   349→   349→
+   350→   350→            {/* Counters Side */}
+   351→   351→            <div>
+   352→   352→              <ScrollReveal>
+   353→   353→                <div className="mb-10">
+   354→   354→                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   355→   355→                    Bugwere Impact
+   356→   356→                  </p>
+   357→   357→                  <h2
+   358→   358→                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight mb-4"
+   359→   359→                    style={{ fontFamily: FONT_RALEWAY }}
+   360→   360→                  >
+   361→   361→                    Our Impact in Numbers
+   362→   362→                  </h2>
+   363→   363→                  <p className="text-white/60 text-base max-w-lg">
+   364→   364→                    Strengthening communities through scalable, high-impact agricultural support across the Bugwere region.
+   365→   365→                  </p>
+   366→   366→                </div>
+   367→   367→              </ScrollReveal>
+   368→   368→
+   369→   369→              <div className="grid grid-cols-2 gap-6 sm:gap-8">
+   370→   370→                {[
+   371→   371→                  { end: 5000, suffix: "+", label: "Coffee Seedlings Homes", icon: <Coffee className="w-6 h-6" /> },
+   372→   372→                  { end: 3700, suffix: "+", label: "Cocoa Seedlings Homes", icon: <Sprout className="w-6 h-6" /> },
+   373→   373→                  { end: 7000, suffix: "+", label: "Fertilizer Homes", icon: <Wheat className="w-6 h-6" /> },
+   374→   374→                  { end: 15000, suffix: "+", label: "Lives Impacted", icon: <Users className="w-6 h-6" /> },
+   375→   375→                ].map((stat, i) => (
+   376→   376→                  <ScrollReveal key={stat.label} delay={i * 0.1}>
+   377→   377→                    <div className="p-5 rounded-2xl" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+   378→   378→                      <div className="flex items-center gap-3 mb-3">
+   379→   379→                        <div
+   380→   380→                          className="w-10 h-10 rounded-xl flex items-center justify-center"
+   381→   381→                          style={{ backgroundColor: `${PRIMARY}25` }}
+   382→   382→                        >
+   383→   383→                          <span style={{ color: PRIMARY }}>{stat.icon}</span>
+   384→   384→                        </div>
+   385→   385→                      </div>
+   386→   386→                      <AnimatedCounter
+   387→   387→                        end={stat.end}
+   388→   388→                        suffix={stat.suffix}
+   389→   389→                        duration={2500}
+   390→   390→                        className="text-3xl sm:text-4xl font-bold text-white mb-1"
+   391→   391→                        style={{ fontFamily: FONT_RALEWAY }}
+   392→   392→                      />
+   393→   393→                      <p className="text-white/45 text-xs sm:text-sm">{stat.label}</p>
+   394→   394→                    </div>
+   395→   395→                  </ScrollReveal>
+   396→   396→                ))}
+   397→   397→              </div>
+   398→   398→
+   399→   399→              <ScrollReveal delay={0.3}>
+   400→   400→                <div className="mt-8">
+   401→   401→                  <Link
+   402→   402→                    href="/impact"
+   403→   403→                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+   404→   404→                    style={{ color: SECONDARY, fontFamily: FONT_OPENSANS }}
+   405→   405→                  >
+   406→   406→                    Explore Our Impact <ArrowRight className="w-4 h-4" />
+   407→   407→                  </Link>
+   408→   408→                </div>
+   409→   409→              </ScrollReveal>
+   410→   410→            </div>
+   411→   411→          </div>
+   412→   412→        </div>
+   413→   413→      </section>
+   414→   414→
+   415→   415→      {/* ═══ MODEL — Image + Journey Steps ═══ */}
+   416→   416→      <section className="py-20 sm:py-28 bg-white">
+   417→   417→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   418→   418→          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+   419→   419→            {/* Image + Text Side (sticky) */}
+   420→   420→            <div className="lg:sticky lg:top-32">
+   421→   421→              <ScrollReveal direction="left">
+   422→   422→                <div className="relative mb-8">
+   423→   423→                  <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+   424→   424→                    <Image
+   425→   425→                      src="/images/hero-4.png"
+   426→   426→                      alt="Agricultural model in action"
+   427→   427→                      fill
+   428→   428→                      className="w-full h-full object-cover"
+   429→   429→                      sizes="(max-width: 1024px) 100vw, 50vw"
+   430→   430→                    />
+   431→   431→                    {/* Gradient blend */}
+   432→   432→                    <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(25,59,42,0.08) 100%)' }} />
+   433→   433→                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 70%, rgba(25,59,42,0.06) 100%)' }} />
+   434→   434→                  </div>
+   435→   435→                  {/* Decorative accent */}
+   436→   436→                  <div
+   437→   437→                    className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl -z-10"
+   438→   438→                    style={{ backgroundColor: `${PRIMARY}12` }}
+   439→   439→                  />
+   440→   440→                </div>
+   441→   441→              </ScrollReveal>
+   442→   442→              <ScrollReveal>
+   443→   443→                <div>
+   444→   444→                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   445→   445→                    Empowering Households
+   446→   446→                  </p>
+   447→   447→                  <h2
+   448→   448→                    className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-4"
+   449→   449→                    style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   450→   450→                  >
+   451→   451→                    Our Transformative Agriculture Model
+   452→   452→                  </h2>
+   453→   453→                  <p className="text-gray-600 text-base leading-relaxed mb-6">
+   454→   454→                    Our model is built to empower rural households through a complete, end-to-end agricultural
+   455→   455→                    support system. From seedling to market, we walk with farmers every step of the way.
+   456→   456→                  </p>
+   457→   457→                  <Link
+   458→   458→                    href="/model"
+   459→   459→                    className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+   460→   460→                    style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+   461→   461→                  >
+   462→   462→                    Explore Our Model <ArrowRight className="w-4 h-4" />
+   463→   463→                  </Link>
+   464→   464→                </div>
+   465→   465→              </ScrollReveal>
+   466→   466→            </div>
+   467→   467→
+   468→   468→            {/* Journey Steps */}
+   469→   469→            <div>
+   470→   470→              {MODEL_STEPS.map((step, i) => (
+   471→   471→                <ScrollReveal key={step.title} delay={i * 0.1}>
+   472→   472→                  <JourneyStep
+   473→   473→                    step={i + 1}
+   474→   474→                    icon={step.icon}
+   475→   475→                    title={step.title}
+   476→   476→                    description={step.desc}
+   477→   477→                    isLast={i === MODEL_STEPS.length - 1}
+   478→   478→                  />
+   479→   479→                </ScrollReveal>
+   480→   480→              ))}
+   481→   481→            </div>
+   482→   482→          </div>
+   483→   483→        </div>
+   484→   484→      </section>
+   485→   485→
+   486→   486→      {/* ═══ COMMUNITY VOICES — Image Cards ═══ */}
+   487→   487→      <section className="py-20 sm:py-28" style={{ backgroundColor: CREAM }}>
+   488→   488→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   489→   489→          <ScrollReveal>
+   490→   490→            <div className="text-center mb-14">
+   491→   491→              <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   492→   492→                Community Voices
+   493→   493→              </p>
+   494→   494→              <h2
+   495→   495→                className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+   496→   496→                style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   497→   497→              >
+   498→   498→                Stories from the Field
+   499→   499→              </h2>
+   500→   500→            </div>
+   501→   501→          </ScrollReveal>
+   502→   502→
+   503→   503→          <div className="grid md:grid-cols-3 gap-6">
+   504→   504→            {TESTIMONIALS.map((t, i) => (
+   505→   505→              <ScrollReveal key={t.name} delay={i * 0.15}>
+   506→   506→                <div className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+   507→   507→                  {/* Image */}
+   508→   508→                  <div className="relative h-48 overflow-hidden">
+   509→   509→                    <Image
+   510→   510→                      src={t.image}
+   511→   511→                      alt={t.name}
+   512→   512→                      fill
+   513→   513→                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+   514→   514→                      sizes="(max-width: 768px) 100vw, 33vw"
+   515→   515→                    />
+   516→   516→                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+   517→   517→                    <div
+   518→   518→                      className="absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center"
+   519→   519→                      style={{ backgroundColor: `${PRIMARY}90` }}
+   520→   520→                    >
+   521→   521→                      <Quote className="w-4 h-4 text-white" />
+   522→   522→                    </div>
+   523→   523→                  </div>
+   524→   524→                  {/* Content */}
+   525→   525→                  <div className="p-6">
+   526→   526→                    <p className="text-gray-700 text-sm leading-relaxed mb-5 italic">
+   527→   527→                      &ldquo;{t.quote}&rdquo;
+   528→   528→                    </p>
+   529→   529→                    <div className="flex items-center gap-3">
+   530→   530→                      <div
+   531→   531→                        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs"
+   532→   532→                        style={{ backgroundColor: SECONDARY, fontFamily: FONT_RALEWAY }}
+   533→   533→                      >
+   534→   534→                        {t.name.split(" ").map(n => n[0]).join("")}
+   535→   535→                      </div>
+   536→   536→                      <div>
+   537→   537→                        <p className="font-bold text-sm text-gray-900" style={{ fontFamily: FONT_RALEWAY }}>{t.name}</p>
+   538→   538→                        <p className="text-xs text-gray-500">{t.role}</p>
+   539→   539→                      </div>
+   540→   540→                    </div>
+   541→   541→                  </div>
+   542→   542→                </div>
+   543→   543→              </ScrollReveal>
+   544→   544→            ))}
+   545→   545→          </div>
+   546→   546→        </div>
+   547→   547→      </section>
+   548→   548→
+   549→   549→      {/* ═══ MAGAZINE NEWS ═══ */}
+   550→   550→      <section className="py-20 sm:py-28 bg-white">
+   551→   551→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   552→   552→          <ScrollReveal>
+   553→   553→            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+   554→   554→              <div>
+   555→   555→                <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   556→   556→                  Latest News
+   557→   557→                </p>
+   558→   558→                <h2
+   559→   559→                  className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+   560→   560→                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   561→   561→                >
+   562→   562→                  News & Press
+   563→   563→                </h2>
+   564→   564→              </div>
+   565→   565→              <Link
+   566→   566→                href="/connect/news"
+   567→   567→                className="inline-flex items-center gap-2 text-sm font-semibold group"
+   568→   568→                style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}
+   569→   569→              >
+   570→   570→                All Articles <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+   571→   571→              </Link>
+   572→   572→            </div>
+   573→   573→          </ScrollReveal>
+   574→   574→
+   575→   575→          <div className="grid lg:grid-cols-2 gap-6">
+   576→   576→            {/* Featured article */}
+   577→   577→            <ScrollReveal>
+   578→   578→              <Link href={NEWS[0].href} className="group block relative overflow-hidden rounded-3xl h-[400px] sm:h-[480px]">
+   579→   579→                <Image
+   580→   580→                  src={NEWS[0].image}
+   581→   581→                  alt={NEWS[0].title}
+   582→   582→                  fill
+   583→   583→                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+   584→   584→                  sizes="(max-width: 1024px) 100vw, 50vw"
+   585→   585→                />
+   586→   586→                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+   587→   587→                <div className="absolute bottom-0 left-0 right-0 p-8">
+   588→   588→                  <span
+   589→   589→                    className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3"
+   590→   590→                    style={{ backgroundColor: PRIMARY, color: "#fff", fontFamily: FONT_OPENSANS }}
+   591→   591→                  >
+   592→   592→                    Featured
+   593→   593→                  </span>
+   594→   594→                  <p className="text-white/60 text-xs mb-2" style={{ fontFamily: FONT_OPENSANS }}>{NEWS[0].date}</p>
+   595→   595→                  <h3
+   596→   596→                    className="text-lg sm:text-xl font-bold text-white leading-snug group-hover:text-[#e87074] transition-colors"
+   597→   597→                    style={{ fontFamily: FONT_RALEWAY }}
+   598→   598→                  >
+   599→   599→                    {NEWS[0].title}
+   600→   600→                  </h3>
+   601→   601→                </div>
+   602→   602→              </Link>
+   603→   603→            </ScrollReveal>
+   604→   604→
+   605→   605→            {/* Supporting articles */}
+   606→   606→            <div className="flex flex-col gap-6">
+   607→   607→              {NEWS.slice(1).map((article, i) => (
+   608→   608→                <ScrollReveal key={article.title} delay={(i + 1) * 0.15}>
+   609→   609→                  <Link href={article.href} className="group flex gap-5 items-start bg-gray-50 rounded-2xl p-4 hover:bg-gray-100 transition-colors">
+   610→   610→                    <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden">
+   611→   611→                      <Image src={article.image} alt={article.title} fill className="object-cover" sizes="112px" />
+   612→   612→                    </div>
+   613→   613→                    <div className="flex-1 min-w-0">
+   614→   614→                      <p className="text-xs mb-1.5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>{article.date}</p>
+   615→   615→                      <h4
+   616→   616→                        className="text-sm sm:text-base font-bold text-gray-900 leading-snug group-hover:text-[--color-brand] transition-colors"
+   617→   617→                        style={{ fontFamily: FONT_RALEWAY }}
+   618→   618→                      >
+   619→   619→                        {article.title}
+   620→   620→                      </h4>
+   621→   621→                    </div>
+   622→   622→                  </Link>
+   623→   623→                </ScrollReveal>
+   624→   624→              ))}
+   625→   625→            </div>
+   626→   626→          </div>
+   627→   627→        </div>
+   628→   628→      </section>
+   629→   629→
+   630→   630→      {/* ═══ JOIN & SUBSCRIBE ═══ */}
+   631→   631→      <section id="join" className="relative overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+   632→   632→        {/* Background decorations */}
+   633→   633→        <div className="absolute inset-0 bg-grid-pattern" />
+   634→   634→        <div className="absolute -top-20 -left-20 w-96 h-96 blob-shape opacity-[0.04] bg-white" />
+   635→   635→        <div className="absolute -bottom-20 -right-20 w-80 h-80 blob-shape-2 opacity-[0.03] bg-white animate-float-slow" />
+   636→   636→
+   637→   637→        {/* ── JOIN THE MOVEMENT ── */}
+   638→   638→        <div className="relative py-20 sm:py-28">
+   639→   639→          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   640→   640→            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+   641→   641→              {/* Left: Content + Image */}
+   642→   642→              <ScrollReveal direction="left">
+   643→   643→                <div>
+   644→   644→                  <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   645→   645→                    Join The Movement
+   646→   646→                  </p>
+   647→   647→                  <h2
+   648→   648→                    className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold text-white leading-[1.15] mb-6"
+   649→   649→                    style={{ fontFamily: FONT_RALEWAY }}
+   650→   650→                  >
+   651→   651→                    Your participation creates lasting change
+   652→   652→                  </h2>
+   653→   653→                  <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-6">
+   654→   654→                    Whether you are a farmer seeking support, a partner looking to invest in sustainable agriculture,
+   655→   655→                    or a volunteer wanting to make a difference — there is a place for you at Bugwere Coffee Company.
+   656→   656→                    Join thousands of households already transforming their livelihoods.
+   657→   657→                  </p>
+   658→   658→                  <div className="grid grid-cols-3 gap-4 mb-8">
+   659→   659→                    {[
+   660→   660→                      { num: "5,000+", label: "Farmers Joined" },
+   661→   661→                      { num: "15,000+", label: "Lives Impacted" },
+   662→   662→                      { num: "3", label: "Core Programs" },
+   663→   663→                    ].map((stat) => (
+   664→   664→                      <div key={stat.label} className="text-center p-4 rounded-2xl" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+   665→   665→                        <p className="text-2xl sm:text-3xl font-bold text-white mb-1" style={{ fontFamily: FONT_RALEWAY, color: PRIMARY }}>
+   666→   666→                          {stat.num}
+   667→   667→                        </p>
+   668→   668→                        <p className="text-white/40 text-xs sm:text-sm">{stat.label}</p>
+   669→   669→                      </div>
+   670→   670→                    ))}
+   671→   671→                  </div>
+   672→   672→                </div>
+   673→   673→              </ScrollReveal>
+   674→   674→
+   675→   675→              {/* Right: Join Form */}
+   676→   676→              <ScrollReveal direction="right">
+   677→   677→                <div className="bg-white/[0.06] backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-white/10">
+   678→   678→                  <div className="flex items-center gap-3 mb-6">
+   679→   679→                    <div
+   680→   680→                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+   681→   681→                      style={{ backgroundColor: `${PRIMARY}25` }}
+   682→   682→                    >
+   683→   683→                      <UserPlus className="w-5 h-5" style={{ color: PRIMARY }} />
+   684→   684→                    </div>
+   685→   685→                    <div>
+   686→   686→                      <h3 className="font-bold text-white text-lg" style={{ fontFamily: FONT_RALEWAY }}>Become a Member</h3>
+   687→   687→                      <p className="text-white/40 text-xs">Fill in your details to get started</p>
+   688→   688→                    </div>
+   689→   689→                  </div>
+   690→   690→
+   691→   691→                  <form onSubmit={handleJoinSubmit} className="space-y-4">
+   692→   692→                    <div>
+   693→   693→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   694→   694→                        Full Name
+   695→   695→                      </label>
+   696→   696→                      <div className="relative">
+   697→   697→                        <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+   698→   698→                        <input
+   699→   699→                          name="name"
+   700→   700→                          type="text"
+   701→   701→                          required
+   702→   702→                          placeholder="Enter your full name"
+   703→   703→                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+   704→   704→                          style={{ fontFamily: FONT_OPENSANS }}
+   705→   705→                        />
+   706→   706→                      </div>
+   707→   707→                    </div>
+   708→   708→
+   709→   709→                    <div>
+   710→   710→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   711→   711→                        Email Address
+   712→   712→                      </label>
+   713→   713→                      <div className="relative">
+   714→   714→                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+   715→   715→                        <input
+   716→   716→                          name="email"
+   717→   717→                          type="email"
+   718→   718→                          required
+   719→   719→                          placeholder="you@example.com"
+   720→   720→                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+   721→   721→                          style={{ fontFamily: FONT_OPENSANS }}
+   722→   722→                        />
+   723→   723→                      </div>
+   724→   724→                    </div>
+   725→   725→
+   726→   726→                    <div>
+   727→   727→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   728→   728→                        Phone Number (Optional)
+   729→   729→                      </label>
+   730→   730→                      <div className="relative">
+   731→   731→                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+   732→   732→                        <input
+   733→   733→                          name="phone"
+   734→   734→                          type="tel"
+   735→   735→                          placeholder="+256 7XX XXX XXX"
+   736→   736→                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+   737→   737→                          style={{ fontFamily: FONT_OPENSANS }}
+   738→   738→                        />
+   739→   739→                      </div>
+   740→   740→                    </div>
+   741→   741→
+   742→   742→                    <div>
+   743→   743→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   744→   744→                        I am interested in...
+   745→   745→                      </label>
+   746→   746→                      <select
+   747→   747→                        name="interest"
+   748→   748→                        required
+   749→   749→                        className="w-full px-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all appearance-none"
+   750→   750→                        style={{ fontFamily: FONT_OPENSANS }}
+   751→   751→                      >
+   752→   752→                        <option value="" className="bg-[#193b2a]">Select your interest</option>
+   753→   753→                        <option value="coffee" className="bg-[#193b2a]">Coffee Farming Program</option>
+   754→   754→                        <option value="cocoa" className="bg-[#193b2a]">Cocoa Farming Program</option>
+   755→   755→                        <option value="livestock" className="bg-[#193b2a]">Livestock Support</option>
+   756→   756→                        <option value="agronomy" className="bg-[#193b2a]">Agronomy & Training</option>
+   757→   757→                        <option value="partner" className="bg-[#193b2a]">Partner With Us</option>
+   758→   758→                        <option value="volunteer" className="bg-[#193b2a]">Volunteer</option>
+   759→   759→                        <option value="other" className="bg-[#193b2a]">Other</option>
+   760→   760→                      </select>
+   761→   761→                    </div>
+   762→   762→
+   763→   763→                    <button
+   764→   764→                      type="submit"
+   765→   765→                      className="w-full py-3.5 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+   766→   766→                      style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
+   767→   767→                    >
+   768→   768→                      <Send className="w-4 h-4" />
+   769→   769→                      Join The Movement
+   770→   770→                    </button>
+   771→   771→                  </form>
+   772→   772→                </div>
+   773→   773→              </ScrollReveal>
+   774→   774→            </div>
+   775→   775→          </div>
+   776→   776→        </div>
+   777→   777→
+   778→   778→        {/* ── SUBSCRIBE / NEWSLETTER ── */}
+   779→   779→        <div className="relative py-16 sm:py-20" style={{ backgroundColor: CREAM }}>
+
+[showing lines 80-779 of 903; use offset=780 with limit to continue reading]

@@ -1,0 +1,903 @@
+     1→"use client";
+     2→
+     3→import Image from "next/image";
+     4→import Link from "next/link";
+     5→import HeroSlider from "@/components/HeroSlider";
+     6→import AnimatedCounter from "@/components/ui/AnimatedCounter";
+     7→import ScrollReveal from "@/components/ui/ScrollReveal";
+     8→import JourneyStep from "@/components/ui/JourneyStep";
+     9→import Marquee from "@/components/ui/Marquee";
+    10→import {
+    11→  Coffee, Sprout, Bird, Wheat, Heart, ArrowRight,
+    12→  Leaf, Shield, PiggyBank, ShoppingBag, Microscope, CheckCircle2, Users, Quote,
+    13→  Mail, UserPlus, Phone, Send, Check,
+    14→} from "lucide-react";
+    15→import { PRIMARY, SECONDARY, FONT_RALEWAY, FONT_OPENSANS, CREAM } from "@/lib/constants";
+    16→
+    17→const HERO_SLIDES = [
+    18→  {
+    19→    image: "/images/hero-1.png",
+    20→    subtitle: "Bugwere Coffee Company",
+    21→    title: "Empowering Communities Through Sustainable Agriculture",
+    22→    description: "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.",
+    23→    cta: "Join The Campaign",
+    24→    ctaHref: "#join",
+    25→  },
+    26→  {
+    27→    image: "/images/hero-2.png",
+    28→    subtitle: "Seedling Program",
+    29→    title: "Over 5,000 Homes Supplied With Coffee Seedlings",
+    30→    description: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.",
+    31→    cta: "Our Programs",
+    32→    ctaHref: "/programs/coffee",
+    33→  },
+    34→  {
+    35→    image: "/images/hero-3.png",
+    36→    subtitle: "Cocoa Expansion",
+    37→    title: "Diversifying Income Through Cocoa Farming",
+    38→    description: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.",
+    39→    cta: "Learn More",
+    40→    ctaHref: "/programs/cocoa",
+    41→  },
+    42→  {
+    43→    image: "/images/hero-4.png",
+    44→    subtitle: "Agricultural Support",
+    45→    title: "7,000+ Homes Supplied With Fertilizers",
+    46→    description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.",
+    47→    cta: "See Our Impact",
+    48→    ctaHref: "/impact",
+    49→  },
+    50→];
+    51→
+    52→const PROGRAMS = [
+    53→  { image: "/images/impact-coffee.png", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" /> },
+    54→  { image: "/images/impact-cocoa.png", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" /> },
+    55→  { image: "/images/impact-fertilizer.png", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", icon: <Bird className="w-5 h-5" /> },
+    56→  { image: "/images/hero-3.png", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" /> },
+    57→  { image: "/images/community-1.jpeg", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", icon: <Heart className="w-5 h-5" /> },
+    58→];
+    59→
+    60→const MODEL_STEPS = [
+    61→  { icon: <Sprout className="w-5 h-5" />, title: "Seedling Distribution", desc: "Quality coffee and cocoa seedlings delivered directly to every farmer household, ensuring the best start for their new farms." },
+    62→  { icon: <Microscope className="w-5 h-5" />, title: "Extension System", desc: "Dedicated field officers provide agronomic training, regular farm visits, and hands-on support throughout the growing season." },
+    63→  { icon: <ShoppingBag className="w-5 h-5" />, title: "Market Access", desc: "Guaranteed buying programs that ensure farmers can sell their harvest at fair, transparent prices without middlemen." },
+    64→  { icon: <CheckCircle2 className="w-5 h-5" />, title: "Quality Assurance", desc: "Processing and quality standards that ensure Bugwere coffee and cocoa meet international benchmarks for export." },
+    65→  { icon: <PiggyBank className="w-5 h-5" />, title: "Financial Inclusion", desc: "Community SACCO savings groups that provide access to credit, savings, and financial safety nets for farming families." },
+    66→  { icon: <Shield className="w-5 h-5" />, title: "Farmer Insurance", desc: "Rural risk protection that safeguards farmers against crop failure, disease, and climate shocks." },
+    67→];
+    68→
+    69→const TESTIMONIALS = [
+    70→  { quote: "Before BCC brought coffee seedlings to our village, I struggled to feed my family. Now I have a thriving farm and my children are in school.", name: "Mama Grace", role: "Coffee Farmer, Bugwere", image: "/images/coffee-couple-hd.jpeg" },
+    71→  { quote: "The training programs changed everything. I learned how to care for my cocoa plants properly, and my yields have doubled since joining.", name: "James Wanyama", role: "Cocoa Farmer, Pallisa", image: "/images/cocoa-plantation-hd.jpeg" },
+    72→  { quote: "The guaranteed market means I never worry about selling my harvest. BCC buys at fair prices, and I can plan for my family's future.", name: "Sarah Namwanje", role: "Coffee & Cocoa Farmer", image: "/images/coffee-harvest-hd.jpeg" },
+    73→];
+    74→
+    75→const NEWS = [
+    76→  { image: "/images/news-1.png", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
+    77→  { image: "/images/news-2.png", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
+    78→  { image: "/images/news-3.png", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
+    79→];
+    80→
+    81→export default function Home() {
+    82→  const handleJoinSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    83→    e.preventDefault();
+    84→    const form = e.currentTarget;
+    85→    const formData = new FormData(form);
+    86→    try {
+    87→      const res = await fetch("/api/join", {
+    88→        method: "POST",
+    89→        headers: { "Content-Type": "application/json" },
+    90→        body: JSON.stringify({
+    91→          name: formData.get("name"),
+    92→          email: formData.get("email"),
+    93→          phone: formData.get("phone"),
+    94→          interest: formData.get("interest"),
+    95→        }),
+    96→      });
+    97→      const data = await res.json();
+    98→      if (data.success) {
+    99→        alert(data.message);
+   100→        form.reset();
+   101→      } else {
+   102→        alert(data.error || "Something went wrong.");
+   103→      }
+   104→    } catch {
+   105→      alert("Network error. Please try again.");
+   106→    }
+   107→  };
+   108→
+   109→  const handleSubscribeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+   110→    e.preventDefault();
+   111→    const form = e.currentTarget;
+   112→    const formData = new FormData(form);
+   113→    const checkedTopics = Array.from(form.querySelectorAll<HTMLInputElement>("input[name=\"topic\"]:checked")).map((cb) => cb.value);
+   114→    try {
+   115→      const res = await fetch("/api/subscribe", {
+   116→        method: "POST",
+   117→        headers: { "Content-Type": "application/json" },
+   118→        body: JSON.stringify({
+   119→          name: formData.get("sub-name"),
+   120→          email: formData.get("sub-email"),
+   121→          topics: checkedTopics,
+   122→        }),
+   123→      });
+   124→      const data = await res.json();
+   125→      if (data.success) {
+   126→        alert(data.message);
+   127→        form.reset();
+   128→      } else {
+   129→        alert(data.error || "Something went wrong.");
+   130→      }
+   131→    } catch {
+   132→      alert("Network error. Please try again.");
+   133→    }
+   134→  };
+   135→
+   136→  return (
+   137→    <>
+   138→      {/* ═══ CINEMATIC HERO ═══ */}
+   139→      <HeroSlider slides={HERO_SLIDES} />
+   140→
+   141→      {/* ═══ MARQUEE STRIP ═══ */}
+   142→      <div className="py-4 overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+   143→        <Marquee
+   144→          items={["COFFEE", "COCOA", "COMMUNITY", "SUSTAINABILITY", "EMPOWERMENT", "LIVELIHOODS", "FARMERS", "GROWTH"]}
+   145→          speed={25}
+   146→          className="text-white/30 text-sm font-bold uppercase tracking-[0.3em]"
+   147→          style={{ fontFamily: FONT_RALEWAY } as React.CSSProperties}
+   148→        />
+   149→      </div>
+   150→
+   151→      {/* ═══ MANIFESTO — Split Image + Content ═══ */}
+   152→      <section id="manifesto" className="py-20 sm:py-28" style={{ backgroundColor: CREAM }}>
+   153→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   154→          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+   155→            {/* Image Side */}
+   156→            <ScrollReveal direction="left">
+   157→              <div className="relative">
+   158→                <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+   159→                  <Image
+   160→                    src="/images/hero-1.png"
+   161→                    alt="Bugwere farming community"
+   162→                    fill
+   163→                    className="w-full h-full object-cover"
+   164→                    sizes="(max-width: 1024px) 100vw, 50vw"
+   165→                  />
+   166→                  {/* Subtle gradient blend */}
+   167→                  <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 40%, rgba(25,59,42,0.08) 100%)' }} />
+   168→                </div>
+   169→                {/* Floating stat card */}
+   170→                <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-5 hidden lg:block">
+   171→                  <p className="text-2xl font-bold" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>15,000+</p>
+   172→                  <p className="text-xs text-gray-500" style={{ fontFamily: FONT_OPENSANS }}>Lives impacted since 2023</p>
+   173→                </div>
+   174→                {/* Decorative accent */}
+   175→                <div
+   176→                  className="absolute -top-3 -left-3 w-20 h-20 rounded-2xl -z-10"
+   177→                  style={{ backgroundColor: `${PRIMARY}15` }}
+   178→                />
+   179→              </div>
+   180→            </ScrollReveal>
+   181→
+   182→            {/* Content Side */}
+   183→            <ScrollReveal direction="right">
+   184→              <div>
+   185→                <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   186→                  Our Manifesto
+   187→                </p>
+   188→                <h2
+   189→                  className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold leading-[1.2] mb-6"
+   190→                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   191→                >
+   192→                  We believe every farmer — regardless of land size — deserves the opportunity to build a{" "}
+   193→                  <span className="text-gradient-primary">prosperous</span> and{" "}
+   194→                  <span className="text-gradient-green">sustainable</span> future.
+   195→                </h2>
+   196→                <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-8">
+   197→                  Founded in 2023 in the Bugwere region of Eastern Uganda, we respond to a critical challenge:
+   198→                  How can rural households with limited land still generate sustainable income? Our answer is a
+   199→                  holistic, community-driven approach that combines high-value coffee and cocoa production with
+   200→                  diversified income streams, expert agronomic support, and guaranteed market access.
+   201→                </p>
+   202→                <Link
+   203→                  href="/about"
+   204→                  className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+   205→                  style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+   206→                >
+   207→                  Read Our Story <ArrowRight className="w-4 h-4" />
+   208→                </Link>
+   209→              </div>
+   210→            </ScrollReveal>
+   211→          </div>
+   212→        </div>
+   213→      </section>
+   214→
+   215→      {/* ═══ PROGRAMS — Compact Horizontal Cards ═══ */}
+   216→      <section className="py-16 sm:py-20 bg-white">
+   217→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   218→          <ScrollReveal>
+   219→            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+   220→              <div>
+   221→                <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   222→                  What We Do
+   223→                </p>
+   224→                <h2
+   225→                  className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+   226→                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   227→                >
+   228→                  Our Programs
+   229→                </h2>
+   230→              </div>
+   231→              <Link
+   232→                href="/programs/coffee"
+   233→                className="inline-flex items-center gap-2 text-sm font-semibold group"
+   234→                style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}
+   235→              >
+   236→                View All Programs
+   237→                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+   238→              </Link>
+   239→            </div>
+   240→          </ScrollReveal>
+   241→
+   242→          {/* First row: 2 large cards */}
+   243→          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+   244→            {PROGRAMS.slice(0, 2).map((item, i) => (
+   245→              <ScrollReveal key={item.title} delay={i * 0.1}>
+   246→                <Link
+   247→                  href={item.href}
+   248→                  className="group relative block overflow-hidden rounded-2xl h-[220px] sm:h-[260px]"
+   249→                >
+   250→                  <Image
+   251→                    src={item.image}
+   252→                    alt={item.title}
+   253→                    fill
+   254→                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+   255→                    sizes="(max-width: 768px) 100vw, 50vw"
+   256→                  />
+   257→                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+   258→                  <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+   259→                    <div className="flex items-center gap-2 mb-2">
+   260→                      <div
+   261→                        className="w-8 h-8 rounded-lg flex items-center justify-center"
+   262→                        style={{ backgroundColor: `${PRIMARY}cc`, color: "#fff" }}
+   263→                      >
+   264→                        {item.icon}
+   265→                      </div>
+   266→                      <span
+   267→                        className="inline-block w-6 h-0.5 rounded-full"
+   268→                        style={{ backgroundColor: PRIMARY }}
+   269→                      />
+   270→                    </div>
+   271→                    <h3
+   272→                      className="text-lg sm:text-xl font-bold text-white mb-1 group-hover:text-[#e87074] transition-colors"
+   273→                      style={{ fontFamily: FONT_RALEWAY }}
+   274→                    >
+   275→                      {item.title}
+   276→                    </h3>
+   277→                    <p className="text-white/65 text-sm leading-snug">{item.desc}</p>
+   278→                  </div>
+   279→                </Link>
+   280→              </ScrollReveal>
+   281→            ))}
+   282→          </div>
+   283→
+   284→          {/* Second row: 3 smaller cards */}
+   285→          <div className="grid sm:grid-cols-3 gap-4">
+   286→            {PROGRAMS.slice(2).map((item, i) => (
+   287→              <ScrollReveal key={item.title} delay={(i + 2) * 0.1}>
+   288→                <Link
+   289→                  href={item.href}
+   290→                  className="group relative block overflow-hidden rounded-2xl h-[180px] sm:h-[200px]"
+   291→                >
+   292→                  <Image
+   293→                    src={item.image}
+   294→                    alt={item.title}
+   295→                    fill
+   296→                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+   297→                    sizes="(max-width: 768px) 100vw, 33vw"
+   298→                  />
+   299→                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+   300→                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+   301→                    <div className="flex items-center gap-2 mb-1.5">
+   302→                      <div
+   303→                        className="w-7 h-7 rounded-lg flex items-center justify-center"
+   304→                        style={{ backgroundColor: `${PRIMARY}cc`, color: "#fff" }}
+   305→                      >
+   306→                        {item.icon}
+   307→                      </div>
+   308→                    </div>
+   309→                    <h3
+   310→                      className="text-base sm:text-lg font-bold text-white group-hover:text-[#e87074] transition-colors"
+   311→                      style={{ fontFamily: FONT_RALEWAY }}
+   312→                    >
+   313→                      {item.title}
+   314→                    </h3>
+   315→                    <p className="text-white/60 text-xs sm:text-sm leading-snug">{item.desc}</p>
+   316→                  </div>
+   317→                </Link>
+   318→              </ScrollReveal>
+   319→            ))}
+   320→          </div>
+   321→        </div>
+   322→      </section>
+   323→
+   324→      {/* ═══ IMPACT — Split Image + Counters ═══ */}
+   325→      <section className="py-20 sm:py-28 relative overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+   326→        <div className="absolute inset-0 bg-dots-pattern" />
+   327→        <div className="absolute top-10 left-10 w-72 h-72 rounded-full opacity-[0.03] bg-white animate-float" />
+   328→        <div className="absolute bottom-10 right-10 w-48 h-48 rounded-full opacity-[0.02] bg-white animate-float-slow" />
+   329→
+   330→        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   331→          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+   332→            {/* Image Side */}
+   333→            <ScrollReveal direction="left">
+   334→              <div className="relative">
+   335→                <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+   336→                  <Image
+   337→                    src="/images/impact-coffee.png"
+   338→                    alt="Coffee farming impact"
+   339→                    fill
+   340→                    className="w-full h-full object-cover"
+   341→                    sizes="(max-width: 1024px) 100vw, 50vw"
+   342→                  />
+   343→                  {/* Gradient blend for depth */}
+   344→                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,59,42,0.35) 0%, transparent 50%)' }} />
+   345→                  <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at bottom right, rgba(25,59,42,0.1) 0%, transparent 60%)' }} />
+   346→                </div>
+   347→              </div>
+   348→            </ScrollReveal>
+   349→
+   350→            {/* Counters Side */}
+   351→            <div>
+   352→              <ScrollReveal>
+   353→                <div className="mb-10">
+   354→                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   355→                    Bugwere Impact
+   356→                  </p>
+   357→                  <h2
+   358→                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight mb-4"
+   359→                    style={{ fontFamily: FONT_RALEWAY }}
+   360→                  >
+   361→                    Our Impact in Numbers
+   362→                  </h2>
+   363→                  <p className="text-white/60 text-base max-w-lg">
+   364→                    Strengthening communities through scalable, high-impact agricultural support across the Bugwere region.
+   365→                  </p>
+   366→                </div>
+   367→              </ScrollReveal>
+   368→
+   369→              <div className="grid grid-cols-2 gap-6 sm:gap-8">
+   370→                {[
+   371→                  { end: 5000, suffix: "+", label: "Coffee Seedlings Homes", icon: <Coffee className="w-6 h-6" /> },
+   372→                  { end: 3700, suffix: "+", label: "Cocoa Seedlings Homes", icon: <Sprout className="w-6 h-6" /> },
+   373→                  { end: 7000, suffix: "+", label: "Fertilizer Homes", icon: <Wheat className="w-6 h-6" /> },
+   374→                  { end: 15000, suffix: "+", label: "Lives Impacted", icon: <Users className="w-6 h-6" /> },
+   375→                ].map((stat, i) => (
+   376→                  <ScrollReveal key={stat.label} delay={i * 0.1}>
+   377→                    <div className="p-5 rounded-2xl" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+   378→                      <div className="flex items-center gap-3 mb-3">
+   379→                        <div
+   380→                          className="w-10 h-10 rounded-xl flex items-center justify-center"
+   381→                          style={{ backgroundColor: `${PRIMARY}25` }}
+   382→                        >
+   383→                          <span style={{ color: PRIMARY }}>{stat.icon}</span>
+   384→                        </div>
+   385→                      </div>
+   386→                      <AnimatedCounter
+   387→                        end={stat.end}
+   388→                        suffix={stat.suffix}
+   389→                        duration={2500}
+   390→                        className="text-3xl sm:text-4xl font-bold text-white mb-1"
+   391→                        style={{ fontFamily: FONT_RALEWAY }}
+   392→                      />
+   393→                      <p className="text-white/45 text-xs sm:text-sm">{stat.label}</p>
+   394→                    </div>
+   395→                  </ScrollReveal>
+   396→                ))}
+   397→              </div>
+   398→
+   399→              <ScrollReveal delay={0.3}>
+   400→                <div className="mt-8">
+   401→                  <Link
+   402→                    href="/impact"
+   403→                    className="inline-flex items-center gap-2 px-7 py-3.5 bg-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+   404→                    style={{ color: SECONDARY, fontFamily: FONT_OPENSANS }}
+   405→                  >
+   406→                    Explore Our Impact <ArrowRight className="w-4 h-4" />
+   407→                  </Link>
+   408→                </div>
+   409→              </ScrollReveal>
+   410→            </div>
+   411→          </div>
+   412→        </div>
+   413→      </section>
+   414→
+   415→      {/* ═══ MODEL — Image + Journey Steps ═══ */}
+   416→      <section className="py-20 sm:py-28 bg-white">
+   417→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   418→          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+   419→            {/* Image + Text Side (sticky) */}
+   420→            <div className="lg:sticky lg:top-32">
+   421→              <ScrollReveal direction="left">
+   422→                <div className="relative mb-8">
+   423→                  <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+   424→                    <Image
+   425→                      src="/images/hero-4.png"
+   426→                      alt="Agricultural model in action"
+   427→                      fill
+   428→                      className="w-full h-full object-cover"
+   429→                      sizes="(max-width: 1024px) 100vw, 50vw"
+   430→                    />
+   431→                    {/* Gradient blend */}
+   432→                    <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(25,59,42,0.08) 100%)' }} />
+   433→                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 70%, rgba(25,59,42,0.06) 100%)' }} />
+   434→                  </div>
+   435→                  {/* Decorative accent */}
+   436→                  <div
+   437→                    className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl -z-10"
+   438→                    style={{ backgroundColor: `${PRIMARY}12` }}
+   439→                  />
+   440→                </div>
+   441→              </ScrollReveal>
+   442→              <ScrollReveal>
+   443→                <div>
+   444→                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   445→                    Empowering Households
+   446→                  </p>
+   447→                  <h2
+   448→                    className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-4"
+   449→                    style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   450→                  >
+   451→                    Our Transformative Agriculture Model
+   452→                  </h2>
+   453→                  <p className="text-gray-600 text-base leading-relaxed mb-6">
+   454→                    Our model is built to empower rural households through a complete, end-to-end agricultural
+   455→                    support system. From seedling to market, we walk with farmers every step of the way.
+   456→                  </p>
+   457→                  <Link
+   458→                    href="/model"
+   459→                    className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
+   460→                    style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+   461→                  >
+   462→                    Explore Our Model <ArrowRight className="w-4 h-4" />
+   463→                  </Link>
+   464→                </div>
+   465→              </ScrollReveal>
+   466→            </div>
+   467→
+   468→            {/* Journey Steps */}
+   469→            <div>
+   470→              {MODEL_STEPS.map((step, i) => (
+   471→                <ScrollReveal key={step.title} delay={i * 0.1}>
+   472→                  <JourneyStep
+   473→                    step={i + 1}
+   474→                    icon={step.icon}
+   475→                    title={step.title}
+   476→                    description={step.desc}
+   477→                    isLast={i === MODEL_STEPS.length - 1}
+   478→                  />
+   479→                </ScrollReveal>
+   480→              ))}
+   481→            </div>
+   482→          </div>
+   483→        </div>
+   484→      </section>
+   485→
+   486→      {/* ═══ COMMUNITY VOICES — Image Cards ═══ */}
+   487→      <section className="py-20 sm:py-28" style={{ backgroundColor: CREAM }}>
+   488→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   489→          <ScrollReveal>
+   490→            <div className="text-center mb-14">
+   491→              <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   492→                Community Voices
+   493→              </p>
+   494→              <h2
+   495→                className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+   496→                style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   497→              >
+   498→                Stories from the Field
+   499→              </h2>
+   500→            </div>
+   501→          </ScrollReveal>
+   502→
+   503→          <div className="grid md:grid-cols-3 gap-6">
+   504→            {TESTIMONIALS.map((t, i) => (
+   505→              <ScrollReveal key={t.name} delay={i * 0.15}>
+   506→                <div className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+   507→                  {/* Image */}
+   508→                  <div className="relative h-48 overflow-hidden">
+   509→                    <Image
+   510→                      src={t.image}
+   511→                      alt={t.name}
+   512→                      fill
+   513→                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+   514→                      sizes="(max-width: 768px) 100vw, 33vw"
+   515→                    />
+   516→                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+   517→                    <div
+   518→                      className="absolute top-4 left-4 w-10 h-10 rounded-full flex items-center justify-center"
+   519→                      style={{ backgroundColor: `${PRIMARY}90` }}
+   520→                    >
+   521→                      <Quote className="w-4 h-4 text-white" />
+   522→                    </div>
+   523→                  </div>
+   524→                  {/* Content */}
+   525→                  <div className="p-6">
+   526→                    <p className="text-gray-700 text-sm leading-relaxed mb-5 italic">
+   527→                      &ldquo;{t.quote}&rdquo;
+   528→                    </p>
+   529→                    <div className="flex items-center gap-3">
+   530→                      <div
+   531→                        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xs"
+   532→                        style={{ backgroundColor: SECONDARY, fontFamily: FONT_RALEWAY }}
+   533→                      >
+   534→                        {t.name.split(" ").map(n => n[0]).join("")}
+   535→                      </div>
+   536→                      <div>
+   537→                        <p className="font-bold text-sm text-gray-900" style={{ fontFamily: FONT_RALEWAY }}>{t.name}</p>
+   538→                        <p className="text-xs text-gray-500">{t.role}</p>
+   539→                      </div>
+   540→                    </div>
+   541→                  </div>
+   542→                </div>
+   543→              </ScrollReveal>
+   544→            ))}
+   545→          </div>
+   546→        </div>
+   547→      </section>
+   548→
+   549→      {/* ═══ MAGAZINE NEWS ═══ */}
+   550→      <section className="py-20 sm:py-28 bg-white">
+   551→        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   552→          <ScrollReveal>
+   553→            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+   554→              <div>
+   555→                <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   556→                  Latest News
+   557→                </p>
+   558→                <h2
+   559→                  className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight"
+   560→                  style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   561→                >
+   562→                  News & Press
+   563→                </h2>
+   564→              </div>
+   565→              <Link
+   566→                href="/connect/news"
+   567→                className="inline-flex items-center gap-2 text-sm font-semibold group"
+   568→                style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}
+   569→              >
+   570→                All Articles <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+   571→              </Link>
+   572→            </div>
+   573→          </ScrollReveal>
+   574→
+   575→          <div className="grid lg:grid-cols-2 gap-6">
+   576→            {/* Featured article */}
+   577→            <ScrollReveal>
+   578→              <Link href={NEWS[0].href} className="group block relative overflow-hidden rounded-3xl h-[400px] sm:h-[480px]">
+   579→                <Image
+   580→                  src={NEWS[0].image}
+   581→                  alt={NEWS[0].title}
+   582→                  fill
+   583→                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+   584→                  sizes="(max-width: 1024px) 100vw, 50vw"
+   585→                />
+   586→                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+   587→                <div className="absolute bottom-0 left-0 right-0 p-8">
+   588→                  <span
+   589→                    className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3"
+   590→                    style={{ backgroundColor: PRIMARY, color: "#fff", fontFamily: FONT_OPENSANS }}
+   591→                  >
+   592→                    Featured
+   593→                  </span>
+   594→                  <p className="text-white/60 text-xs mb-2" style={{ fontFamily: FONT_OPENSANS }}>{NEWS[0].date}</p>
+   595→                  <h3
+   596→                    className="text-lg sm:text-xl font-bold text-white leading-snug group-hover:text-[#e87074] transition-colors"
+   597→                    style={{ fontFamily: FONT_RALEWAY }}
+   598→                  >
+   599→                    {NEWS[0].title}
+   600→                  </h3>
+   601→                </div>
+   602→              </Link>
+   603→            </ScrollReveal>
+   604→
+   605→            {/* Supporting articles */}
+   606→            <div className="flex flex-col gap-6">
+   607→              {NEWS.slice(1).map((article, i) => (
+   608→                <ScrollReveal key={article.title} delay={(i + 1) * 0.15}>
+   609→                  <Link href={article.href} className="group flex gap-5 items-start bg-gray-50 rounded-2xl p-4 hover:bg-gray-100 transition-colors">
+   610→                    <div className="relative w-28 h-28 flex-shrink-0 rounded-xl overflow-hidden">
+   611→                      <Image src={article.image} alt={article.title} fill className="object-cover" sizes="112px" />
+   612→                    </div>
+   613→                    <div className="flex-1 min-w-0">
+   614→                      <p className="text-xs mb-1.5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>{article.date}</p>
+   615→                      <h4
+   616→                        className="text-sm sm:text-base font-bold text-gray-900 leading-snug group-hover:text-[--color-brand] transition-colors"
+   617→                        style={{ fontFamily: FONT_RALEWAY }}
+   618→                      >
+   619→                        {article.title}
+   620→                      </h4>
+   621→                    </div>
+   622→                  </Link>
+   623→                </ScrollReveal>
+   624→              ))}
+   625→            </div>
+   626→          </div>
+   627→        </div>
+   628→      </section>
+   629→
+   630→      {/* ═══ JOIN & SUBSCRIBE ═══ */}
+   631→      <section id="join" className="relative overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+   632→        {/* Background decorations */}
+   633→        <div className="absolute inset-0 bg-grid-pattern" />
+   634→        <div className="absolute -top-20 -left-20 w-96 h-96 blob-shape opacity-[0.04] bg-white" />
+   635→        <div className="absolute -bottom-20 -right-20 w-80 h-80 blob-shape-2 opacity-[0.03] bg-white animate-float-slow" />
+   636→
+   637→        {/* ── JOIN THE MOVEMENT ── */}
+   638→        <div className="relative py-20 sm:py-28">
+   639→          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   640→            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+   641→              {/* Left: Content + Image */}
+   642→              <ScrollReveal direction="left">
+   643→                <div>
+   644→                  <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   645→                    Join The Movement
+   646→                  </p>
+   647→                  <h2
+   648→                    className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold text-white leading-[1.15] mb-6"
+   649→                    style={{ fontFamily: FONT_RALEWAY }}
+   650→                  >
+   651→                    Your participation creates lasting change
+   652→                  </h2>
+   653→                  <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-6">
+   654→                    Whether you are a farmer seeking support, a partner looking to invest in sustainable agriculture,
+   655→                    or a volunteer wanting to make a difference — there is a place for you at Bugwere Coffee Company.
+   656→                    Join thousands of households already transforming their livelihoods.
+   657→                  </p>
+   658→                  <div className="grid grid-cols-3 gap-4 mb-8">
+   659→                    {[
+   660→                      { num: "5,000+", label: "Farmers Joined" },
+   661→                      { num: "15,000+", label: "Lives Impacted" },
+   662→                      { num: "3", label: "Core Programs" },
+   663→                    ].map((stat) => (
+   664→                      <div key={stat.label} className="text-center p-4 rounded-2xl" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+   665→                        <p className="text-2xl sm:text-3xl font-bold text-white mb-1" style={{ fontFamily: FONT_RALEWAY, color: PRIMARY }}>
+   666→                          {stat.num}
+   667→                        </p>
+   668→                        <p className="text-white/40 text-xs sm:text-sm">{stat.label}</p>
+   669→                      </div>
+   670→                    ))}
+   671→                  </div>
+   672→                </div>
+   673→              </ScrollReveal>
+   674→
+   675→              {/* Right: Join Form */}
+   676→              <ScrollReveal direction="right">
+   677→                <div className="bg-white/[0.06] backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-white/10">
+   678→                  <div className="flex items-center gap-3 mb-6">
+   679→                    <div
+   680→                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+   681→                      style={{ backgroundColor: `${PRIMARY}25` }}
+   682→                    >
+   683→                      <UserPlus className="w-5 h-5" style={{ color: PRIMARY }} />
+   684→                    </div>
+   685→                    <div>
+   686→                      <h3 className="font-bold text-white text-lg" style={{ fontFamily: FONT_RALEWAY }}>Become a Member</h3>
+   687→                      <p className="text-white/40 text-xs">Fill in your details to get started</p>
+   688→                    </div>
+   689→                  </div>
+   690→
+   691→                  <form onSubmit={handleJoinSubmit} className="space-y-4">
+   692→                    <div>
+   693→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   694→                        Full Name
+   695→                      </label>
+   696→                      <div className="relative">
+   697→                        <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+   698→                        <input
+   699→                          name="name"
+   700→                          type="text"
+   701→                          required
+   702→                          placeholder="Enter your full name"
+   703→                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+   704→                          style={{ fontFamily: FONT_OPENSANS }}
+   705→                        />
+   706→                      </div>
+   707→                    </div>
+   708→
+   709→                    <div>
+   710→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   711→                        Email Address
+   712→                      </label>
+   713→                      <div className="relative">
+   714→                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+   715→                        <input
+   716→                          name="email"
+   717→                          type="email"
+   718→                          required
+   719→                          placeholder="you@example.com"
+   720→                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+   721→                          style={{ fontFamily: FONT_OPENSANS }}
+   722→                        />
+   723→                      </div>
+   724→                    </div>
+   725→
+   726→                    <div>
+   727→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   728→                        Phone Number (Optional)
+   729→                      </label>
+   730→                      <div className="relative">
+   731→                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+   732→                        <input
+   733→                          name="phone"
+   734→                          type="tel"
+   735→                          placeholder="+256 7XX XXX XXX"
+   736→                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+   737→                          style={{ fontFamily: FONT_OPENSANS }}
+   738→                        />
+   739→                      </div>
+   740→                    </div>
+   741→
+   742→                    <div>
+   743→                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   744→                        I am interested in...
+   745→                      </label>
+   746→                      <select
+   747→                        name="interest"
+   748→                        required
+   749→                        className="w-full px-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all appearance-none"
+   750→                        style={{ fontFamily: FONT_OPENSANS }}
+   751→                      >
+   752→                        <option value="" className="bg-[#193b2a]">Select your interest</option>
+   753→                        <option value="coffee" className="bg-[#193b2a]">Coffee Farming Program</option>
+   754→                        <option value="cocoa" className="bg-[#193b2a]">Cocoa Farming Program</option>
+   755→                        <option value="livestock" className="bg-[#193b2a]">Livestock Support</option>
+   756→                        <option value="agronomy" className="bg-[#193b2a]">Agronomy & Training</option>
+   757→                        <option value="partner" className="bg-[#193b2a]">Partner With Us</option>
+   758→                        <option value="volunteer" className="bg-[#193b2a]">Volunteer</option>
+   759→                        <option value="other" className="bg-[#193b2a]">Other</option>
+   760→                      </select>
+   761→                    </div>
+   762→
+   763→                    <button
+   764→                      type="submit"
+   765→                      className="w-full py-3.5 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+   766→                      style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
+   767→                    >
+   768→                      <Send className="w-4 h-4" />
+   769→                      Join The Movement
+   770→                    </button>
+   771→                  </form>
+   772→                </div>
+   773→              </ScrollReveal>
+   774→            </div>
+   775→          </div>
+   776→        </div>
+   777→
+   778→        {/* ── SUBSCRIBE / NEWSLETTER ── */}
+   779→        <div className="relative py-16 sm:py-20" style={{ backgroundColor: CREAM }}>
+   780→          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+   781→            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+   782→              {/* Left: Newsletter content */}
+   783→              <ScrollReveal direction="left">
+   784→                <div>
+   785→                  <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+   786→                    Stay Updated
+   787→                  </p>
+   788→                  <h2
+   789→                    className="text-xl sm:text-2xl lg:text-3xl font-bold leading-[1.15] mb-4"
+   790→                    style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+   791→                  >
+   792→                    Subscribe to Our Newsletter
+   793→                  </h2>
+   794→                  <p className="text-gray-600 text-base leading-relaxed mb-6">
+   795→                    Get the latest updates on our programs, farmer success stories, upcoming events, and opportunities
+   796→                    to support rural communities in Eastern Uganda. We send updates once a month — no spam, just impact.
+   797→                  </p>
+   798→                  <div className="flex flex-wrap gap-4">
+   799→                    {[
+   800→                      { icon: <Leaf className="w-4 h-4" />, text: "Program Updates" },
+   801→                      { icon: <CheckCircle2 className="w-4 h-4" />, text: "Impact Reports" },
+   802→                      { icon: <Users className="w-4 h-4" />, text: "Event Invites" },
+   803→                    ].map((benefit) => (
+   804→                      <div key={benefit.text} className="flex items-center gap-2 text-sm text-gray-600">
+   805→                        <span style={{ color: SECONDARY }}>{benefit.icon}</span>
+   806→                        <span style={{ fontFamily: FONT_OPENSANS }}>{benefit.text}</span>
+   807→                      </div>
+   808→                    ))}
+   809→                  </div>
+   810→                </div>
+   811→              </ScrollReveal>
+   812→
+   813→              {/* Right: Subscribe form */}
+   814→              <ScrollReveal direction="right">
+   815→                <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100">
+   816→                  <div className="flex items-center gap-3 mb-6">
+   817→                    <div
+   818→                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+   819→                      style={{ backgroundColor: `${SECONDARY}12` }}
+   820→                    >
+   821→                      <Mail className="w-5 h-5" style={{ color: SECONDARY }} />
+   822→                    </div>
+   823→                    <div>
+   824→                      <h3 className="font-bold text-gray-900 text-lg" style={{ fontFamily: FONT_RALEWAY }}>Monthly Newsletter</h3>
+   825→                      <p className="text-gray-400 text-xs">Delivered to your inbox</p>
+   826→                    </div>
+   827→                  </div>
+   828→
+   829→                  <form onSubmit={handleSubscribeSubmit} className="space-y-4">
+   830→                    <div>
+   831→                      <label className="block text-gray-500 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   832→                        Your Name
+   833→                      </label>
+   834→                      <input
+   835→                        name="sub-name"
+   836→                        type="text"
+   837→                        required
+   838→                        placeholder="Enter your name"
+   839→                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-gray-300 focus:bg-white transition-all"
+   840→                        style={{ fontFamily: FONT_OPENSANS }}
+   841→                      />
+   842→                    </div>
+   843→
+   844→                    <div>
+   845→                      <label className="block text-gray-500 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+   846→                        Email Address
+   847→                      </label>
+   848→                      <input
+   849→                        name="sub-email"
+   850→                        type="email"
+   851→                        required
+   852→                        placeholder="you@example.com"
+   853→                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-gray-300 focus:bg-white transition-all"
+   854→                        style={{ fontFamily: FONT_OPENSANS }}
+   855→                      />
+   856→                    </div>
+   857→
+   858→                    <div>
+   859→                      <label className="block text-gray-500 text-xs font-medium mb-2" style={{ fontFamily: FONT_OPENSANS }}>
+   860→                        I want to hear about
+   861→                      </label>
+   862→                      <div className="flex flex-wrap gap-2">
+   863→                        {["All Updates", "Programs", "Events", "Impact Stories"].map((tag) => (
+   864→                          <label key={tag} className="cursor-pointer">
+   865→                            <input type="checkbox" name="topic" value={tag} className="hidden peer" defaultChecked={tag === "All Updates"} />
+   866→                            <span
+   867→                              className="inline-block px-3 py-1.5 rounded-full text-xs font-medium border transition-all peer-checked:bg-[#193b2a] peer-checked:text-white peer-checked:border-transparent"
+   868→                              style={{
+   869→                                fontFamily: FONT_OPENSANS,
+   870→                                borderColor: "#d1d5db",
+   871→                                color: "#6b7280",
+   872→                              }}
+   873→                            >
+   874→                              {tag}
+   875→                            </span>
+   876→                          </label>
+   877→                        ))}
+   878→                      </div>
+   879→                    </div>
+   880→
+   881→                    <button
+   882→                      type="submit"
+   883→                      className="w-full py-3.5 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+   884→                      style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+   885→                    >
+   886→                      <Mail className="w-4 h-4" />
+   887→                      Subscribe Now
+   888→                    </button>
+   889→
+   890→                    <p className="text-center text-gray-400 text-xs" style={{ fontFamily: FONT_OPENSANS }}>
+   891→                      No spam, unsubscribe anytime. We respect your privacy.
+   892→                    </p>
+   893→                  </form>
+   894→                </div>
+   895→              </ScrollReveal>
+   896→            </div>
+   897→          </div>
+   898→        </div>
+   899→      </section>
+   900→    </>
+   901→  );
+   902→}
+   903→
