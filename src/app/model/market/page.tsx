@@ -12,7 +12,7 @@ import { PRIMARY, SECONDARY } from "@/lib/constants";
 export default function MarketPage() {
   return (
     <>
-      <PageHero title="Market Access & Guaranteed Buying" subtitle="Ensuring every farmer can sell their harvest at fair, transparent prices." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Market Access", href: "/model/market" }]} backgroundImage="/images/impact-coffee.png" />
+      <PageHero title="Market Access & Guaranteed Buying" subtitle="Ensuring every farmer can sell their harvest at fair, transparent prices." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Market Access", href: "/model/market" }]} backgroundImage="/images/impact-coffee-seedlings.jpeg" />
       <Section background="white" py="xl">
         <Container>
           <div className="grid lg:grid-cols-5 gap-12 items-start">

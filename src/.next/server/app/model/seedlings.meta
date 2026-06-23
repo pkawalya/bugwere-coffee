@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/model/layout,_N_T_/model/seedlings/layout,_N_T_/model/seedlings/page,_N_T_/model/seedlings"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/model/seedlings/__PAGE__",
+    "/model/seedlings",
+    "/model",
+    "/_index",
+    "/_head"
+  ]
+}

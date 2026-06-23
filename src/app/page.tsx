@@ -15,7 +15,7 @@ import { PRIMARY, SECONDARY, FONT_RALEWAY, FONT_OPENSANS, CREAM } from "@/lib/co
 
 const HERO_SLIDES = [
   {
-    image: "/images/hero-1.png",
+    image: "/images/hero-main.jpeg",
     subtitle: "Bugwere Coffee Company",
     title: "Empowering Communities Through Sustainable Agriculture",
     description: "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.",
@@ -23,7 +23,7 @@ const HERO_SLIDES = [
     ctaHref: "#manifesto",
   },
   {
-    image: "/images/hero-2.png",
+    image: "/images/impact-coffee-seedlings.jpeg",
     subtitle: "Seedling Program",
     title: "Over 5,000 Homes Supplied With Coffee Seedlings",
     description: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.",
@@ -31,7 +31,7 @@ const HERO_SLIDES = [
     ctaHref: "/programs/coffee",
   },
   {
-    image: "/images/hero-3.png",
+    image: "/images/impact-cocoa-seedlings.jpeg",
     subtitle: "Cocoa Expansion",
     title: "Diversifying Income Through Cocoa Farming",
     description: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.",
@@ -39,7 +39,7 @@ const HERO_SLIDES = [
     ctaHref: "/programs/cocoa",
   },
   {
-    image: "/images/hero-4.png",
+    image: "/images/impact-fertilizer.jpeg",
     subtitle: "Agricultural Support",
     title: "7,000+ Homes Supplied With Fertilizers",
     description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.",
@@ -49,11 +49,11 @@ const HERO_SLIDES = [
 ];
 
 const PROGRAMS = [
-  { image: "/images/impact-coffee.png", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" /> },
-  { image: "/images/impact-cocoa.png", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" /> },
-  { image: "/images/impact-fertilizer.png", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", icon: <Bird className="w-5 h-5" /> },
-  { image: "/images/about-photo.png", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" /> },
-  { image: "/images/hero-4.png", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", icon: <Heart className="w-5 h-5" /> },
+  { image: "/images/impact-coffee-seedlings.jpeg", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" /> },
+  { image: "/images/impact-cocoa-seedlings.jpeg", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" /> },
+  { image: "/images/impact-fertilizer.jpeg", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", icon: <Bird className="w-5 h-5" /> },
+  { image: "/images/community-1.jpeg", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" /> },
+  { image: "/images/community-2.jpeg", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", icon: <Heart className="w-5 h-5" /> },
 ];
 
 const MODEL_STEPS = [
@@ -66,15 +66,15 @@ const MODEL_STEPS = [
 ];
 
 const TESTIMONIALS = [
-  { quote: "Before BCC brought coffee seedlings to our village, I struggled to feed my family. Now I have a thriving farm and my children are in school.", name: "Mama Grace", role: "Coffee Farmer, Bugwere", image: "/images/impact-coffee.png" },
-  { quote: "The training programs changed everything. I learned how to care for my cocoa plants properly, and my yields have doubled since joining.", name: "James Wanyama", role: "Cocoa Farmer, Pallisa", image: "/images/impact-cocoa.png" },
-  { quote: "The guaranteed market means I never worry about selling my harvest. BCC buys at fair prices, and I can plan for my family's future.", name: "Sarah Namwanje", role: "Coffee & Cocoa Farmer", image: "/images/impact-fertilizer.png" },
+  { quote: "Before BCC brought coffee seedlings to our village, I struggled to feed my family. Now I have a thriving farm and my children are in school.", name: "Mama Grace", role: "Coffee Farmer, Bugwere", image: "/images/impact-coffee-seedlings.jpeg" },
+  { quote: "The training programs changed everything. I learned how to care for my cocoa plants properly, and my yields have doubled since joining.", name: "James Wanyama", role: "Cocoa Farmer, Pallisa", image: "/images/impact-cocoa-seedlings.jpeg" },
+  { quote: "The guaranteed market means I never worry about selling my harvest. BCC buys at fair prices, and I can plan for my family's future.", name: "Sarah Namwanje", role: "Coffee & Cocoa Farmer", image: "/images/impact-fertilizer.jpeg" },
 ];
 
 const NEWS = [
-  { image: "/images/news-1.png", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
-  { image: "/images/news-2.png", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
-  { image: "/images/news-3.png", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
+  { image: "/images/impact-fertilizer.jpeg", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
+  { image: "/images/impact-cocoa-seedlings.jpeg", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
+  { image: "/images/impact-coffee-seedlings.jpeg", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
 ];
 
 export default function Home() {
@@ -102,7 +102,7 @@ export default function Home() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/hero-1.png"
+                    src="/images/hero-main.jpeg"
                     alt="Bugwere farming community"
                     width={1344}
                     height={896}
@@ -278,7 +278,7 @@ export default function Home() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/impact-coffee.png"
+                    src="/images/impact-coffee-seedlings.jpeg"
                     alt="Coffee farming impact"
                     width={1344}
                     height={896}
@@ -366,7 +366,7 @@ export default function Home() {
                 <div className="relative mb-8">
                   <div className="rounded-3xl overflow-hidden shadow-xl">
                     <Image
-                      src="/images/hero-2.png"
+                      src="/images/community-1.jpeg"
                       alt="Agricultural model in action"
                       width={1344}
                       height={896}

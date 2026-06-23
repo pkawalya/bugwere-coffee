@@ -8,7 +8,7 @@ import { ArrowRight, Calendar, Clock, Tag } from "lucide-react";
 import { PRIMARY, SECONDARY, FONT_RALEWAY, FONT_OPENSANS, CREAM } from "@/lib/constants";
 
 const FEATURED = {
-  image: "/images/news-1.png",
+  image: "/images/impact-fertilizer.jpeg",
   date: "November 29, 2025",
   category: "Program Update",
   title: "Fertilizer Distribution Boosts Productivity for 7,000 Households",
@@ -17,14 +17,14 @@ const FEATURED = {
 
 const ARTICLES = [
   {
-    image: "/images/news-2.png",
+    image: "/images/impact-cocoa-seedlings.jpeg",
     date: "November 29, 2025",
     category: "Expansion",
     title: "Cocoa Expansion Program Impacts 3,700 Homes",
     excerpt: "The cocoa expansion program continues to transform livelihoods, with 3,700 homes now equipped with cocoa seedlings and the training needed to cultivate this resilient, high-value crop.",
   },
   {
-    image: "/images/news-3.png",
+    image: "/images/impact-coffee-seedlings.jpeg",
     date: "November 29, 2025",
     category: "Milestone",
     title: "Bugwere Coffee Company Reaches Over 5,000 Homes With Coffee Seedlings",

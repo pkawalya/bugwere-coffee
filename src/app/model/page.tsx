@@ -35,7 +35,7 @@ export default function ModelPage() {
                 <div className="relative mb-8">
                   <div className="rounded-3xl overflow-hidden shadow-xl">
                     <Image
-                      src="/images/about-photo.png"
+                      src="/images/community-1.jpeg"
                       alt="Agricultural model in action"
                       width={1344}
                       height={896}

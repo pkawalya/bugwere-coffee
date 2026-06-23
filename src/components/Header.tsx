@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import {
   Menu, X, ChevronDown, ChevronRight, Coffee, Sprout, Bird, Wheat, Heart,
   BarChart3, TrendingUp, MapPin, Microscope, ShoppingBag, Shield, PiggyBank,
-  Handshake, Newspaper, Phone, Users, Eye, ArrowRight, Mail,
+  Handshake, Newspaper, Phone, Users, Eye, ArrowRight, Mail, UserCheck,
 } from "lucide-react";
 import { PRIMARY, SECONDARY, FONT_OPENSANS, FONT_RALEWAY } from "@/lib/constants";
 
@@ -22,6 +22,7 @@ const MEGA_MENUS: {
       { title: "Our Organization", links: [
         { label: "About Us", href: "/about", icon: <Eye className="w-5 h-5" />, desc: "Our story, mission & values" },
         { label: "Our Team", href: "/about/team", icon: <Users className="w-5 h-5" />, desc: "Meet the people behind BCC" },
+        { label: "Board of Directors", href: "/about/board", icon: <UserCheck className="w-5 h-5" />, desc: "Governance & strategic oversight" },
       ]},
       { title: "Our Purpose", links: [
         { label: "Our Vision", href: "/about#vision", icon: <TrendingUp className="w-5 h-5" />, desc: "Transforming rural farming communities" },

@@ -24,7 +24,7 @@ export default function ContactPage() {
                 {/* Image */}
                 <div className="rounded-3xl overflow-hidden shadow-lg mb-8">
                   <Image
-                    src="/images/hero-3.png"
+                    src="/images/impact-cocoa-seedlings.jpeg"
                     alt="Bugwere Coffee Company community"
                     width={1344}
                     height={896}

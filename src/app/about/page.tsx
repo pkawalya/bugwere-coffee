@@ -69,7 +69,7 @@ export default function AboutPage() {
             <ScrollReveal direction="right">
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <Image src="/images/hero-1.png" alt="Bugwere community" width={1344} height={768} className="w-full" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <Image src="/images/hero-main.jpeg" alt="Bugwere community" width={1344} height={768} className="w-full" sizes="(max-width: 1024px) 100vw, 50vw" />
                 </div>
                 <div
                   className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden lg:block"
@@ -185,6 +185,58 @@ export default function AboutPage() {
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ─── Board Link Section ─── */}
+      <section className="py-24 sm:py-32 bg-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] blob-shape opacity-[0.03]" style={{ backgroundColor: PRIMARY }} />
+        <div className="absolute bottom-0 right-0 w-72 h-72 blob-shape-2 opacity-[0.02]" style={{ backgroundColor: SECONDARY }} />
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <ScrollReveal>
+            <div className="relative rounded-3xl overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+              <div className="absolute -top-10 -right-10 w-40 h-40 blob-shape opacity-[0.06] bg-white" />
+              <div className="absolute -bottom-10 -left-10 w-32 h-32 blob-shape-2 opacity-[0.04] bg-white" />
+              <div className="relative grid md:grid-cols-2 gap-8 items-center p-10 sm:p-14">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+                    Governance & Oversight
+                  </p>
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-4" style={{ fontFamily: FONT_RALEWAY, color: "white" }}>
+                    Board of Directors
+                  </h2>
+                  <p className="text-white/60 text-base leading-relaxed mb-8">
+                    Our board brings together distinguished professionals from marketing, media, development, and technology — united by a commitment to BCC&apos;s mission and the communities we serve.
+                  </p>
+                  <Link
+                    href="/about/board"
+                    className="inline-flex items-center gap-2 px-7 py-3 bg-white font-semibold text-sm rounded-full transition-all hover:shadow-lg hover:scale-[1.02]"
+                    style={{ color: SECONDARY, fontFamily: FONT_OPENSANS }}
+                  >
+                    View Board Members <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { initials: "PK", label: "Director", c: PRIMARY },
+                    { initials: "MR", label: "Director", c: SECONDARY },
+                    { initials: "AH", label: "Director", c: SECONDARY },
+                    { initials: "DT", label: "Director", c: PRIMARY },
+                  ].map((m, i) => (
+                    <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
+                      <div
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                        style={{ backgroundColor: m.c, fontFamily: FONT_RALEWAY }}
+                      >
+                        {m.initials}
+                      </div>
+                      <p className="text-white/40 text-[10px] font-medium" style={{ fontFamily: FONT_OPENSANS }}>{m.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

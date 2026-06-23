@@ -1,0 +1,188 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/about/team",
+      "regex": "^/about/team(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about/team(?:/)?$"
+    },
+    {
+      "page": "/api",
+      "regex": "^/api(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api(?:/)?$"
+    },
+    {
+      "page": "/connect/news",
+      "regex": "^/connect/news(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/connect/news(?:/)?$"
+    },
+    {
+      "page": "/connect/partners",
+      "regex": "^/connect/partners(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/connect/partners(?:/)?$"
+    },
+    {
+      "page": "/contact",
+      "regex": "^/contact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/contact(?:/)?$"
+    },
+    {
+      "page": "/impact",
+      "regex": "^/impact(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/impact(?:/)?$"
+    },
+    {
+      "page": "/impact/expansion",
+      "regex": "^/impact/expansion(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/impact/expansion(?:/)?$"
+    },
+    {
+      "page": "/impact/statistics",
+      "regex": "^/impact/statistics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/impact/statistics(?:/)?$"
+    },
+    {
+      "page": "/model",
+      "regex": "^/model(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model(?:/)?$"
+    },
+    {
+      "page": "/model/extension",
+      "regex": "^/model/extension(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model/extension(?:/)?$"
+    },
+    {
+      "page": "/model/financial",
+      "regex": "^/model/financial(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model/financial(?:/)?$"
+    },
+    {
+      "page": "/model/insurance",
+      "regex": "^/model/insurance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model/insurance(?:/)?$"
+    },
+    {
+      "page": "/model/market",
+      "regex": "^/model/market(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model/market(?:/)?$"
+    },
+    {
+      "page": "/model/quality",
+      "regex": "^/model/quality(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model/quality(?:/)?$"
+    },
+    {
+      "page": "/model/seedlings",
+      "regex": "^/model/seedlings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/model/seedlings(?:/)?$"
+    },
+    {
+      "page": "/programs/agronomy",
+      "regex": "^/programs/agronomy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/programs/agronomy(?:/)?$"
+    },
+    {
+      "page": "/programs/cocoa",
+      "regex": "^/programs/cocoa(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/programs/cocoa(?:/)?$"
+    },
+    {
+      "page": "/programs/coffee",
+      "regex": "^/programs/coffee(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/programs/coffee(?:/)?$"
+    },
+    {
+      "page": "/programs/community",
+      "regex": "^/programs/community(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/programs/community(?:/)?$"
+    },
+    {
+      "page": "/programs/livestock",
+      "regex": "^/programs/livestock(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/programs/livestock(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

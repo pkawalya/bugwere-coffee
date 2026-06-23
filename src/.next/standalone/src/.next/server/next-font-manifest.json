@@ -1,0 +1,95 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/about/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/about/team/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/connect/news/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/connect/partners/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/contact/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/impact/expansion/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/impact/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/impact/statistics/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/extension/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/financial/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/insurance/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/market/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/quality/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/model/seedlings/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/programs/agronomy/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/programs/cocoa/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/programs/coffee/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/programs/community/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ],
+    "[project]/src/app/programs/livestock/page": [
+      "static/media/c825fd02acae0153-s.p.1692d83b.woff2",
+      "static/media/cf514f5d0007dafa-s.p.417aa1a2.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}
