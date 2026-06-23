@@ -102,24 +102,35 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         </div>
       ))}
 
-      {/* ── Cinematic Gradient Overlays ── */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-      {/* Vignette */}
+      {/* ── Content-focused Overlay: dark behind text, light elsewhere ── */}
+      {/* Subtle full-screen tint — just enough to keep controls readable */}
+      <div className="absolute inset-0 bg-black/10" />
+      {/* Bottom gradient for control bar readability */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/50 to-transparent" />
+      {/* Localized dark backdrop behind the text content area */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden sm:block"
         style={{
           background:
-            "radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(0,0,0,0.5) 100%)",
+            "linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.45) 35%, rgba(0,0,0,0.15) 55%, transparent 72%)",
         }}
       />
-
-      {/* Diagonal accent shape — subtle secondary color overlay */}
+      {/* Mobile: slightly heavier since text spans wider */}
+      <div
+        className="absolute inset-0 sm:hidden"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 80%, transparent 100%)",
+        }}
+      />
+      {/* Subtle vertical darkening at top for depth */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/20 to-transparent" />
+      {/* Diagonal accent shape — subtle secondary color overlay (content side only) */}
       <div
         className="absolute inset-0 hidden lg:block"
         style={{
-          clipPath: "polygon(0 0, 50% 0, 38% 100%, 0 100%)",
-          background: `linear-gradient(160deg, ${SECONDARY}40, ${SECONDARY}08)`,
+          clipPath: "polygon(0 0, 45% 0, 33% 100%, 0 100%)",
+          background: `linear-gradient(160deg, ${SECONDARY}25, ${SECONDARY}05)`,
         }}
       />
 
