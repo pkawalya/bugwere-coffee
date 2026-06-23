@@ -73,7 +73,7 @@ export default function Footer() {
             </div>
             <div className="flex gap-4">
               <Link
-                href="/contact"
+                href="#join"
                 className="inline-flex items-center px-8 py-3.5 text-white font-semibold text-sm rounded-full transition-all hover:shadow-lg hover:scale-[1.02]"
                 style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
               >

@@ -233,11 +233,20 @@ export default function Header() {
             {/* CTA + Mobile Toggle */}
             <div className="flex items-center gap-3">
               <Link
-                href="/contact"
-                className={`hidden sm:inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-full transition-all hover:shadow-lg hover:scale-[1.02] ${
+                href="#join"
+                className={`hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all hover:shadow-lg hover:scale-[1.02] ${
                   scrolled ? "text-white" : "text-white bg-white/15 hover:bg-white/25 border border-white/20"
                 }`}
                 style={scrolled ? { backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS } : { fontFamily: FONT_OPENSANS }}
+              >
+                Join
+              </Link>
+              <Link
+                href="/contact"
+                className={`hidden md:inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all hover:shadow-lg hover:scale-[1.02] ${
+                  scrolled ? "" : ""
+                }`}
+                style={scrolled ? { color: SECONDARY, fontFamily: FONT_OPENSANS, border: `1.5px solid ${SECONDARY}30` } : { fontFamily: FONT_OPENSANS, color: "white", backgroundColor: "rgba(255,255,255,0.10)", border: "1.5px solid rgba(255,255,255,0.2)" }}
               >
                 Support Us
               </Link>
@@ -301,10 +310,18 @@ export default function Header() {
               </div>
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <Link
+                  href="#join"
+                  onClick={closeMobile}
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3 text-white font-semibold rounded-full mb-3"
+                  style={{ backgroundColor: PRIMARY }}
+                >
+                  Join
+                </Link>
+                <Link
                   href="/contact"
                   onClick={closeMobile}
-                  className="flex items-center justify-center gap-2 w-full px-5 py-3 text-white font-semibold rounded-full"
-                  style={{ backgroundColor: PRIMARY }}
+                  className="flex items-center justify-center gap-2 w-full px-5 py-3 font-semibold rounded-full"
+                  style={{ border: `1.5px solid ${SECONDARY}30`, color: SECONDARY }}
                 >
                   Support Us
                 </Link>

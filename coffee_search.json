@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "query": "African coffee farmer harvesting coffee beans in Uganda plantation, professional photography",
+  "count": 5,
+  "ranked": true,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/424093779060.jpg",
+      "caption": "A smiling woman in a polo shirt stands next to a coffee plant with green berries. The image contains watermarks and text.",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "956px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/b64935d3e553.jpg",
+      "caption": "A smiling man in a tan shirt holds a container of red coffee cherries. The image contains watermarks and text: dreamstime.com, ID 12706938 © Brian Flaigmore.",
+      "source": "Dreamstime.com",
+      "original_width": "1200px",
+      "original_height": "1690px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/c16c5a5ce46d.jpg",
+      "caption": "A man in a striped shirt pours red coffee cherries from a green basin into a blue one. The image contains watermarks and text: alamy, Image ID: G4XXN7, www.alamy.com.",
+      "source": "Alamy",
+      "original_width": "866px",
+      "original_height": "1390px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/52ed098e4baf.jpg",
+      "caption": "A woman in a blue headscarf and red shirt is harvesting green coffee beans from a tree. suitable for background image",
+      "source": "Global Press Journal",
+      "original_width": "2048px",
+      "original_height": "1362px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/3703c6b949f0.jpg",
+      "caption": "A smiling man in a plaid shirt stands before a coffee plant with green and red berries. suitable for background image",
+      "source": "International Coffee Partners",
+      "original_width": "1280px",
+      "original_height": "852px"
+    }
+  ]
+}

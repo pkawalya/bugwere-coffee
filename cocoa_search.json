@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "query": "African cocoa farming community, rural Uganda agriculture, professional photo",
+  "count": 5,
+  "ranked": true,
+  "results": [
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/d7007ddd50c2.jpg",
+      "caption": "A clear image of a cocoa plantation with watermarks and text: \"DAILY MONITOR by NATION\", \"Daily Monitor\".",
+      "source": "Daily Monitor",
+      "original_width": "1280px",
+      "original_height": "800px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/92358e7ff975.png",
+      "caption": "A smiling man in a \"CORPS AFRICA VOLUNTEER\" t-shirt holds charcoal briquettes near a sack of them.",
+      "source": "CorpsAfrica",
+      "original_width": "2560px",
+      "original_height": "1920px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/7aebe4241ee3.jpg",
+      "caption": "A woman and a man present agricultural products to an audience in front of a banner. The image contains text: Koko farm Producing and selling high-quality agricultural products while maintaining a positive and professional vision of production agriculture to the community.",
+      "source": "Koko Agri Farms",
+      "original_width": "1920px",
+      "original_height": "1280px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/d31a0e5b52bf.jpg",
+      "caption": "A person in a striped shirt and khaki pants stands in a nursery, touching a metal frame over green plants.",
+      "source": "News - National Agricultural Research Organisation (NARO)",
+      "original_width": "2048px",
+      "original_height": "683px"
+    },
+    {
+      "original_url": "https://sfile.chatglm.cn/images-ppt/2a255a777db9.jpg",
+      "caption": "A woman cooks over a clay stove with a baby on her back. suitable for background image",
+      "source": "The Guardian",
+      "original_width": "1200px",
+      "original_height": "719px"
+    }
+  ]
+}

@@ -10,20 +10,21 @@ import Marquee from "@/components/ui/Marquee";
 import {
   Coffee, Sprout, Bird, Wheat, Heart, ArrowRight,
   Leaf, Shield, PiggyBank, ShoppingBag, Microscope, CheckCircle2, Users, Quote,
+  Mail, UserPlus, Phone, Send, Check,
 } from "lucide-react";
 import { PRIMARY, SECONDARY, FONT_RALEWAY, FONT_OPENSANS, CREAM } from "@/lib/constants";
 
 const HERO_SLIDES = [
   {
-    image: "/images/hero-main.jpeg",
+    image: "/images/hero-uganda-coffee.png",
     subtitle: "Bugwere Coffee Company",
     title: "Empowering Communities Through Sustainable Agriculture",
     description: "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.",
     cta: "Join The Campaign",
-    ctaHref: "#manifesto",
+    ctaHref: "#join",
   },
   {
-    image: "/images/impact-coffee-seedlings.jpeg",
+    image: "/images/coffee-farmer-hd.jpeg",
     subtitle: "Seedling Program",
     title: "Over 5,000 Homes Supplied With Coffee Seedlings",
     description: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.",
@@ -31,7 +32,7 @@ const HERO_SLIDES = [
     ctaHref: "/programs/coffee",
   },
   {
-    image: "/images/impact-cocoa-seedlings.jpeg",
+    image: "/images/hero-cocoa-seedlings.png",
     subtitle: "Cocoa Expansion",
     title: "Diversifying Income Through Cocoa Farming",
     description: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.",
@@ -39,7 +40,7 @@ const HERO_SLIDES = [
     ctaHref: "/programs/cocoa",
   },
   {
-    image: "/images/impact-fertilizer.jpeg",
+    image: "/images/hero-fertilizer-support.png",
     subtitle: "Agricultural Support",
     title: "7,000+ Homes Supplied With Fertilizers",
     description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.",
@@ -49,11 +50,11 @@ const HERO_SLIDES = [
 ];
 
 const PROGRAMS = [
-  { image: "/images/impact-coffee-seedlings.jpeg", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" /> },
-  { image: "/images/impact-cocoa-seedlings.jpeg", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" /> },
-  { image: "/images/impact-fertilizer.jpeg", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", icon: <Bird className="w-5 h-5" /> },
-  { image: "/images/community-1.jpeg", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" /> },
-  { image: "/images/community-2.jpeg", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", icon: <Heart className="w-5 h-5" /> },
+  { image: "/images/coffee-farmer-hd.jpeg", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", icon: <Coffee className="w-5 h-5" /> },
+  { image: "/images/hero-cocoa-seedlings.png", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", icon: <Sprout className="w-5 h-5" /> },
+  { image: "/images/hero-fertilizer-support.png", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", icon: <Bird className="w-5 h-5" /> },
+  { image: "/images/hero-community-meeting.png", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", icon: <Wheat className="w-5 h-5" /> },
+  { image: "/images/community-meeting-hd.jpeg", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", icon: <Heart className="w-5 h-5" /> },
 ];
 
 const MODEL_STEPS = [
@@ -66,18 +67,72 @@ const MODEL_STEPS = [
 ];
 
 const TESTIMONIALS = [
-  { quote: "Before BCC brought coffee seedlings to our village, I struggled to feed my family. Now I have a thriving farm and my children are in school.", name: "Mama Grace", role: "Coffee Farmer, Bugwere", image: "/images/impact-coffee-seedlings.jpeg" },
-  { quote: "The training programs changed everything. I learned how to care for my cocoa plants properly, and my yields have doubled since joining.", name: "James Wanyama", role: "Cocoa Farmer, Pallisa", image: "/images/impact-cocoa-seedlings.jpeg" },
-  { quote: "The guaranteed market means I never worry about selling my harvest. BCC buys at fair prices, and I can plan for my family's future.", name: "Sarah Namwanje", role: "Coffee & Cocoa Farmer", image: "/images/impact-fertilizer.jpeg" },
+  { quote: "Before BCC brought coffee seedlings to our village, I struggled to feed my family. Now I have a thriving farm and my children are in school.", name: "Mama Grace", role: "Coffee Farmer, Bugwere", image: "/images/coffee-couple-hd.jpeg" },
+  { quote: "The training programs changed everything. I learned how to care for my cocoa plants properly, and my yields have doubled since joining.", name: "James Wanyama", role: "Cocoa Farmer, Pallisa", image: "/images/cocoa-farmer-hd.jpeg" },
+  { quote: "The guaranteed market means I never worry about selling my harvest. BCC buys at fair prices, and I can plan for my family's future.", name: "Sarah Namwanje", role: "Coffee & Cocoa Farmer", image: "/images/coffee-harvest-hd.jpeg" },
 ];
 
 const NEWS = [
-  { image: "/images/impact-fertilizer.jpeg", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
-  { image: "/images/impact-cocoa-seedlings.jpeg", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
-  { image: "/images/impact-coffee-seedlings.jpeg", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
+  { image: "/images/hero-fertilizer-support.png", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
+  { image: "/images/hero-cocoa-seedlings.png", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
+  { image: "/images/coffee-farmer-hd.jpeg", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
 ];
 
 export default function Home() {
+  const handleJoinSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    try {
+      const res = await fetch("/api/join", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          phone: formData.get("phone"),
+          interest: formData.get("interest"),
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message);
+        form.reset();
+      } else {
+        alert(data.error || "Something went wrong.");
+      }
+    } catch {
+      alert("Network error. Please try again.");
+    }
+  };
+
+  const handleSubscribeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const checkedTopics = Array.from(form.querySelectorAll<HTMLInputElement>("input[name=\"topic\"]:checked")).map((cb) => cb.value);
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("sub-name"),
+          email: formData.get("sub-email"),
+          topics: checkedTopics,
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message);
+        form.reset();
+      } else {
+        alert(data.error || "Something went wrong.");
+      }
+    } catch {
+      alert("Network error. Please try again.");
+    }
+  };
+
   return (
     <>
       {/* ═══ CINEMATIC HERO ═══ */}
@@ -102,7 +157,7 @@ export default function Home() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/hero-main.jpeg"
+                    src="/images/hero-uganda-coffee.png"
                     alt="Bugwere farming community"
                     width={1344}
                     height={896}
@@ -278,7 +333,7 @@ export default function Home() {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/images/impact-coffee-seedlings.jpeg"
+                    src="/images/coffee-farmer-hd.jpeg"
                     alt="Coffee farming impact"
                     width={1344}
                     height={896}
@@ -366,7 +421,7 @@ export default function Home() {
                 <div className="relative mb-8">
                   <div className="rounded-3xl overflow-hidden shadow-xl">
                     <Image
-                      src="/images/community-1.jpeg"
+                      src="/images/hero-community-meeting.png"
                       alt="Agricultural model in action"
                       width={1344}
                       height={896}
@@ -569,43 +624,274 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ JOIN THE MOVEMENT CTA ═══ */}
-      <section className="relative py-20 sm:py-28 overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+      {/* ═══ JOIN & SUBSCRIBE ═══ */}
+      <section id="join" className="relative overflow-hidden" style={{ backgroundColor: SECONDARY }}>
+        {/* Background decorations */}
         <div className="absolute inset-0 bg-grid-pattern" />
         <div className="absolute -top-20 -left-20 w-96 h-96 blob-shape opacity-[0.04] bg-white" />
         <div className="absolute -bottom-20 -right-20 w-80 h-80 blob-shape-2 opacity-[0.03] bg-white animate-float-slow" />
 
-        <div className="relative max-w-4xl mx-auto px-6 sm:px-10 text-center">
-          <ScrollReveal>
-            <p className="text-sm font-bold uppercase tracking-widest mb-6" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
-              Join The Movement
-            </p>
-            <h2
-              className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold text-white leading-[1.15] mb-6"
-              style={{ fontFamily: FONT_RALEWAY }}
-            >
-              Your participation matters!
-            </h2>
-            <p className="text-white/60 text-base sm:text-lg max-w-xl mx-auto mb-10">
-              Join us in transforming rural livelihoods across Eastern Uganda. Every contribution creates lasting change.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white font-semibold text-sm rounded-full transition-all hover:shadow-xl hover:scale-[1.03]"
-                style={{ color: SECONDARY, fontFamily: FONT_OPENSANS }}
-              >
-                Join Now
-              </Link>
-              <Link
-                href="/connect/partners"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/25 text-white font-semibold text-sm rounded-full transition-all hover:bg-white/10 hover:border-white/40"
-                style={{ fontFamily: FONT_OPENSANS }}
-              >
-                Partner With Us
-              </Link>
+        {/* ── JOIN THE MOVEMENT ── */}
+        <div className="relative py-20 sm:py-28">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left: Content + Image */}
+              <ScrollReveal direction="left">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+                    Join The Movement
+                  </p>
+                  <h2
+                    className="text-xl sm:text-2xl lg:text-3xl xl:text-[2.25rem] font-bold text-white leading-[1.15] mb-6"
+                    style={{ fontFamily: FONT_RALEWAY }}
+                  >
+                    Your participation creates lasting change
+                  </h2>
+                  <p className="text-white/60 text-base sm:text-lg leading-relaxed mb-6">
+                    Whether you are a farmer seeking support, a partner looking to invest in sustainable agriculture,
+                    or a volunteer wanting to make a difference — there is a place for you at Bugwere Coffee Company.
+                    Join thousands of households already transforming their livelihoods.
+                  </p>
+                  <div className="grid grid-cols-3 gap-4 mb-8">
+                    {[
+                      { num: "5,000+", label: "Farmers Joined" },
+                      { num: "15,000+", label: "Lives Impacted" },
+                      { num: "3", label: "Core Programs" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="text-center p-4 rounded-2xl" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+                        <p className="text-2xl sm:text-3xl font-bold text-white mb-1" style={{ fontFamily: FONT_RALEWAY, color: PRIMARY }}>
+                          {stat.num}
+                        </p>
+                        <p className="text-white/40 text-xs sm:text-sm">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Right: Join Form */}
+              <ScrollReveal direction="right">
+                <div className="bg-white/[0.06] backdrop-blur-sm rounded-3xl p-8 sm:p-10 border border-white/10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: `${PRIMARY}25` }}
+                    >
+                      <UserPlus className="w-5 h-5" style={{ color: PRIMARY }} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white text-lg" style={{ fontFamily: FONT_RALEWAY }}>Become a Member</h3>
+                      <p className="text-white/40 text-xs">Fill in your details to get started</p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleJoinSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+                        Full Name
+                      </label>
+                      <div className="relative">
+                        <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          name="name"
+                          type="text"
+                          required
+                          placeholder="Enter your full name"
+                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+                          style={{ fontFamily: FONT_OPENSANS }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+                        Email Address
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          name="email"
+                          type="email"
+                          required
+                          placeholder="you@example.com"
+                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+                          style={{ fontFamily: FONT_OPENSANS }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+                        Phone Number (Optional)
+                      </label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+                        <input
+                          name="phone"
+                          type="tel"
+                          placeholder="+256 7XX XXX XXX"
+                          className="w-full pl-10 pr-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all"
+                          style={{ fontFamily: FONT_OPENSANS }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-white/50 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+                        I am interested in...
+                      </label>
+                      <select
+                        name="interest"
+                        required
+                        className="w-full px-4 py-3 bg-white/[0.06] border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-white/30 focus:bg-white/[0.08] transition-all appearance-none"
+                        style={{ fontFamily: FONT_OPENSANS }}
+                      >
+                        <option value="" className="bg-[#193b2a]">Select your interest</option>
+                        <option value="coffee" className="bg-[#193b2a]">Coffee Farming Program</option>
+                        <option value="cocoa" className="bg-[#193b2a]">Cocoa Farming Program</option>
+                        <option value="livestock" className="bg-[#193b2a]">Livestock Support</option>
+                        <option value="agronomy" className="bg-[#193b2a]">Agronomy & Training</option>
+                        <option value="partner" className="bg-[#193b2a]">Partner With Us</option>
+                        <option value="volunteer" className="bg-[#193b2a]">Volunteer</option>
+                        <option value="other" className="bg-[#193b2a]">Other</option>
+                      </select>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+                      style={{ backgroundColor: PRIMARY, fontFamily: FONT_OPENSANS }}
+                    >
+                      <Send className="w-4 h-4" />
+                      Join The Movement
+                    </button>
+                  </form>
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+          </div>
+        </div>
+
+        {/* ── SUBSCRIBE / NEWSLETTER ── */}
+        <div className="relative py-16 sm:py-20" style={{ backgroundColor: CREAM }}>
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              {/* Left: Newsletter content */}
+              <ScrollReveal direction="left">
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>
+                    Stay Updated
+                  </p>
+                  <h2
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold leading-[1.15] mb-4"
+                    style={{ fontFamily: FONT_RALEWAY, color: SECONDARY }}
+                  >
+                    Subscribe to Our Newsletter
+                  </h2>
+                  <p className="text-gray-600 text-base leading-relaxed mb-6">
+                    Get the latest updates on our programs, farmer success stories, upcoming events, and opportunities
+                    to support rural communities in Eastern Uganda. We send updates once a month — no spam, just impact.
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    {[
+                      { icon: <Leaf className="w-4 h-4" />, text: "Program Updates" },
+                      { icon: <CheckCircle2 className="w-4 h-4" />, text: "Impact Reports" },
+                      { icon: <Users className="w-4 h-4" />, text: "Event Invites" },
+                    ].map((benefit) => (
+                      <div key={benefit.text} className="flex items-center gap-2 text-sm text-gray-600">
+                        <span style={{ color: SECONDARY }}>{benefit.icon}</span>
+                        <span style={{ fontFamily: FONT_OPENSANS }}>{benefit.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Right: Subscribe form */}
+              <ScrollReveal direction="right">
+                <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-xl border border-gray-100">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div
+                      className="w-10 h-10 rounded-xl flex items-center justify-center"
+                      style={{ backgroundColor: `${SECONDARY}12` }}
+                    >
+                      <Mail className="w-5 h-5" style={{ color: SECONDARY }} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900 text-lg" style={{ fontFamily: FONT_RALEWAY }}>Monthly Newsletter</h3>
+                      <p className="text-gray-400 text-xs">Delivered to your inbox</p>
+                    </div>
+                  </div>
+
+                  <form onSubmit={handleSubscribeSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-gray-500 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+                        Your Name
+                      </label>
+                      <input
+                        name="sub-name"
+                        type="text"
+                        required
+                        placeholder="Enter your name"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-gray-300 focus:bg-white transition-all"
+                        style={{ fontFamily: FONT_OPENSANS }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-gray-500 text-xs font-medium mb-1.5" style={{ fontFamily: FONT_OPENSANS }}>
+                        Email Address
+                      </label>
+                      <input
+                        name="sub-email"
+                        type="email"
+                        required
+                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder:text-gray-300 focus:outline-none focus:border-gray-300 focus:bg-white transition-all"
+                        style={{ fontFamily: FONT_OPENSANS }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-gray-500 text-xs font-medium mb-2" style={{ fontFamily: FONT_OPENSANS }}>
+                        I want to hear about
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {["All Updates", "Programs", "Events", "Impact Stories"].map((tag) => (
+                          <label key={tag} className="cursor-pointer">
+                            <input type="checkbox" name="topic" value={tag} className="hidden peer" defaultChecked={tag === "All Updates"} />
+                            <span
+                              className="inline-block px-3 py-1.5 rounded-full text-xs font-medium border transition-all peer-checked:bg-[#193b2a] peer-checked:text-white peer-checked:border-transparent"
+                              style={{
+                                fontFamily: FONT_OPENSANS,
+                                borderColor: "#d1d5db",
+                                color: "#6b7280",
+                              }}
+                            >
+                              {tag}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 text-white font-semibold text-sm rounded-xl transition-all hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+                      style={{ backgroundColor: SECONDARY, fontFamily: FONT_OPENSANS }}
+                    >
+                      <Mail className="w-4 h-4" />
+                      Subscribe Now
+                    </button>
+
+                    <p className="text-center text-gray-400 text-xs" style={{ fontFamily: FONT_OPENSANS }}>
+                      No spam, unsubscribe anytime. We respect your privacy.
+                    </p>
+                  </form>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
         </div>
       </section>
     </>
