@@ -76,8 +76,10 @@ export default function NewsPage() {
 
           <ScrollReveal>
             <div className="group grid lg:grid-cols-2 gap-10 p-6 sm:p-10 rounded-3xl border border-gray-100/60 hover:shadow-xl hover:border-transparent transition-all duration-300">
-              <div className="relative h-64 sm:h-80 lg:h-full rounded-3xl overflow-hidden">
+              <div className="relative h-64 sm:h-80 lg:h-full rounded-3xl overflow-hidden aspect-[4/3] lg:aspect-auto">
                 <Image src={FEATURED.image} alt={FEATURED.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 1024px) 100vw, 50vw" />
+                {/* Gradient blend into card */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.08) 100%)' }} />
                 <div className="absolute top-4 left-4">
                   <span className="px-4 py-1.5 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: PRIMARY, fontFamily: FONT_RALEWAY }}>
                     {FEATURED.category}
@@ -114,8 +116,10 @@ export default function NewsPage() {
             {ARTICLES.map((article, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div className="group bg-white rounded-3xl overflow-hidden border border-gray-100/60 hover:shadow-xl hover:border-transparent transition-all duration-300">
-                  <div className="relative h-56 sm:h-64 overflow-hidden">
+                  <div className="relative aspect-[16/10] overflow-hidden">
                     <Image src={article.image} alt={article.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width: 768px) 100vw, 50vw" />
+                    {/* Soft gradient blend */}
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.06) 100%)' }} />
                     <div className="absolute top-4 left-4">
                       <span className="px-4 py-1.5 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: SECONDARY, fontFamily: FONT_RALEWAY }}>
                         {article.category}

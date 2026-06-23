@@ -23,15 +23,16 @@ export default function ContactPage() {
             <ScrollReveal className="lg:col-span-2">
               <div className="lg:sticky lg:top-32">
                 {/* Image */}
-                <div className="rounded-3xl overflow-hidden shadow-lg mb-8">
+                <div className="rounded-3xl overflow-hidden shadow-lg aspect-[4/3]">
                   <Image
                     src="/images/cocoa-farmer-hd.jpeg"
                     alt="Bugwere Coffee Company community"
-                    width={1344}
-                    height={896}
-                    className="w-full object-cover"
+                    fill
+                    className="w-full h-full object-cover"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
+                  {/* Soft gradient to blend bottom edge */}
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,59,42,0.08) 0%, transparent 50%)' }} />
                 </div>
 
                 <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: PRIMARY, fontFamily: FONT_OPENSANS }}>

@@ -155,15 +155,16 @@ export default function Home() {
             {/* Image Side */}
             <ScrollReveal direction="left">
               <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-xl">
+                <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
                   <Image
                     src="/images/hero-uganda-coffee.png"
                     alt="Bugwere farming community"
-                    width={1344}
-                    height={896}
-                    className="w-full object-cover"
+                    fill
+                    className="w-full h-full object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
+                  {/* Subtle gradient blend */}
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 40%, rgba(25,59,42,0.08) 100%)' }} />
                 </div>
                 {/* Floating stat card */}
                 <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-5 hidden lg:block">
@@ -331,18 +332,18 @@ export default function Home() {
             {/* Image Side */}
             <ScrollReveal direction="left">
               <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl">
+                <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
                   <Image
                     src="/images/coffee-farmer-hd.jpeg"
                     alt="Coffee farming impact"
-                    width={1344}
-                    height={896}
-                    className="w-full object-cover"
+                    fill
+                    className="w-full h-full object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
+                  {/* Gradient blend for depth */}
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(25,59,42,0.35) 0%, transparent 50%)' }} />
+                  <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at bottom right, rgba(25,59,42,0.1) 0%, transparent 60%)' }} />
                 </div>
-                {/* Overlay accent */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#193b2a]/40 to-transparent rounded-3xl" />
               </div>
             </ScrollReveal>
 
@@ -419,15 +420,17 @@ export default function Home() {
             <div className="lg:sticky lg:top-32">
               <ScrollReveal direction="left">
                 <div className="relative mb-8">
-                  <div className="rounded-3xl overflow-hidden shadow-xl">
+                  <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
                     <Image
                       src="/images/hero-community-meeting.png"
                       alt="Agricultural model in action"
-                      width={1344}
-                      height={896}
-                      className="w-full object-cover"
+                      fill
+                      className="w-full h-full object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
+                    {/* Gradient blend */}
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(25,59,42,0.08) 100%)' }} />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 70%, rgba(25,59,42,0.06) 100%)' }} />
                   </div>
                   {/* Decorative accent */}
                   <div

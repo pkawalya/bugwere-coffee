@@ -69,9 +69,13 @@ export default function AboutPage() {
             </ScrollReveal>
             <ScrollReveal direction="right">
               <div className="relative">
-                <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <Image src="/images/hero-uganda-coffee.png" alt="Bugwere community" width={1344} height={896} className="w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
+                  <Image src="/images/hero-uganda-coffee.png" alt="Bugwere community" fill className="w-full h-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  {/* Subtle gradient overlay that blends image into white background */}
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.15) 0%, transparent 40%)' }} />
                 </div>
+                {/* Decorative accent offset */}
+                <div className="absolute -bottom-3 -left-3 w-24 h-24 rounded-2xl -z-10" style={{ backgroundColor: `${PRIMARY}15` }} />
                 <div
                   className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden lg:block"
                 >

@@ -34,15 +34,17 @@ export default function ModelPage() {
             <ScrollReveal>
               <div className="lg:sticky lg:top-32">
                 <div className="relative mb-8">
-                  <div className="rounded-3xl overflow-hidden shadow-xl">
+                  <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
                     <Image
                       src="/images/hero-community-meeting.png"
                       alt="Agricultural model in action"
-                      width={1344}
-                      height={896}
-                      className="w-full object-cover"
+                      fill
+                      className="w-full h-full object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
                     />
+                    {/* Gradient overlay — blends image edges */}
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, transparent 30%, rgba(25,59,42,0.1) 100%)' }} />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 70%, rgba(25,59,42,0.06) 100%)' }} />
                   </div>
                   <div
                     className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl -z-10"

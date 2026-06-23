@@ -82,8 +82,11 @@ export default function ImpactPage() {
             <ScrollReveal key={story.title} delay={0.1}>
               <div className={`grid lg:grid-cols-2 gap-12 items-center mb-20 last:mb-0 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
                 <div className={i % 2 === 1 ? "lg:order-2" : ""}>
-                  <div className="rounded-3xl overflow-hidden shadow-xl">
-                    <Image src={story.image} alt={story.title} width={1344} height={896} className="w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
+                    <Image src={story.image} alt={story.title} fill className="w-full h-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                    {/* Gradient blend — fades image edges into surrounding white */}
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(255,255,255,0.12) 100%)' }} />
+                    <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at top left, transparent 50%, rgba(255,255,255,0.06) 100%)' }} />
                   </div>
                 </div>
                 <div className={i % 2 === 1 ? "lg:order-1" : ""}>
