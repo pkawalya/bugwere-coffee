@@ -12,7 +12,7 @@ import { PRIMARY, SECONDARY } from "@/lib/constants";
 export default function SeedlingsPage() {
   return (
     <>
-      <PageHero title="Seedling Production & Distribution" subtitle="Premium seedlings that give every farmer the best possible start." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Seedlings", href: "/model/seedlings" }]} backgroundImage="/images/coffee-farmer-hd.jpeg" />
+      <PageHero title="Seedling Production & Distribution" subtitle="Premium seedlings that give every farmer the best possible start." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Seedlings", href: "/model/seedlings" }]} backgroundImage="/images/cocoa-seedlings-hd.jpeg" />
       <Section background="white" py="xl">
         <Container>
           <div className="grid lg:grid-cols-5 gap-12 items-start">

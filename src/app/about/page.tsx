@@ -70,7 +70,7 @@ export default function AboutPage() {
             <ScrollReveal direction="right">
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
-                  <Image src="/images/hero-uganda-coffee.png" alt="Bugwere community" fill className="w-full h-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <Image src="/images/about-photo.png" alt="Bugwere community" fill className="w-full h-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                   {/* Subtle gradient overlay that blends image into white background */}
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(255,255,255,0.15) 0%, transparent 40%)' }} />
                 </div>

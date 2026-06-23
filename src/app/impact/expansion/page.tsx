@@ -25,7 +25,7 @@ export default function ExpansionPage() {
         title="Regional Expansion"
         subtitle="Growing our reach across Eastern Uganda and beyond."
         breadcrumb={[{ label: "Impact", href: "/impact" }, { label: "Expansion", href: "/impact/expansion" }]}
-        backgroundImage="/images/cocoa-farmer-hd.jpeg"
+        backgroundImage="/images/impact-cocoa.png"
       />
 
       <Section background="white" py="xl">

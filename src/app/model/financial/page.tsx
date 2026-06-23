@@ -11,7 +11,7 @@ import { PRIMARY } from "@/lib/constants";
 export default function FinancialPage() {
   return (
     <>
-      <PageHero title="Financial Inclusion (SACCO)" subtitle="Community savings and credit cooperatives that empower financial independence." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Financial Inclusion", href: "/model/financial" }]} backgroundImage="/images/hero-community-meeting.png" />
+      <PageHero title="Financial Inclusion (SACCO)" subtitle="Community savings and credit cooperatives that empower financial independence." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Financial Inclusion", href: "/model/financial" }]} backgroundImage="/images/hero-1.png" />
       <Section background="white" py="xl">
         <Container>
           <SectionHeading label="SACCO" title="Savings, Credit, Community" description="Financial exclusion is one of the biggest barriers to rural development. Without access to banking, credit, or savings mechanisms, farming households are vulnerable to economic shocks and unable to invest in their future. Our community SACCO (Savings and Credit Cooperative Organization) addresses this directly by providing a trusted, member-owned financial institution that offers savings accounts, affordable loans, and financial literacy training. With over 3,500 active members, our SACCO is transforming how rural families manage and grow their money." />

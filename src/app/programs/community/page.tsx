@@ -37,7 +37,7 @@ export default function CommunityPage() {
         title="Community Development"
         subtitle="Building resilient, self-sustaining communities through inclusive development initiatives."
         breadcrumb={[{ label: "Programs", href: "/programs/community" }, { label: "Community", href: "/programs/community" }]}
-        backgroundImage="/images/community-meeting-hd.jpeg"
+        backgroundImage="/images/community-1.jpeg"
       />
 
       {/* ─── Immersive Intro ─── */}
