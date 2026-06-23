@@ -24,6 +24,7 @@ export default function TeamPage() {
           { label: "About", href: "/about" },
           { label: "Our Team", href: "/about/team" },
         ]}
+        backgroundImage="/images/coffee-couple-hd.jpeg"
       />
 
       {/* ─── Leadership Intro ─── */}

@@ -30,6 +30,7 @@ export default function AgronomyPage() {
         title="Agronomy & Farmer Support"
         subtitle="Expert training, extension services, and ongoing field support for every farmer."
         breadcrumb={[{ label: "Programs", href: "/programs/agronomy" }, { label: "Agronomy", href: "/programs/agronomy" }]}
+        backgroundImage="/images/hero-community-meeting.png"
       />
 
       {/* ─── Immersive About Section ─── */}

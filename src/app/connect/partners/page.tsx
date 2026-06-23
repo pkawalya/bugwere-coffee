@@ -50,6 +50,7 @@ export default function PartnersPage() {
         title="Partners & Collaborators"
         subtitle="Building transformative change through strong, purpose-driven partnerships."
         breadcrumb={[{ label: "Connect", href: "/connect/partners" }, { label: "Partners", href: "/connect/partners" }]}
+        backgroundImage="/images/hero-community-meeting.png"
       />
 
       {/* ─── Partner Ecosystem ─── */}

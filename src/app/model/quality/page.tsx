@@ -10,7 +10,7 @@ import { PRIMARY } from "@/lib/constants";
 export default function QualityPage() {
   return (
     <>
-      <PageHero title="Processing & Quality Assurance" subtitle="Maintaining the highest standards from farm to export." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Quality", href: "/model/quality" }]} />
+      <PageHero title="Processing & Quality Assurance" subtitle="Maintaining the highest standards from farm to export." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Quality", href: "/model/quality" }]} backgroundImage="/images/coffee-harvest-hd.jpeg" />
       <Section background="white" py="xl">
         <Container>
           <SectionHeading label="Quality Standards" title="Excellence at Every Stage" description="Quality is not an afterthought — it is built into every step of our value chain. From the selection of seedlings to post-harvest processing and export preparation, we maintain rigorous quality standards that ensure Bugwere coffee and cocoa meet international benchmarks. Our processing centers are equipped with modern equipment, and our quality assurance team conducts regular inspections and training to ensure consistency across all operations." />

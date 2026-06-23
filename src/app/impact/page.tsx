@@ -12,17 +12,17 @@ const STORIES = [
   {
     title: "From Subsistence to Sustainability",
     excerpt: "How one family transformed their small plot into a thriving coffee farm with BCC's support, generating income they never thought possible. Before joining our program, this family struggled to meet basic needs. Today, they not only feed their children but also send them to school.",
-    image: "/images/impact-coffee-seedlings.jpeg",
+    image: "/images/coffee-farmer-hd.jpeg",
   },
   {
     title: "A Cocoa Revolution in Bugwere",
     excerpt: "When cocoa seedlings arrived in her village, Mama Grace saw an opportunity to diversify her income and secure her children's future. She now earns from both coffee and cocoa, creating a resilient financial foundation.",
-    image: "/images/impact-cocoa-seedlings.jpeg",
+    image: "/images/cocoa-farmer-hd.jpeg",
   },
   {
     title: "7,000 Homes and Counting",
     excerpt: "The fertilizer distribution program has fundamentally changed crop yields across the region, enabling families to harvest more and earn more. Farmers report yield increases of up to 40% after adopting the improved inputs.",
-    image: "/images/impact-fertilizer.jpeg",
+    image: "/images/hero-fertilizer-support.png",
   },
 ];
 
@@ -33,6 +33,7 @@ export default function ImpactPage() {
         title="Our Impact"
         subtitle="Real stories and data showing how BCC programs transform lives and communities."
         breadcrumb={[{ label: "Impact", href: "/impact" }]}
+        backgroundImage="/images/coffee-farmer-hd.jpeg"
       />
 
       {/* Animated Counter Hero */}
@@ -82,7 +83,7 @@ export default function ImpactPage() {
               <div className={`grid lg:grid-cols-2 gap-12 items-center mb-20 last:mb-0 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
                 <div className={i % 2 === 1 ? "lg:order-2" : ""}>
                   <div className="rounded-3xl overflow-hidden shadow-xl">
-                    <Image src={story.image} alt={story.title} width={1344} height={768} className="w-full" sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src={story.image} alt={story.title} width={1344} height={896} className="w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
                 </div>
                 <div className={i % 2 === 1 ? "lg:order-1" : ""}>

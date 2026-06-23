@@ -24,6 +24,7 @@ export default function ModelPage() {
         title="Our Model"
         subtitle="A complete, end-to-end agricultural support system that transforms rural livelihoods."
         breadcrumb={[{ label: "Our Model", href: "/model" }]}
+        backgroundImage="/images/hero-community-meeting.png"
       />
 
       {/* Introduction */}
@@ -35,7 +36,7 @@ export default function ModelPage() {
                 <div className="relative mb-8">
                   <div className="rounded-3xl overflow-hidden shadow-xl">
                     <Image
-                      src="/images/community-1.jpeg"
+                      src="/images/hero-community-meeting.png"
                       alt="Agricultural model in action"
                       width={1344}
                       height={896}

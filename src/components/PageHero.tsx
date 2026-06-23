@@ -1,6 +1,7 @@
 "use client";
 
-import { FONT_RALEWAY, FONT_OPENSANS } from "@/lib/constants";
+import Image from "next/image";
+import { FONT_RALEWAY, FONT_OPENSANS, SECONDARY } from "@/lib/constants";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 interface PageHeroProps {
@@ -8,6 +9,7 @@ interface PageHeroProps {
   subtitle: string;
   breadcrumb: { label: string; href: string }[];
   background?: string;
+  backgroundImage?: string;
 }
 
 export default function PageHero({
@@ -15,25 +17,53 @@ export default function PageHero({
   subtitle,
   breadcrumb,
   background,
+  backgroundImage,
 }: PageHeroProps) {
+  const bgColor = background || SECONDARY;
   return (
     <section
       className="relative pt-32 sm:pt-36 pb-24 sm:pb-32 overflow-hidden grain-overlay"
-      style={{ backgroundColor: background || "#193b2a" }}
+      style={{ backgroundColor: bgColor }}
     >
+      {/* Background image with blended overlay */}
+      {backgroundImage && (
+        <>
+          <div className="absolute inset-0">
+            <Image
+              src={backgroundImage}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              priority
+            />
+          </div>
+          {/* Dark overlay that blends image with the green brand color */}
+          <div className="absolute inset-0" style={{ backgroundColor: `color-mix(in srgb, ${bgColor} 72%, transparent)` }} />
+          {/* Gradient focused on text area */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(to right, ${bgColor}e6 0%, ${bgColor}cc 35%, ${bgColor}88 65%, ${bgColor}99 100%)`,
+            }}
+          />
+          {/* Bottom fade */}
+          <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: `linear-gradient(to top, ${bgColor}, transparent)` }} />
+        </>
+      )}
+
       {/* Background patterns */}
-      <div className="absolute inset-0 bg-dots-pattern" />
+      {!backgroundImage && <div className="absolute inset-0 bg-dots-pattern" />}
 
       {/* Organic decorative blobs */}
       <div className="absolute -top-20 -right-20 w-96 h-96 blob-shape opacity-[0.04] bg-white" />
       <div className="absolute bottom-0 -left-10 w-72 h-72 blob-shape-2 opacity-[0.03] bg-white animate-float-slow" />
-      <div className="absolute top-1/2 right-1/4 w-24 h-24 rounded-full opacity-[0.02] bg-white animate-float" style={{ animationDelay: "1s" }} />
 
       {/* Diagonal bottom accent */}
       <div
         className="absolute bottom-0 left-0 right-0 h-2"
         style={{
-          background: `linear-gradient(90deg, ${background || "#193b2a"}, #c94449, ${background || "#193b2a"})`,
+          background: `linear-gradient(90deg, ${bgColor}, #c94449, ${bgColor})`,
         }}
       />
 

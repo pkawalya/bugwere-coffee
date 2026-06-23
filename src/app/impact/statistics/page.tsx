@@ -29,7 +29,7 @@ export default function StatisticsPage() {
         title="Farmer Statistics"
         subtitle="Data-driven insights into our growing impact across Eastern Uganda."
         breadcrumb={[{ label: "Impact", href: "/impact" }, { label: "Statistics", href: "/impact/statistics" }]}
-        backgroundImage="/images/impact-coffee-seedlings.jpeg"
+        backgroundImage="/images/coffee-farmer-hd.jpeg"
       />
 
       <Section background="white" py="xl">

@@ -30,6 +30,7 @@ export default function CoffeePage() {
         title="Sustainable Coffee Production"
         subtitle="Empowering households through high-value coffee farming with guaranteed support from seedling to market."
         breadcrumb={[{ label: "Programs", href: "/programs/coffee" }, { label: "Coffee", href: "/programs/coffee" }]}
+        backgroundImage="/images/coffee-farmer-hd.jpeg"
       />
 
       {/* ─── Immersive About Section ─── */}

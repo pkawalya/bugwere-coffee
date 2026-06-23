@@ -30,6 +30,7 @@ export default function CocoaPage() {
         title="Cocoa Farming"
         subtitle="Diversifying farmer income with resilient cocoa crops and comprehensive support."
         breadcrumb={[{ label: "Programs", href: "/programs/cocoa" }, { label: "Cocoa", href: "/programs/cocoa" }]}
+        backgroundImage="/images/hero-cocoa-seedlings.png"
       />
 
       {/* ─── Immersive About Section ─── */}

@@ -30,6 +30,7 @@ export default function AboutPage() {
         title="About Us"
         subtitle="Our story, mission, and the driving force behind Bugwere Coffee Company."
         breadcrumb={[{ label: "About", href: "/about" }]}
+        backgroundImage="/images/hero-uganda-coffee.png"
       />
 
       {/* Story Section */}
@@ -69,7 +70,7 @@ export default function AboutPage() {
             <ScrollReveal direction="right">
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
-                  <Image src="/images/hero-main.jpeg" alt="Bugwere community" width={1344} height={768} className="w-full" sizes="(max-width: 1024px) 100vw, 50vw" />
+                  <Image src="/images/hero-uganda-coffee.png" alt="Bugwere community" width={1344} height={896} className="w-full object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
                 </div>
                 <div
                   className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden lg:block"

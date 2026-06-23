@@ -30,6 +30,7 @@ export default function LivestockPage() {
         title="Livestock Support"
         subtitle="Piggery and poultry projects providing steady, diversified income for rural households."
         breadcrumb={[{ label: "Programs", href: "/programs/livestock" }, { label: "Livestock", href: "/programs/livestock" }]}
+        backgroundImage="/images/hero-fertilizer-support.png"
       />
 
       {/* ─── Immersive About Section ─── */}

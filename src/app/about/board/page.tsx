@@ -48,6 +48,7 @@ export default function BoardPage() {
           { label: "About", href: "/about" },
           { label: "Board of Directors", href: "/about/board" },
         ]}
+        backgroundImage="/images/hero-community-meeting.png"
       />
 
       {/* ─── Intro ─── */}

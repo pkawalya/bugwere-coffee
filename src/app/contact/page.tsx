@@ -13,6 +13,7 @@ export default function ContactPage() {
         title="Contact Us"
         subtitle="Get in touch with the Bugwere Coffee Company team."
         breadcrumb={[{ label: "Contact", href: "/contact" }]}
+        backgroundImage="/images/hero-community-meeting.png"
       />
 
       <section className="py-24 sm:py-32 bg-white">
@@ -24,7 +25,7 @@ export default function ContactPage() {
                 {/* Image */}
                 <div className="rounded-3xl overflow-hidden shadow-lg mb-8">
                   <Image
-                    src="/images/impact-cocoa-seedlings.jpeg"
+                    src="/images/cocoa-farmer-hd.jpeg"
                     alt="Bugwere Coffee Company community"
                     width={1344}
                     height={896}
