@@ -11,9 +11,9 @@ import { getIcon } from "@/lib/icon-map";
 import type { ImpactStat, ImpactStory } from "@/lib/data";
 
 const FALLBACK_STORIES = [
-  { title: "From Subsistence to Sustainability", excerpt: "How one family transformed their small plot into a thriving coffee farm with BCC's support, generating income they never thought possible. Before joining our program, this family struggled to meet basic needs. Today, they not only feed their children but also send them to school.", image: "/images/impact-coffee.png" },
-  { title: "A Cocoa Revolution in Bugwere", excerpt: "When cocoa seedlings arrived in her village, Mama Grace saw an opportunity to diversify her income and secure her children's future. She now earns from both coffee and cocoa, creating a resilient financial foundation.", image: "/images/impact-cocoa.png" },
-  { title: "7,000 Homes and Counting", excerpt: "The fertilizer distribution program has fundamentally changed crop yields across the region, enabling families to harvest more and earn more. Farmers report yield increases of up to 40% after adopting the improved inputs.", image: "/images/impact-fertilizer.png" },
+  { title: "From Subsistence to Sustainability", excerpt: "How one family transformed their small plot into a thriving coffee farm with BCC's support, generating income they never thought possible. Before joining our program, this family struggled to meet basic needs. Today, they not only feed their children but also send them to school.", image: "/images/impact-coffee.jpeg" },
+  { title: "A Cocoa Revolution in Bugwere", excerpt: "When cocoa seedlings arrived in her village, Mama Grace saw an opportunity to diversify her income and secure her children's future. She now earns from both coffee and cocoa, creating a resilient financial foundation.", image: "/images/impact-cocoa.jpeg" },
+  { title: "7,000 Homes and Counting", excerpt: "The fertilizer distribution program has fundamentally changed crop yields across the region, enabling families to harvest more and earn more. Farmers report yield increases of up to 40% after adopting the improved inputs.", image: "/images/impact-fertilizer.jpeg" },
 ];
 
 const FALLBACK_STATS = [
@@ -38,7 +38,7 @@ export default function ImpactClient({ stories: dbStories, impactStats: dbStats 
         title="Our Impact"
         subtitle="Real stories and data showing how BCC programs transform lives and communities."
         breadcrumb={[{ label: "Impact", href: "/impact" }]}
-        backgroundImage="/images/impact-coffee.png"
+        backgroundImage="/images/impact-coffee.jpeg"
       />
 
       {/* Animated Counter Hero */}

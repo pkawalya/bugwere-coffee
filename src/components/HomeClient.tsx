@@ -19,17 +19,17 @@ import type { HeroSlide, Program, Testimonial, NewsArticle, ImpactStat, ModelPil
 // ─── Fallback data (used when DB returns empty) ─────────────────────────────
 
 const FALLBACK_HERO_SLIDES = [
-  { image: "/images/hero-1.png", subtitle: "Bugwere Coffee Company", title: "Empowering Communities Through Sustainable Agriculture", description: "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.", cta: "Join The Campaign", cta_href: "#join" },
-  { image: "/images/hero-2.png", subtitle: "Seedling Program", title: "Over 5,000 Homes Supplied With Coffee Seedlings", description: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.", cta: "Our Programs", cta_href: "/programs/coffee" },
-  { image: "/images/hero-3.png", subtitle: "Cocoa Expansion", title: "Diversifying Income Through Cocoa Farming", description: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.", cta: "Learn More", cta_href: "/programs/cocoa" },
-  { image: "/images/hero-4.png", subtitle: "Agricultural Support", title: "7,000+ Homes Supplied With Fertilizers", description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.", cta: "See Our Impact", cta_href: "/impact" },
+  { image: "/images/hero-1.jpeg", subtitle: "Bugwere Coffee Company", title: "Empowering Communities Through Sustainable Agriculture", description: "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.", cta: "Join The Campaign", cta_href: "#join" },
+  { image: "/images/hero-2.jpeg", subtitle: "Seedling Program", title: "Over 5,000 Homes Supplied With Coffee Seedlings", description: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.", cta: "Our Programs", cta_href: "/programs/coffee" },
+  { image: "/images/hero-3.jpeg", subtitle: "Cocoa Expansion", title: "Diversifying Income Through Cocoa Farming", description: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.", cta: "Learn More", cta_href: "/programs/cocoa" },
+  { image: "/images/hero-4.jpeg", subtitle: "Agricultural Support", title: "7,000+ Homes Supplied With Fertilizers", description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.", cta: "See Our Impact", cta_href: "/impact" },
 ];
 
 const FALLBACK_PROGRAMS = [
-  { image: "/images/impact-coffee.png", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", iconName: "Coffee" },
-  { image: "/images/impact-cocoa.png", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", iconName: "Sprout" },
-  { image: "/images/impact-fertilizer.png", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", iconName: "Bird" },
-  { image: "/images/hero-3.png", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", iconName: "Wheat" },
+  { image: "/images/impact-coffee.jpeg", title: "Sustainable Coffee", desc: "High-value coffee production with guaranteed market access.", href: "/programs/coffee", iconName: "Coffee" },
+  { image: "/images/impact-cocoa.jpeg", title: "Cocoa Farming", desc: "Diversifying income with resilient cocoa crops and training.", href: "/programs/cocoa", iconName: "Sprout" },
+  { image: "/images/impact-fertilizer.jpeg", title: "Livestock Support", desc: "Piggery and poultry for steady, diversified income.", href: "/programs/livestock", iconName: "Bird" },
+  { image: "/images/hero-3.jpeg", title: "Agronomy Services", desc: "Expert training, extension services, and field support.", href: "/programs/agronomy", iconName: "Wheat" },
   { image: "/images/community-1.jpeg", title: "Community Development", desc: "Inclusive initiatives empowering families to thrive.", href: "/programs/community", iconName: "Heart" },
 ];
 
@@ -49,9 +49,9 @@ const FALLBACK_TESTIMONIALS = [
 ];
 
 const FALLBACK_NEWS = [
-  { image: "/images/news-1.png", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
-  { image: "/images/news-2.png", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
-  { image: "/images/news-3.png", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
+  { image: "/images/news-1.jpeg", date: "Nov 29, 2025", title: "Fertilizer Distribution Boosts Productivity for 7,000 Households", href: "/connect/news", featured: true },
+  { image: "/images/news-2.jpeg", date: "Nov 29, 2025", title: "Cocoa Expansion Program Impacts 3,700 Homes", href: "/connect/news", featured: false },
+  { image: "/images/news-3.jpeg", date: "Nov 29, 2025", title: "Bugwere Coffee Reaches Over 5,000 Homes With Coffee Seedlings", href: "/connect/news", featured: false },
 ];
 
 const FALLBACK_IMPACT_STATS = [
@@ -183,7 +183,7 @@ export default function HomeClient({
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
                   <Image
-                    src="/images/hero-1.png"
+                    src="/images/hero-1.jpeg"
                     alt="Bugwere farming community"
                     fill
                     className="w-full h-full object-cover"
@@ -360,7 +360,7 @@ export default function HomeClient({
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-2xl aspect-[4/3]">
                   <Image
-                    src="/images/impact-coffee.png"
+                    src="/images/impact-coffee.jpeg"
                     alt="Coffee farming impact"
                     fill
                     className="w-full h-full object-cover"
@@ -443,7 +443,7 @@ export default function HomeClient({
                 <div className="relative mb-8">
                   <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
                     <Image
-                      src="/images/hero-4.png"
+                      src="/images/hero-4.jpeg"
                       alt="Agricultural model in action"
                       fill
                       className="w-full h-full object-cover"

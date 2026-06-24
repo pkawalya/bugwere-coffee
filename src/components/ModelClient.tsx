@@ -32,7 +32,7 @@ export default function ModelClient({ pillars: dbPillars }: ModelClientProps) {
         title="Our Model"
         subtitle="A complete, end-to-end agricultural support system that transforms rural livelihoods."
         breadcrumb={[{ label: "Our Model", href: "/model" }]}
-        backgroundImage="/images/hero-4.png"
+        backgroundImage="/images/hero-4.jpeg"
       />
 
       {/* Introduction */}
@@ -44,7 +44,7 @@ export default function ModelClient({ pillars: dbPillars }: ModelClientProps) {
                 <div className="relative mb-8">
                   <div className="rounded-3xl overflow-hidden shadow-xl aspect-[4/3]">
                     <Image
-                      src="/images/hero-4.png"
+                      src="/images/hero-4.jpeg"
                       alt="Agricultural model in action"
                       fill
                       className="w-full h-full object-cover"

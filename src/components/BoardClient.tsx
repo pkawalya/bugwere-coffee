@@ -55,7 +55,7 @@ export default function BoardClient({ board: dbBoard }: BoardClientProps) {
           { label: "About", href: "/about" },
           { label: "Board of Directors", href: "/about/board" },
         ]}
-        backgroundImage="/images/hero-2.png"
+        backgroundImage="/images/hero-2.jpeg"
       />
 
       {/* ─── Intro ─── */}

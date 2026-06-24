@@ -246,7 +246,7 @@ export default function HeroSlidesPage() {
           <div className="space-y-4">
             <div className="space-y-2">
               <Label>Image URL</Label>
-              <Input value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} placeholder="/images/hero-1.png" />
+              <Input value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} placeholder="/images/hero-1.jpeg" />
             </div>
             <div className="space-y-2">
               <Label>Subtitle</Label>

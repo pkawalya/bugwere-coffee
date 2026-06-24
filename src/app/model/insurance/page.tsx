@@ -10,7 +10,7 @@ import { PRIMARY } from "@/lib/constants";
 export default function InsurancePage() {
   return (
     <>
-      <PageHero title="Rural Farmer Insurance Program" subtitle="Protecting farming families against crop failure, disease, and climate shocks." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Insurance", href: "/model/insurance" }]} backgroundImage="/images/hero-fertilizer-support.png" />
+      <PageHero title="Rural Farmer Insurance Program" subtitle="Protecting farming families against crop failure, disease, and climate shocks." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Insurance", href: "/model/insurance" }]} backgroundImage="/images/fertilizer-support.jpeg" />
       <Section background="white" py="xl">
         <Container>
           <SectionHeading label="Insurance" title="Farming Without Fear" description="Agriculture is inherently risky — droughts, floods, pests, and diseases can destroy a season's work in days. For smallholder farmers with no safety net, a single crop failure can be devastating. Our Rural Farmer Insurance Program provides a critical layer of protection that helps farmers manage risk and invest with confidence. Designed specifically for the realities of rural Ugandan agriculture, our insurance products are affordable, accessible, and responsive to the needs of farming households." />

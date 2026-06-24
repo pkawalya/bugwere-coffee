@@ -28,7 +28,7 @@ async function seed() {
   await turso.execute("DELETE FROM hero_slides");
   const heroSlides = [
     {
-      image: "/images/hero-1.png",
+      image: "/images/hero-1.jpeg",
       subtitle: "Bugwere Coffee Company",
       title: "Empowering Communities Through Sustainable Agriculture",
       description:
@@ -38,7 +38,7 @@ async function seed() {
       sort_order: 0,
     },
     {
-      image: "/images/hero-2.png",
+      image: "/images/hero-2.jpeg",
       subtitle: "Seedling Program",
       title: "Over 5,000 Homes Supplied With Coffee Seedlings",
       description:
@@ -48,7 +48,7 @@ async function seed() {
       sort_order: 1,
     },
     {
-      image: "/images/hero-3.png",
+      image: "/images/hero-3.jpeg",
       subtitle: "Cocoa Expansion",
       title: "Diversifying Income Through Cocoa Farming",
       description:
@@ -58,7 +58,7 @@ async function seed() {
       sort_order: 2,
     },
     {
-      image: "/images/hero-4.png",
+      image: "/images/hero-4.jpeg",
       subtitle: "Agricultural Support",
       title: "7,000+ Homes Supplied With Fertilizers",
       description:
@@ -146,7 +146,7 @@ async function seed() {
         "Piggery and poultry projects providing steady, diversified income for rural households.",
       description:
         "Piggery and poultry projects providing steady, diversified income for rural households.",
-      hero_image: "/images/impact-fertilizer.png",
+      hero_image: "/images/impact-fertilizer.jpeg",
       accent_color: "#c94449",
       key_facts: JSON.stringify([
         { label: "Income Timeline", value: "6-8 Months", icon: "Clock" },
@@ -171,7 +171,7 @@ async function seed() {
         "Expert training, extension services, and ongoing field support for every farmer.",
       description:
         "Expert training, extension services, and ongoing field support for every farmer.",
-      hero_image: "/images/hero-3.png",
+      hero_image: "/images/hero-3.jpeg",
       accent_color: "#193b2a",
       key_facts: JSON.stringify([
         { label: "Field Officers", value: "45+", icon: "BookOpen" },
@@ -230,7 +230,7 @@ async function seed() {
       title: "Fertilizer Distribution Boosts Productivity for 7,000 Households",
       excerpt:
         "Our latest fertilizer distribution campaign has reached over 7,000 homes across the Bugwere region, with farmers reporting significant improvements in crop health and expected yields.",
-      image: "/images/news-1.png",
+      image: "/images/news-1.jpeg",
       category: "Program Update",
       date: "November 29, 2025",
       featured: 1,
@@ -239,7 +239,7 @@ async function seed() {
       title: "Cocoa Expansion Program Impacts 3,700 Homes",
       excerpt:
         "The cocoa expansion program continues to transform livelihoods, with 3,700 homes now equipped with cocoa seedlings and the training needed to cultivate this resilient, high-value crop.",
-      image: "/images/news-2.png",
+      image: "/images/news-2.jpeg",
       category: "Expansion",
       date: "November 29, 2025",
       featured: 0,
@@ -248,7 +248,7 @@ async function seed() {
       title: "Bugwere Coffee Company Reaches Over 5,000 Homes With Coffee Seedlings",
       excerpt:
         "A landmark milestone for BCC as our coffee seedling distribution program surpasses 5,000 households.",
-      image: "/images/news-3.png",
+      image: "/images/news-3.jpeg",
       category: "Milestone",
       date: "November 29, 2025",
       featured: 0,
@@ -257,7 +257,7 @@ async function seed() {
       title: "SACCO Membership Surpasses 3,500 Active Members",
       excerpt:
         "Our community savings and credit cooperative continues to grow, providing financial services to thousands of rural families.",
-      image: "/images/news-1.png",
+      image: "/images/news-1.jpeg",
       category: "Community",
       date: "October 15, 2025",
       featured: 0,
@@ -266,7 +266,7 @@ async function seed() {
       title: "New Disease-Resistant Coffee Varieties Introduced",
       excerpt:
         "BCC partners with research institutions to bring next-generation coffee varieties to Bugwere farmers.",
-      image: "/images/news-2.png",
+      image: "/images/news-2.jpeg",
       category: "Agriculture",
       date: "September 28, 2025",
       featured: 0,
@@ -275,7 +275,7 @@ async function seed() {
       title: "Partnership With District Government Expands Training Programs",
       excerpt:
         "A new memorandum of understanding with local government will double our training capacity across the Bugwere region.",
-      image: "/images/news-3.png",
+      image: "/images/news-3.jpeg",
       category: "Partnership",
       date: "August 10, 2025",
       featured: 0,
@@ -459,21 +459,21 @@ async function seed() {
       title: "From Subsistence to Sustainability",
       excerpt:
         "How one family transformed their small plot into a thriving coffee farm with BCC's support, generating income they never thought possible.",
-      image: "/images/impact-coffee.png",
+      image: "/images/impact-coffee.jpeg",
       sort_order: 0,
     },
     {
       title: "A Cocoa Revolution in Bugwere",
       excerpt:
         "When cocoa seedlings arrived in her village, Mama Grace saw an opportunity to diversify her income and secure her children's future.",
-      image: "/images/impact-cocoa.png",
+      image: "/images/impact-cocoa.jpeg",
       sort_order: 1,
     },
     {
       title: "7,000 Homes and Counting",
       excerpt:
         "The fertilizer distribution program has fundamentally changed crop yields across the region, enabling families to harvest more and earn more.",
-      image: "/images/impact-fertilizer.png",
+      image: "/images/impact-fertilizer.jpeg",
       sort_order: 2,
     },
   ];

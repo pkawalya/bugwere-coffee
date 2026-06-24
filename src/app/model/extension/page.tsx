@@ -12,7 +12,7 @@ import { PRIMARY, SECONDARY } from "@/lib/constants";
 export default function ExtensionPage() {
   return (
     <>
-      <PageHero title="Agronomic Extension System" subtitle="Expert training and field support that transforms knowledge into yields." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Extension", href: "/model/extension" }]} backgroundImage="/images/hero-fertilizer-support.png" />
+      <PageHero title="Agronomic Extension System" subtitle="Expert training and field support that transforms knowledge into yields." breadcrumb={[{ label: "Model", href: "/model" }, { label: "Extension", href: "/model/extension" }]} backgroundImage="/images/fertilizer-support.jpeg" />
       <Section background="white" py="xl">
         <Container>
           <div className="grid lg:grid-cols-5 gap-12 items-start">
