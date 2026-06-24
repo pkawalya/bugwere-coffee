@@ -27,8 +27,8 @@ export default function SeedlingsPage() {
                   <h4 className="text-lg font-bold text-gray-900 mb-5" style={{ fontFamily: "var(--font-raleway)" }}>Key Facts</h4>
                   <div className="space-y-4">
                     {[
-                      { label: "Coffee Homes", value: "5,000+" },
-                      { label: "Cocoa Homes", value: "3,700+" },
+                      { label: "Coffee Homes", value: "5,750+" },
+                      { label: "Cocoa Homes", value: "4,255+" },
                       { label: "Varieties", value: "Disease-Resistant" },
                       { label: "Distribution", value: "Free to Farmers" },
                     ].map((fact) => (

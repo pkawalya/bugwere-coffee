@@ -40,7 +40,7 @@ async function seed() {
     {
       image: "/images/hero-2.jpeg",
       subtitle: "Seedling Program",
-      title: "Over 5,000 Homes Supplied With Coffee Seedlings",
+      title: "Over 5,750 Homes Supplied With Coffee Seedlings",
       description:
         "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.",
       cta: "Our Programs",
@@ -60,7 +60,7 @@ async function seed() {
     {
       image: "/images/hero-4.jpeg",
       subtitle: "Agricultural Support",
-      title: "7,000+ Homes Supplied With Fertilizers",
+      title: "8,050++ Homes Supplied With Fertilizers",
       description:
         "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.",
       cta: "See Our Impact",
@@ -105,7 +105,7 @@ async function seed() {
         { label: "Yield Increase", value: "+35%", icon: "Sun" },
       ]),
       highlights: JSON.stringify([
-        "Over 5,000 homes supplied with premium coffee seedlings",
+        "Over 5,750+ homes supplied with premium coffee seedlings",
         "Guaranteed market access through our buying program",
         "Expert agronomic training and ongoing field support",
         "Processing and quality assurance at collection centers",
@@ -130,7 +130,7 @@ async function seed() {
         { label: "Market Outlook", value: "Strong Demand", icon: "ShieldCheck" },
       ]),
       highlights: JSON.stringify([
-        "Over 3,700 homes supplied with cocoa seedlings",
+        "Over 4,255 homes supplied with cocoa seedlings",
         "Cocoa thrives in Bugwere's tropical climate",
         "Diversifies income beyond coffee production",
         "High global demand ensures market stability",
@@ -227,9 +227,9 @@ async function seed() {
   await turso.execute("DELETE FROM news_articles");
   const newsArticles = [
     {
-      title: "Fertilizer Distribution Boosts Productivity for 7,000 Households",
+      title: "Fertilizer Distribution Boosts Productivity for 8,050+ Households",
       excerpt:
-        "Our latest fertilizer distribution campaign has reached over 7,000 homes across the Bugwere region, with farmers reporting significant improvements in crop health and expected yields.",
+        "Our latest fertilizer distribution campaign has reached over 8,050+ homes across the Bugwere region, with farmers reporting significant improvements in crop health and expected yields.",
       image: "/images/news-1.jpeg",
       category: "Program Update",
       date: "November 29, 2025",
@@ -238,14 +238,14 @@ async function seed() {
     {
       title: "Cocoa Expansion Program Impacts 3,700 Homes",
       excerpt:
-        "The cocoa expansion program continues to transform livelihoods, with 3,700 homes now equipped with cocoa seedlings and the training needed to cultivate this resilient, high-value crop.",
+        "The cocoa expansion program continues to transform livelihoods, with 4,255 homes now equipped with cocoa seedlings and the training needed to cultivate this resilient, high-value crop.",
       image: "/images/news-2.jpeg",
       category: "Expansion",
       date: "November 29, 2025",
       featured: 0,
     },
     {
-      title: "Bugwere Coffee Company Reaches Over 5,000 Homes With Coffee Seedlings",
+      title: "Bugwere Coffee Company Reaches Over 5,750 Homes With Coffee Seedlings",
       excerpt:
         "A landmark milestone for BCC as our coffee seedling distribution program surpasses 5,000 households.",
       image: "/images/news-3.jpeg",
@@ -438,10 +438,10 @@ async function seed() {
   console.log("8/11 Seeding impact_stats...");
   await turso.execute("DELETE FROM impact_stats");
   const impactStats = [
-    { label: "Coffee Homes", value: "5000", suffix: "+", icon: "Coffee", sort_order: 0 },
-    { label: "Cocoa Homes", value: "3700", suffix: "+", icon: "Sprout", sort_order: 1 },
-    { label: "Fertilizer Homes", value: "7000", suffix: "+", icon: "Wheat", sort_order: 2 },
-    { label: "Lives Impacted", value: "15000", suffix: "+", icon: "Heart", sort_order: 3 },
+    { label: "Coffee Homes", value: "5750", suffix: "+", icon: "Coffee", sort_order: 0 },
+    { label: "Cocoa Homes", value: "4255", suffix: "+", icon: "Sprout", sort_order: 1 },
+    { label: "Fertilizer Homes", value: "8050", suffix: "+", icon: "Wheat", sort_order: 2 },
+    { label: "Lives Impacted", value: "17250", suffix: "+", icon: "Heart", sort_order: 3 },
   ];
   for (const s of impactStats) {
     await turso.execute({
@@ -470,7 +470,7 @@ async function seed() {
       sort_order: 1,
     },
     {
-      title: "7,000 Homes and Counting",
+      title: "8,050+ Homes and Counting",
       excerpt:
         "The fertilizer distribution program has fundamentally changed crop yields across the region, enabling families to harvest more and earn more.",
       image: "/images/impact-fertilizer.jpeg",

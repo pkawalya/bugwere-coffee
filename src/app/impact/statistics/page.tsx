@@ -11,14 +11,14 @@ import { TrendingUp } from "lucide-react";
 import { PRIMARY, SECONDARY } from "@/lib/constants";
 
 const STATS = [
-  { label: "Coffee Seedling Homes", value: "5,000+", growth: "+40% from 2024", percentage: 71 },
-  { label: "Cocoa Seedling Homes", value: "3,700+", growth: "+65% from 2024", percentage: 53 },
-  { label: "Fertilizer Recipients", value: "7,000+", growth: "+35% from 2024", percentage: 100 },
+  { label: "Coffee Seedling Homes", value: "5,750+", growth: "+40% from 2024", percentage: 71 },
+  { label: "Cocoa Seedling Homes", value: "4,255+", growth: "+65% from 2024", percentage: 53 },
+  { label: "Fertilizer Recipients", value: "8,050+", growth: "+35% from 2024", percentage: 100 },
   { label: "Active Farming Households", value: "8,200+", growth: "+50% from 2024", percentage: 82 },
   { label: "Field Officers Deployed", value: "45+", growth: "+20 from 2024", percentage: 60 },
   { label: "SACCO Members", value: "3,500+", growth: "+55% from 2024", percentage: 43 },
   { label: "Parishes Covered", value: "28", growth: "+8 new parishes", percentage: 35 },
-  { label: "Total Lives Impacted", value: "15,000+", growth: "Growing daily", percentage: 90 },
+  { label: "Total Lives Impacted", value: "17,250+", growth: "Growing daily", percentage: 90 },
   { label: "Average Yield Increase", value: "35%", growth: "Since program start", percentage: 35 },
 ];
 

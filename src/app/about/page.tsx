@@ -19,7 +19,7 @@ const TIMELINE = [
   { year: "2023", title: "The Beginning", desc: "Bugwere Coffee Company was founded to address the critical challenge of sustainable income for rural households with limited land in Eastern Uganda." },
   { year: "2023", title: "First Seedlings", desc: "Launched our coffee seedling distribution program, reaching the first 1,000 homes in the Bugwere region with high-quality coffee plantlets." },
   { year: "2024", title: "Cocoa Expansion", desc: "Expanded into cocoa farming, diversifying income streams for farming families and strengthening economic resilience across the community." },
-  { year: "2024", title: "7,000+ Homes", desc: "Our fertilizer distribution program scaled rapidly, reaching over 7,000 households and dramatically improving crop yields across the region." },
+  { year: "2024", title: "8,050+ Homes", desc: "Our fertilizer distribution program scaled rapidly, reaching over 8,050 households and dramatically improving crop yields across the region." },
   { year: "2025", title: "Growing Impact", desc: "Today, BCC touches over 15,000 lives through integrated programs spanning coffee, cocoa, livestock, agronomy, and community development." },
 ];
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
                 <div
                   className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden lg:block"
                 >
-                  <p className="text-3xl font-bold" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>5,000+</p>
+                  <p className="text-3xl font-bold" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>5,750+</p>
                   <p className="text-sm text-gray-500">Families empowered</p>
                 </div>
               </div>

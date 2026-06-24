@@ -22,7 +22,7 @@ const FALLBACK_HERO_SLIDES = [
   { image: "/images/hero-1.jpeg", subtitle: "Bugwere Coffee Company", title: "Empowering Communities Through Sustainable Agriculture", description: "Transforming rural livelihoods in Eastern Uganda through coffee, cocoa, and diversified farming programs.", cta: "Join The Campaign", cta_href: "#join" },
   { image: "/images/hero-2.jpeg", subtitle: "Seedling Program", title: "Over 5,000 Homes Supplied With Coffee Seedlings", description: "Helping families establish long-term, high-value coffee farms that provide steady and sustainable household income.", cta: "Our Programs", cta_href: "/programs/coffee" },
   { image: "/images/hero-3.jpeg", subtitle: "Cocoa Expansion", title: "Diversifying Income Through Cocoa Farming", description: "Supporting communities to diversify earnings with cocoa, a resilient crop that strengthens economic stability.", cta: "Learn More", cta_href: "/programs/cocoa" },
-  { image: "/images/hero-4.jpeg", subtitle: "Agricultural Support", title: "7,000+ Homes Supplied With Fertilizers", description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.", cta: "See Our Impact", cta_href: "/impact" },
+  { image: "/images/hero-4.jpeg", subtitle: "Agricultural Support", title: "8,050+ Homes Supplied With Fertilizers", description: "Improving soil health and boosting crop productivity, enabling farmers to achieve higher yields and better quality harvests.", cta: "See Our Impact", cta_href: "/impact" },
 ];
 
 const FALLBACK_PROGRAMS = [
@@ -55,10 +55,10 @@ const FALLBACK_NEWS = [
 ];
 
 const FALLBACK_IMPACT_STATS = [
-  { value: "5000", suffix: "+", label: "Coffee Seedlings Homes", icon: "Coffee" },
-  { value: "3700", suffix: "+", label: "Cocoa Seedlings Homes", icon: "Sprout" },
-  { value: "7000", suffix: "+", label: "Fertilizer Homes", icon: "Wheat" },
-  { value: "15000", suffix: "+", label: "Lives Impacted", icon: "Heart" },
+  { value: "5750", suffix: "+", label: "Coffee Seedlings Homes", icon: "Coffee" },
+  { value: "4255", suffix: "+", label: "Cocoa Seedlings Homes", icon: "Sprout" },
+  { value: "8050", suffix: "+", label: "Fertilizer Homes", icon: "Wheat" },
+  { value: "17250", suffix: "+", label: "Lives Impacted", icon: "Heart" },
 ];
 
 // ─── Props ──────────────────────────────────────────────────────────────────
@@ -194,7 +194,7 @@ export default function HomeClient({
                 </div>
                 {/* Floating stat card */}
                 <div className="absolute -bottom-5 -right-5 bg-white rounded-2xl shadow-xl p-5 hidden lg:block">
-                  <p className="text-2xl font-bold" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>15,000+</p>
+                  <p className="text-2xl font-bold" style={{ color: PRIMARY, fontFamily: FONT_RALEWAY }}>17,250+</p>
                   <p className="text-xs text-gray-500" style={{ fontFamily: FONT_OPENSANS }}>Lives impacted since 2023</p>
                 </div>
                 {/* Decorative accent */}
@@ -680,8 +680,8 @@ export default function HomeClient({
                   </p>
                   <div className="grid grid-cols-3 gap-4 mb-8">
                     {[
-                      { num: "5,000+", label: "Farmers Joined" },
-                      { num: "15,000+", label: "Lives Impacted" },
+                      { num: "5,750+", label: "Farmers Joined" },
+                      { num: "17,250+", label: "Lives Impacted" },
                       { num: "3", label: "Core Programs" },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center p-4 rounded-2xl" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
